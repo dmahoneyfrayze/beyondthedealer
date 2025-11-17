@@ -1,13 +1,15 @@
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useVehicles } from "@/hooks/useVehicles";
-import { parseVehicleSlug } from "@/lib/vehicleUtils";
+import { parseVehicleSlug, generateVehicleSlug } from "@/lib/vehicleUtils";
 import { 
   Gauge, Calendar, Palette, Settings, Fuel, Cog, 
-  Phone, Mail, MapPin, ChevronLeft, Loader2, CheckCircle2 
+  Phone, Mail, MapPin, ChevronLeft, Loader2, CheckCircle2, FileText,
+  DollarSign, Car, Calculator
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -48,8 +50,54 @@ const VehicleDetail = () => {
     );
   }
 
+  const canonicalUrl = `https://olympichyundaivancouver.com/vehicle/${generateVehicleSlug(vehicle)}`;
+  const vehicleTitle = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`;
+  
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Car",
+    "name": vehicleTitle,
+    "brand": {
+      "@type": "Brand",
+      "name": vehicle.make
+    },
+    "model": vehicle.model,
+    "vehicleModelDate": vehicle.year,
+    "bodyType": vehicle.body_style,
+    "fuelType": vehicle.fuel_type,
+    "vehicleTransmission": vehicle.transmission,
+    "driveWheelConfiguration": vehicle.drive_train,
+    "color": vehicle.exterior_color,
+    "mileageFromOdometer": {
+      "@type": "QuantitativeValue",
+      "value": vehicle.odometer || vehicle.mileage,
+      "unitCode": "KMT"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": vehicle.internet_price || vehicle.asking_price || vehicle.price,
+      "priceCurrency": "CAD",
+      "availability": "https://schema.org/InStock",
+      "seller": {
+        "@type": "AutoDealer",
+        "name": "Olympic Hyundai Vancouver"
+      }
+    },
+    "image": vehicle.images?.[0],
+    "vehicleIdentificationNumber": vehicle.vin
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>{vehicleTitle} - Olympic Hyundai Vancouver | Used Cars</title>
+        <meta name="description" content={`${vehicleTitle} for sale in Vancouver. ${vehicle.odometer || vehicle.mileage} km, ${vehicle.transmission}, ${vehicle.fuel_type}. Get pre-approved for financing today.`} />
+        <link rel="canonical" href={canonicalUrl} />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
       <Header />
       
       <main className="flex-grow bg-background">
@@ -93,6 +141,49 @@ const VehicleDetail = () => {
                   </div>
                 )}
               </Card>
+
+              {/* High Visibility CTAs */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <Button asChild variant="cta" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                  <Link to="/finance">
+                    <CheckCircle2 className="w-6 h-6" />
+                    <span className="text-sm font-semibold">Get Approved</span>
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                  <Link to="/trade-in">
+                    <DollarSign className="w-6 h-6" />
+                    <span className="text-sm font-semibold">Value Trade</span>
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                  <a href="tel:604-555-0100">
+                    <Car className="w-6 h-6" />
+                    <span className="text-sm font-semibold">Test Drive</span>
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                  <Link to="/finance">
+                    <Calculator className="w-6 h-6" />
+                    <span className="text-sm font-semibold">Build Payment</span>
+                  </Link>
+                </Button>
+              </div>
+
+              {/* Carfax Button */}
+              {vehicle.vin && (
+                <Button asChild variant="default" size="lg" className="w-full">
+                  <a 
+                    href={`https://www.carfax.ca/vehicle-history-report/${vehicle.vin}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2"
+                  >
+                    <FileText className="w-5 h-5" />
+                    View CARFAX Report
+                  </a>
+                </Button>
+              )}
 
               {/* Vehicle Details */}
               <Card>
