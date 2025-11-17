@@ -16,9 +16,9 @@ import Footer from "@/components/Footer";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const stockNumber = slug ? parseVehicleSlug(slug) : '';
+  const stockNumber = slug ? parseVehicleSlug(slug).toUpperCase() : '';
   const { data: vehicles = [], isLoading } = useVehicles({});
-  const vehicle = vehicles.find(v => v.stock_number === stockNumber);
+  const vehicle = vehicles.find(v => v.stock_number.toUpperCase() === stockNumber);
 
   if (isLoading) {
     return (
