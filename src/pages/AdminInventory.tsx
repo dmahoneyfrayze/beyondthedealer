@@ -14,13 +14,47 @@ const AdminInventory = () => {
 
   const parseCSV = (text: string) => {
     const lines = text.split('\n').filter(line => line.trim());
-    const headers = lines[0].split(',').map(h => h.trim());
+    if (lines.length === 0) return [];
+    
+    // Parse CSV properly handling quoted fields
+    const parseCSVLine = (line: string): string[] => {
+      const result: string[] = [];
+      let current = '';
+      let inQuotes = false;
+      
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const nextChar = line[i + 1];
+        
+        if (char === '"') {
+          if (inQuotes && nextChar === '"') {
+            // Escaped quote
+            current += '"';
+            i++; // Skip next quote
+          } else {
+            // Toggle quote state
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          // End of field
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      // Add last field
+      result.push(current.trim());
+      return result;
+    };
+    
+    const headers = parseCSVLine(lines[0]).map(h => h.trim());
     
     return lines.slice(1).map(line => {
-      const values = line.split(',').map(v => v.trim());
+      const values = parseCSVLine(line);
       const obj: any = {};
       headers.forEach((header, i) => {
-        obj[header] = values[i];
+        obj[header] = values[i] || '';
       });
       return obj;
     });
@@ -45,34 +79,65 @@ const AdminInventory = () => {
       }
 
       // Normalize data - map CSV headings to database columns
-      const normalizedVehicles = (Array.isArray(vehicles) ? vehicles : [vehicles]).map(v => ({
-        dealership: v.dealership || 'Olympic Hyundai Vancouver',
-        stock_number: v.stock_number || v.stockNumber || `STK${Date.now()}`,
-        vin: v.vin || `VIN${Date.now()}${Math.random()}`,
-        year: parseInt(v.year),
-        make: v.make || 'Hyundai',
-        model: v.model,
-        trim: v.trim || '',
-        body_style: v.body_style || v.bodyStyle || 'SUV',
-        drive_train: v.drive_train || v.drivetrain || 'AWD',
-        transmission: v.transmission || 'Automatic',
-        fuel_type: v.fuel_type || v.fuelType || 'Gasoline',
-        exterior_color: v.exterior_color || v.exteriorColor || '',
-        interior_color: v.interior_color || v.interiorColor || '',
-        odometer: v.odometer ? parseInt(v.odometer) : null,
-        mileage: v.mileage ? parseInt(v.mileage) : (v.odometer ? parseInt(v.odometer) : null),
-        asking_price: v.asking_price ? parseFloat(v.asking_price) : null,
-        retail_price: v.retail_price ? parseFloat(v.retail_price) : null,
-        internet_price: v.internet_price ? parseFloat(v.internet_price) : null,
-        price: v.internet_price ? parseFloat(v.internet_price) : (v.asking_price ? parseFloat(v.asking_price) : parseFloat(v.price || 0)),
-        sale_class: v.sale_class || null,
-        vdp_url: v.vdp_url || null,
-        engine: v.engine || '',
-        description: v.description || '', // Will be generated if empty
-        features: Array.isArray(v.features) ? v.features : (v.features ? v.features.split('|') : []),
-        images: v['image.image_md'] ? [v['image.image_md']] : (Array.isArray(v.images) ? v.images : (v.images ? v.images.split('|') : [])),
-        status: v.status || 'available'
-      }));
+      const normalizedVehicles = (Array.isArray(vehicles) ? vehicles : [vehicles]).map((v, index) => {
+        // Parse numeric values with validation
+        const parseNumber = (value: any, fieldName: string): number | null => {
+          if (!value || value === '' || value === '0') return null;
+          const parsed = typeof value === 'string' ? parseFloat(value.replace(/[^0-9.-]/g, '')) : parseFloat(value);
+          if (isNaN(parsed) || parsed < 0) {
+            console.warn(`Invalid ${fieldName} value for vehicle ${v.stock_number || index}: ${value}`);
+            return null;
+          }
+          return parsed;
+        };
+
+        const parseInteger = (value: any, fieldName: string): number | null => {
+          if (!value || value === '' || value === '0') return null;
+          const parsed = typeof value === 'string' ? parseInt(value.replace(/[^0-9]/g, '')) : parseInt(value);
+          if (isNaN(parsed) || parsed < 0) {
+            console.warn(`Invalid ${fieldName} value for vehicle ${v.stock_number || index}: ${value}`);
+            return null;
+          }
+          return parsed;
+        };
+
+        const odometerValue = parseInteger(v.odometer, 'odometer');
+        const askingPrice = parseNumber(v.asking_price, 'asking_price');
+        const internetPrice = parseNumber(v.internet_price, 'internet_price');
+        const retailPrice = parseNumber(v.retail_price, 'retail_price');
+        
+        // Determine price: prefer internet_price, then asking_price, then retail_price
+        const price = internetPrice || askingPrice || retailPrice || parseNumber(v.price, 'price') || 0;
+
+        return {
+          dealership: (v.dealership || 'Olympic Hyundai Vancouver').trim(),
+          stock_number: (v.stock_number || v.stockNumber || `STK${Date.now()}-${index}`).trim(),
+          vin: (v.vin || `VIN${Date.now()}-${Math.random()}`).trim(),
+          year: parseInt(v.year) || new Date().getFullYear(),
+          make: (v.make || 'Hyundai').trim(),
+          model: (v.model || '').trim(),
+          trim: (v.trim || '').trim(),
+          body_style: (v.body_style || v.bodyStyle || 'SUV').trim(),
+          drive_train: (v.drive_train || v.drivetrain || 'AWD').trim(),
+          transmission: (v.transmission || 'Automatic').trim(),
+          fuel_type: (v.fuel_type || v.fuelType || 'Gasoline').trim(),
+          exterior_color: (v.exterior_color || v.exteriorColor || '').trim(),
+          interior_color: (v.interior_color || v.interiorColor || '').trim(),
+          odometer: odometerValue,
+          mileage: parseInteger(v.mileage, 'mileage') || odometerValue,
+          asking_price: askingPrice,
+          retail_price: retailPrice,
+          internet_price: internetPrice,
+          price: price,
+          sale_class: (v.sale_class || null)?.trim() || null,
+          vdp_url: (v.vdp_url || null)?.trim() || null,
+          engine: (v.engine || '').trim(),
+          description: (v.description || '').trim(), // Will be generated if empty
+          features: Array.isArray(v.features) ? v.features : (v.features ? v.features.split('|').map((f: string) => f.trim()).filter(Boolean) : []),
+          images: v['image.image_md'] ? [v['image.image_md']] : (Array.isArray(v.images) ? v.images : (v.images ? v.images.split('|').map((img: string) => img.trim()).filter(Boolean) : [])),
+          status: (v.status || 'available').trim()
+        };
+      });
 
       // Upload vehicles first
       const { data: uploadedVehicles, error } = await supabase

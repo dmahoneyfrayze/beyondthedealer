@@ -396,17 +396,19 @@ const UsedInventory = () => {
                       
                       <div className="flex items-baseline gap-2 mb-2">
                         <span className="text-3xl font-bold text-primary">
-                          ${price.toLocaleString()}
+                          {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
                         </span>
                       </div>
-                      <div className="flex items-baseline gap-2 mb-4">
-                        <span className="text-lg font-semibold">
-                          ${monthlyPayment}/mo
-                        </span>
-                        <span className="text-sm text-muted-foreground">
-                          or ${biweeklyPayment}/bi-weekly*
-                        </span>
-                      </div>
+                      {price > 0 && (
+                        <div className="flex items-baseline gap-2 mb-4">
+                          <span className="text-lg font-semibold">
+                            ${monthlyPayment}/mo
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            or ${biweeklyPayment}/bi-weekly*
+                          </span>
+                        </div>
+                      )}
 
                       <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center">

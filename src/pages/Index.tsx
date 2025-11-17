@@ -170,7 +170,7 @@ const Index = () => {
                               </p>
                               <div className="flex items-baseline gap-2 mb-2">
                                 <span className="text-2xl font-bold text-primary">
-                                  ${price.toLocaleString()}
+                                  {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
                                 </span>
                               </div>
                               <div className="flex items-center gap-4 text-xs text-muted-foreground">

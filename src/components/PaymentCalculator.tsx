@@ -33,19 +33,20 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
       const monthlyRate = rate / 12;
       const numPayments = term;
       const monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
-      return Math.round(monthlyPayment);
+      return parseFloat(monthlyPayment.toFixed(2));
     } else {
       // Bi-weekly calculation (26 payments per year)
       const biweeklyRate = rate / 26;
       const numPayments = (term / 12) * 26;
       const biweeklyPayment = principal * (biweeklyRate * Math.pow(1 + biweeklyRate, numPayments)) / (Math.pow(1 + biweeklyRate, numPayments) - 1);
-      return Math.round(biweeklyPayment);
+      return parseFloat(biweeklyPayment.toFixed(2));
     }
   };
 
-  const monthlyPayment = calculatePayment('monthly');
-  const biweeklyPayment = calculatePayment('biweekly');
-  const downPaymentPercent = Math.round((downPayment / vehiclePrice) * 100);
+  const monthlyPayment = vehiclePrice > 0 ? calculatePayment('monthly') : 0;
+  const biweeklyPayment = vehiclePrice > 0 ? calculatePayment('biweekly') : 0;
+  const downPaymentPercent = vehiclePrice > 0 ? Math.round((downPayment / vehiclePrice) * 100) : 0;
+  const hasPrice = vehiclePrice > 0;
 
   return (
     <div className="space-y-6">
@@ -64,7 +65,7 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
           <div className="p-4 bg-primary/5 rounded-lg">
             <p className="text-sm text-muted-foreground mb-1">Vehicle Price</p>
             <p className="text-2xl font-bold text-primary">
-              ${vehiclePrice.toLocaleString()}
+              {hasPrice ? `$${vehiclePrice.toLocaleString()}` : "Contact for Price"}
             </p>
           </div>
 
@@ -73,16 +74,17 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
             <div className="flex justify-between items-center">
               <Label>Down Payment</Label>
               <span className="text-sm font-medium">
-                ${downPayment.toLocaleString()} ({downPaymentPercent}%)
+                {hasPrice ? `$${downPayment.toLocaleString()} (${downPaymentPercent}%)` : "N/A"}
               </span>
             </div>
             <Slider
               value={[downPayment]}
               onValueChange={([value]) => setDownPayment(value)}
               min={0}
-              max={vehiclePrice * 0.5}
+              max={hasPrice ? vehiclePrice * 0.5 : 0}
               step={500}
               className="py-4"
+              disabled={!hasPrice}
             />
             <Input
               type="number"
@@ -90,6 +92,7 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
               onChange={(e) => setDownPayment(Number(e.target.value))}
               min={0}
               max={vehiclePrice}
+              disabled={!hasPrice}
             />
           </div>
 
@@ -106,6 +109,7 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
               max={20}
               step={0.25}
               className="py-4"
+              disabled={!hasPrice}
             />
             <Input
               type="number"
@@ -114,13 +118,14 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
               min={0}
               max={25}
               step={0.1}
+              disabled={!hasPrice}
             />
           </div>
 
           {/* Term Length */}
           <div className="space-y-2">
             <Label>Financing Term</Label>
-            <Select value={term.toString()} onValueChange={(value) => setTerm(Number(value))}>
+            <Select value={term.toString()} onValueChange={(value) => setTerm(Number(value))} disabled={!hasPrice}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>
@@ -137,21 +142,29 @@ const PaymentCalculator = ({ vehiclePrice }: PaymentCalculatorProps) => {
 
           {/* Payment Results */}
           <div className="space-y-3 pt-4 border-t">
-            <div className="flex justify-between items-center p-4 bg-accent/50 rounded-lg">
-              <div>
-                <p className="text-sm text-muted-foreground">Monthly Payment</p>
-                <p className="text-2xl font-bold">${monthlyPayment.toLocaleString()}/mo</p>
+            {hasPrice ? (
+              <>
+                <div className="flex justify-between items-center p-4 bg-accent/50 rounded-lg">
+                  <div>
+                    <p className="text-sm text-muted-foreground">Monthly Payment</p>
+                    <p className="text-2xl font-bold">${monthlyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/mo</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center p-4 bg-primary/10 rounded-lg border-2 border-primary/20">
+                  <div>
+                    <p className="text-sm text-muted-foreground flex items-center gap-2">
+                      <TrendingDown className="w-4 h-4" />
+                      Bi-Weekly Payment
+                    </p>
+                    <p className="text-2xl font-bold text-primary">${biweeklyPayment.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}/bi-weekly</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="p-4 bg-muted/50 rounded-lg text-center">
+                <p className="text-muted-foreground">Please contact us for pricing information</p>
               </div>
-            </div>
-            <div className="flex justify-between items-center p-4 bg-primary/10 rounded-lg border-2 border-primary/20">
-              <div>
-                <p className="text-sm text-muted-foreground flex items-center gap-2">
-                  <TrendingDown className="w-4 h-4" />
-                  Bi-Weekly Payment
-                </p>
-                <p className="text-2xl font-bold text-primary">${biweeklyPayment.toLocaleString()}/bi-weekly</p>
-              </div>
-            </div>
+            )}
             <p className="text-xs text-muted-foreground">
               * Payments shown are estimates for illustration purposes only. Actual rates and terms may vary based on credit approval.
             </p>

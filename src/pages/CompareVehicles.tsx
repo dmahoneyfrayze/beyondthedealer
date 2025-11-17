@@ -82,7 +82,7 @@ const CompareVehicles = () => {
                       </div>
 
                       <div className="text-3xl font-bold text-primary">
-                        ${price.toLocaleString()}
+                        {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
                       </div>
 
                       <div className="space-y-3 text-sm">

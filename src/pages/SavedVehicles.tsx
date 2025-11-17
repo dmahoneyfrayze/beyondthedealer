@@ -59,7 +59,10 @@ const SavedVehicles = () => {
                     
                     <div className="flex items-baseline gap-2 mb-4">
                       <span className="text-3xl font-bold text-primary">
-                        ${(vehicle.internet_price || vehicle.asking_price || vehicle.price || 0).toLocaleString()}
+                        {(() => {
+                          const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
+                          return price > 0 ? `$${price.toLocaleString()}` : "Contact for Price";
+                        })()}
                       </span>
                     </div>
 

@@ -393,9 +393,9 @@ const VehicleDetail = () => {
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Price</p>
                     <p className="text-4xl font-bold text-primary">
-                      ${price.toLocaleString()}
+                      {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
                     </p>
-                    <p className="text-xs text-muted-foreground mt-1">+ taxes & fees</p>
+                    {price > 0 && <p className="text-xs text-muted-foreground mt-1">+ taxes & fees</p>}
                     <Badge className="mt-2" variant="secondary">
                       {vehicle.status === 'available' ? 'Available' : 'Pending'}
                     </Badge>
