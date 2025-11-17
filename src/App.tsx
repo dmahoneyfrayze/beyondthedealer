@@ -31,7 +31,6 @@ import Ioniq5Guide from "./pages/guides/Ioniq5Guide";
 import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import StickyCTABar from "./components/StickyCTABar";
-import ChatWidget from "./components/ChatWidget";
 import NewVsUsed from "./pages/research/NewVsUsed";
 import FinanceVsLease from "./pages/research/FinanceVsLease";
 import BCLuxuryTax from "./pages/research/BCLuxuryTax";
@@ -90,7 +89,6 @@ const App = () => (
             {/* Global Conversion Components */}
             <ExitIntentPopup />
             <StickyCTABar />
-            <ChatWidget />
           </BrowserRouter>
         </TooltipProvider>
       </ComparisonProvider>
