@@ -31,6 +31,12 @@ import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import StickyCTABar from "./components/StickyCTABar";
 import LiveChatWidget from "./components/LiveChatWidget";
+import NewVsUsed from "./pages/research/NewVsUsed";
+import FinanceVsLease from "./pages/research/FinanceVsLease";
+import BCLuxuryTax from "./pages/research/BCLuxuryTax";
+import StudentPrograms from "./pages/research/StudentPrograms";
+import NewToCanada from "./pages/research/NewToCanada";
+import BCRegistrationInsurance from "./pages/research/BCRegistrationInsurance";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +71,13 @@ const App = () => (
               <Route path="/hyundai-kona-vancouver-guide" element={<KonaGuide />} />
               <Route path="/hyundai-tucson-vancouver-guide" element={<TucsonGuide />} />
               <Route path="/hyundai-ioniq5-vancouver-guide" element={<Ioniq5Guide />} />
+              {/* Research Pages */}
+              <Route path="/research/new-vs-used" element={<NewVsUsed />} />
+              <Route path="/research/finance-vs-lease" element={<FinanceVsLease />} />
+              <Route path="/research/bc-luxury-tax" element={<BCLuxuryTax />} />
+              <Route path="/research/student-programs" element={<StudentPrograms />} />
+              <Route path="/research/new-to-canada" element={<NewToCanada />} />
+              <Route path="/research/bc-registration-insurance" element={<BCRegistrationInsurance />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
