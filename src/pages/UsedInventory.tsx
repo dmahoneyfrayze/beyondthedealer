@@ -1,26 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { DollarSign, Gauge, Calendar, Phone } from "lucide-react";
+import { Gauge, Calendar, Phone, Loader2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
+import { useVehicles } from "@/hooks/useVehicles";
 
 const UsedInventory = () => {
   const [priceRange, setPriceRange] = useState("all");
   const [bodyStyle, setBodyStyle] = useState("all");
 
-  // Sample inventory data
-  const vehicles = [
-    { id: 1, year: 2022, make: "Hyundai", model: "Tucson", trim: "Preferred", price: 32995, mileage: 24500, bodyStyle: "SUV", image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a" },
-    { id: 2, year: 2021, make: "Hyundai", model: "Elantra", trim: "Ultimate", price: 24995, mileage: 35200, bodyStyle: "Sedan", image: "https://images.unsplash.com/photo-1617654112368-307921291f42" },
-    { id: 3, year: 2023, make: "Hyundai", model: "Kona", trim: "Preferred", price: 28995, mileage: 12000, bodyStyle: "SUV", image: "https://images.unsplash.com/photo-1611859266238-4b98091d9d9b" },
-    { id: 4, year: 2020, make: "Hyundai", model: "Santa Fe", trim: "Luxury", price: 35995, mileage: 42000, bodyStyle: "SUV", image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6" },
-    { id: 5, year: 2022, make: "Hyundai", model: "Ioniq 5", trim: "Preferred", price: 45995, mileage: 18000, bodyStyle: "SUV", image: "https://images.unsplash.com/photo-1617654112368-307921291f42" },
-    { id: 6, year: 2021, make: "Hyundai", model: "Venue", trim: "Preferred", price: 21995, mileage: 28000, bodyStyle: "SUV", image: "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6" },
-  ];
+  const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle });
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -99,24 +91,35 @@ const UsedInventory = () => {
             {/* Vehicle Grid */}
             <div className="lg:col-span-3">
               <div className="mb-6">
-                <p className="text-muted-foreground">Showing {vehicles.length} vehicles</p>
+                <p className="text-muted-foreground">
+                  {isLoading ? 'Loading...' : `Showing ${vehicles.length} vehicles`}
+                </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                {vehicles.map((vehicle) => (
-                  <Card key={vehicle.id} className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300">
-                    <div className="aspect-video bg-muted">
-                      <img 
-                        src={vehicle.image} 
-                        alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <CardContent className="p-6">
-                      <h3 className="text-xl font-bold mb-2">
-                        {vehicle.year} {vehicle.make} {vehicle.model}
-                      </h3>
-                      <p className="text-sm text-muted-foreground mb-4">{vehicle.trim}</p>
+              {isLoading ? (
+                <div className="flex justify-center items-center py-12">
+                  <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                </div>
+              ) : vehicles.length === 0 ? (
+                <Card className="p-12 text-center">
+                  <p className="text-muted-foreground">No vehicles found matching your criteria.</p>
+                </Card>
+              ) : (
+                <div className="grid md:grid-cols-2 gap-6">
+                  {vehicles.map((vehicle) => (
+                    <Card key={vehicle.id} className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300">
+                      <div className="aspect-video bg-muted">
+                        <img 
+                          src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"} 
+                          alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <CardContent className="p-6">
+                        <h3 className="text-xl font-bold mb-2">
+                          {vehicle.year} {vehicle.make} {vehicle.model}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
                       
                       <div className="flex items-baseline gap-2 mb-4">
                         <span className="text-3xl font-bold text-primary">
@@ -135,18 +138,19 @@ const UsedInventory = () => {
                         </div>
                       </div>
 
-                      <div className="space-y-2">
-                        <Button variant="cta" className="w-full">
-                          Check Availability
-                        </Button>
-                        <Button variant="outline" className="w-full">
-                          View Details
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                        <div className="space-y-2">
+                          <Button asChild variant="cta" className="w-full">
+                            <Link to={`/vehicle/${vehicle.id}`}>View Details</Link>
+                          </Button>
+                          <Button asChild variant="outline" className="w-full">
+                            <a href="tel:604-555-0100">Check Availability</a>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
