@@ -123,18 +123,7 @@ const AdminInventory = () => {
               </CardHeader>
               <CardContent className="space-y-6">
                 <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">
-                  <Input
-                    id="file-upload"
-                    type="file"
-                    accept=".csv,.json"
-                    onChange={handleFileUpload}
-                    disabled={isUploading}
-                    className="hidden"
-                  />
-                  <label
-                    htmlFor="file-upload"
-                    className="cursor-pointer flex flex-col items-center gap-4"
-                  >
+                  <div className="flex flex-col items-center gap-4">
                     <div className="p-4 bg-primary/10 rounded-full">
                       <Upload className="w-8 h-8 text-primary" />
                     </div>
@@ -146,10 +135,22 @@ const AdminInventory = () => {
                         Supports CSV and JSON formats
                       </p>
                     </div>
-                    <Button type="button" disabled={isUploading}>
+                    <Button 
+                      type="button" 
+                      disabled={isUploading}
+                      onClick={() => document.getElementById('file-upload')?.click()}
+                    >
                       Select File
                     </Button>
-                  </label>
+                  </div>
+                  <Input
+                    id="file-upload"
+                    type="file"
+                    accept=".csv,.json"
+                    onChange={handleFileUpload}
+                    disabled={isUploading}
+                    className="hidden"
+                  />
                 </div>
 
                 <div className="space-y-4">
