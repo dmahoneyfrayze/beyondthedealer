@@ -68,22 +68,55 @@ const AdminInventory = () => {
         sale_class: v.sale_class || null,
         vdp_url: v.vdp_url || null,
         engine: v.engine || '',
-        description: v.description || '',
+        description: v.description || '', // Will be generated if empty
         features: Array.isArray(v.features) ? v.features : (v.features ? v.features.split('|') : []),
         images: v['image.image_md'] ? [v['image.image_md']] : (Array.isArray(v.images) ? v.images : (v.images ? v.images.split('|') : [])),
         status: v.status || 'available'
       }));
 
-      const { data, error } = await supabase
+      // Upload vehicles first
+      const { data: uploadedVehicles, error } = await supabase
         .from('vehicles')
-        .upsert(normalizedVehicles, { onConflict: 'stock_number' });
+        .upsert(normalizedVehicles, { onConflict: 'stock_number' })
+        .select();
 
       if (error) throw error;
 
       toast({
-        title: "Success!",
-        description: `Uploaded ${normalizedVehicles.length} vehicles to inventory.`,
+        title: "Vehicles Uploaded!",
+        description: `${normalizedVehicles.length} vehicles added. Generating descriptions...`,
       });
+
+      // Generate descriptions for vehicles without them
+      const vehiclesNeedingDescriptions = uploadedVehicles?.filter(v => !v.description) || [];
+      
+      if (vehiclesNeedingDescriptions.length > 0) {
+        let successCount = 0;
+        
+        for (const vehicle of vehiclesNeedingDescriptions) {
+          try {
+            const { data: descData } = await supabase.functions.invoke('generate-vehicle-description', {
+              body: { vehicle }
+            });
+            
+            if (descData?.description) {
+              await supabase
+                .from('vehicles')
+                .update({ description: descData.description })
+                .eq('id', vehicle.id);
+              successCount++;
+            }
+          } catch (err) {
+            console.error(`Failed to generate description for ${vehicle.stock_number}:`, err);
+          }
+        }
+        
+        toast({
+          title: "Descriptions Generated!",
+          description: `Generated ${successCount} AI descriptions.`,
+        });
+      }
+
 
       // Reset input
       event.target.value = '';
