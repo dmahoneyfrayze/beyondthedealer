@@ -3,7 +3,7 @@ import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare } from "lucide-react";
+import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare, ArrowUpDown } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
@@ -27,6 +27,7 @@ const UsedInventory = () => {
   const [fuelTypeFilter, setFuelTypeFilter] = useState(searchParams.get("fuel") || "all");
   const [drivetrainFilter, setDrivetrainFilter] = useState(searchParams.get("drivetrain") || "all");
   const [modelFilter, setModelFilter] = useState(searchParams.get("model") || "all");
+  const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
   
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
   const { addToComparison, removeFromComparison, isInComparison } = useComparison();
@@ -96,6 +97,42 @@ const UsedInventory = () => {
     return true;
   });
 
+  // Apply sorting
+  const sortedVehicles = [...filteredVehicles].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low-high": {
+        const priceA = a.internet_price || a.asking_price || a.price || 0;
+        const priceB = b.internet_price || b.asking_price || b.price || 0;
+        return priceA - priceB;
+      }
+      case "price-high-low": {
+        const priceA = a.internet_price || a.asking_price || a.price || 0;
+        const priceB = b.internet_price || b.asking_price || b.price || 0;
+        return priceB - priceA;
+      }
+      case "year-low-high":
+        return a.year - b.year;
+      case "year-high-low":
+        return b.year - a.year;
+      case "km-low-high": {
+        const kmA = a.odometer || a.mileage || 0;
+        const kmB = b.odometer || b.mileage || 0;
+        return kmA - kmB;
+      }
+      case "km-high-low": {
+        const kmA = a.odometer || a.mileage || 0;
+        const kmB = b.odometer || b.mileage || 0;
+        return kmB - kmA;
+      }
+      case "make-a-z":
+        return (a.make || "").localeCompare(b.make || "");
+      case "make-z-a":
+        return (b.make || "").localeCompare(a.make || "");
+      default:
+        return 0; // Default order (no sorting)
+    }
+  });
+
   // Update URL params when filters change
   useEffect(() => {
     const params: Record<string, string> = {};
@@ -109,8 +146,9 @@ const UsedInventory = () => {
     if (transmissionFilter !== "all") params.transmission = transmissionFilter;
     if (fuelTypeFilter !== "all") params.fuel = fuelTypeFilter;
     if (drivetrainFilter !== "all") params.drivetrain = drivetrainFilter;
+    if (sortBy !== "default") params.sort = sortBy;
     setSearchParams(params);
-  }, [priceRange, bodyStyle, condition, make, modelFilter, yearFilter, mileageFilter, transmissionFilter, fuelTypeFilter, drivetrainFilter, setSearchParams]);
+  }, [priceRange, bodyStyle, condition, make, modelFilter, yearFilter, mileageFilter, transmissionFilter, fuelTypeFilter, drivetrainFilter, sortBy, setSearchParams]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -345,17 +383,36 @@ const UsedInventory = () => {
 
             {/* Vehicle Grid */}
             <div className="lg:col-span-3">
-              <div className="mb-6">
+              <div className="mb-6 flex items-center justify-between flex-wrap gap-4">
                 <p className="text-muted-foreground">
-                  {isLoading ? 'Loading...' : `Showing ${vehicles.length} vehicles`}
+                  {isLoading ? 'Loading...' : `Showing ${sortedVehicles.length} of ${vehicles.length} vehicles`}
                 </p>
+                <div className="flex items-center gap-2">
+                  <ArrowUpDown className="w-4 h-4 text-muted-foreground" />
+                  <Select value={sortBy} onValueChange={setSortBy}>
+                    <SelectTrigger className="w-[200px] h-9 text-sm">
+                      <SelectValue placeholder="Sort by" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-background">
+                      <SelectItem value="default">Default Order</SelectItem>
+                      <SelectItem value="price-low-high">Price: Low to High</SelectItem>
+                      <SelectItem value="price-high-low">Price: High to Low</SelectItem>
+                      <SelectItem value="year-low-high">Year: Oldest First</SelectItem>
+                      <SelectItem value="year-high-low">Year: Newest First</SelectItem>
+                      <SelectItem value="km-low-high">KM: Low to High</SelectItem>
+                      <SelectItem value="km-high-low">KM: High to Low</SelectItem>
+                      <SelectItem value="make-a-z">Make: A to Z</SelectItem>
+                      <SelectItem value="make-z-a">Make: Z to A</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
 
               {isLoading ? (
                 <div className="flex justify-center items-center py-12">
                   <Loader2 className="w-8 h-8 animate-spin text-primary" />
                 </div>
-              ) : filteredVehicles.length === 0 ? (
+              ) : sortedVehicles.length === 0 ? (
                 <Card className="p-12 text-center">
                   <p className="text-muted-foreground">No vehicles found matching your criteria.</p>
                   <Button onClick={() => { setPriceRange("all"); setBodyStyle("all"); setCondition("all"); setMake("all"); }} className="mt-4">
@@ -364,7 +421,7 @@ const UsedInventory = () => {
                 </Card>
               ) : (
                 <div className="grid md:grid-cols-2 gap-6">
-                  {filteredVehicles.map((vehicle, index) => {
+                  {sortedVehicles.map((vehicle, index) => {
                     const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
                     // Calculate bi-weekly payment with longer term and low interest
                     const principal = price * 0.9; // 10% down
