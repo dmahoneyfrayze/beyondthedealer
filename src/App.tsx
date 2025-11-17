@@ -22,6 +22,7 @@ import CreditRebuilding from "./pages/CreditRebuilding";
 import Leasing from "./pages/Leasing";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import WarrantiesProtection from "./pages/WarrantiesProtection";
 import ElantraGuide from "./pages/guides/ElantraGuide";
 import KonaGuide from "./pages/guides/KonaGuide";
 import TucsonGuide from "./pages/guides/TucsonGuide";
@@ -54,8 +55,9 @@ const App = () => (
               <Route path="/find-my-car" element={<FindMyCar />} />
               <Route path="/saved-vehicles" element={<SavedVehicles />} />
               <Route path="/compare" element={<CompareVehicles />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/warranties" element={<WarrantiesProtection />} />
               <Route path="/hyundai-elantra-vancouver-guide" element={<ElantraGuide />} />
               <Route path="/hyundai-kona-vancouver-guide" element={<KonaGuide />} />
               <Route path="/hyundai-tucson-vancouver-guide" element={<TucsonGuide />} />
