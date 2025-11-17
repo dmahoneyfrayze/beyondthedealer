@@ -3,8 +3,8 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "@/contexts/AuthContext";
 import { ComparisonProvider } from "@/contexts/ComparisonContext";
+import { SavedVehiclesProvider } from "@/contexts/SavedVehiclesContext";
 import Index from "./pages/Index";
 import UsedInventory from "./pages/UsedInventory";
 import VehicleDetail from "./pages/VehicleDetail";
@@ -14,7 +14,6 @@ import TradeIn from "./pages/TradeIn";
 import EVGuide from "./pages/EVGuide";
 import ServiceSpecials from "./pages/ServiceSpecials";
 import FindMyCar from "./pages/FindMyCar";
-import Auth from "./pages/Auth";
 import SavedVehicles from "./pages/SavedVehicles";
 import CompareVehicles from "./pages/CompareVehicles";
 import ElantraGuide from "./pages/guides/ElantraGuide";
@@ -27,7 +26,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
+    <SavedVehiclesProvider>
       <ComparisonProvider>
         <TooltipProvider>
           <Toaster />
@@ -43,7 +42,6 @@ const App = () => (
               <Route path="/ev-hybrid-guide-bc" element={<EVGuide />} />
               <Route path="/service-specials" element={<ServiceSpecials />} />
               <Route path="/find-my-car" element={<FindMyCar />} />
-              <Route path="/auth" element={<Auth />} />
               <Route path="/saved-vehicles" element={<SavedVehicles />} />
               <Route path="/compare" element={<CompareVehicles />} />
               <Route path="/hyundai-elantra-vancouver-guide" element={<ElantraGuide />} />
@@ -56,7 +54,7 @@ const App = () => (
           </BrowserRouter>
         </TooltipProvider>
       </ComparisonProvider>
-    </AuthProvider>
+    </SavedVehiclesProvider>
   </QueryClientProvider>
 );
 

@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Gauge, Calendar, Phone, Loader2 } from "lucide-react";
+import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Link } from "react-router-dom";
 import { useVehicles } from "@/hooks/useVehicles";
 import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import PaymentCalculator from "@/components/PaymentCalculator";
+import { useComparison } from "@/contexts/ComparisonContext";
+import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
+import { cn } from "@/lib/utils";
 
 const UsedInventory = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -17,8 +19,9 @@ const UsedInventory = () => {
   const [bodyStyle, setBodyStyle] = useState(searchParams.get("body") || "all");
   const [condition, setCondition] = useState(searchParams.get("condition") || "all");
   const [make, setMake] = useState("all");
-
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
+  const { addToComparison, removeFromComparison, isInComparison } = useComparison();
+  const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
 
   // Apply condition filter client-side
   const filteredVehicles = vehicles.filter(vehicle => {
@@ -223,9 +226,37 @@ const UsedInventory = () => {
                           <Button asChild variant="cta" className="w-full">
                             <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
                           </Button>
-                          <Button asChild variant="outline" className="w-full">
-                            <a href="tel:604-555-0100">Check Availability</a>
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button
+                              variant={isSaved(vehicle.id) ? "default" : "outline"}
+                              size="icon"
+                              onClick={() => {
+                                if (isSaved(vehicle.id)) {
+                                  removeFromSaved(vehicle.id);
+                                } else {
+                                  addToSaved(vehicle);
+                                }
+                              }}
+                            >
+                              <Heart className={cn("w-4 h-4", isSaved(vehicle.id) && "fill-current")} />
+                            </Button>
+                            <Button
+                              variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
+                              size="icon"
+                              onClick={() => {
+                                if (isInComparison(vehicle.id)) {
+                                  removeFromComparison(vehicle.id);
+                                } else {
+                                  addToComparison(vehicle);
+                                }
+                              }}
+                            >
+                              <GitCompare className="w-4 h-4" />
+                            </Button>
+                            <Button asChild variant="outline" className="flex-1">
+                              <a href="tel:604-555-0100">Call Now</a>
+                            </Button>
+                          </div>
                         </div>
                       </CardContent>
                     </Card>

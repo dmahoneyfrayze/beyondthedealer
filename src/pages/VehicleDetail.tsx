@@ -9,17 +9,22 @@ import { parseVehicleSlug, generateVehicleSlug } from "@/lib/vehicleUtils";
 import { 
   Gauge, Calendar, Palette, Settings, Fuel, Cog, 
   Phone, Mail, MapPin, ChevronLeft, Loader2, CheckCircle2, FileText,
-  DollarSign, Car, Calculator
+  DollarSign, Car, Calculator, Heart, GitCompare
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PaymentCalculator from "@/components/PaymentCalculator";
+import { useComparison } from "@/contexts/ComparisonContext";
+import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
+import { cn } from "@/lib/utils";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const stockNumber = slug ? parseVehicleSlug(slug).toUpperCase() : '';
   const { data: vehicles = [], isLoading } = useVehicles({});
   const vehicle = vehicles.find(v => v.stock_number.toUpperCase() === stockNumber);
+  const { addToComparison, removeFromComparison, isInComparison } = useComparison();
+  const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
 
   if (isLoading) {
     return (
@@ -116,6 +121,11 @@ const VehicleDetail = () => {
             {vehicle.trim && (
               <p className="text-xl opacity-90 mt-2">{vehicle.trim}</p>
             )}
+            {vehicle.description && (
+              <p className="text-base opacity-80 mt-3 max-w-3xl">
+                {vehicle.description}
+              </p>
+            )}
           </div>
         </div>
 
@@ -144,7 +154,7 @@ const VehicleDetail = () => {
               </Card>
 
               {/* High Visibility CTAs */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                 <Button asChild variant="cta" size="lg" className="h-auto py-4 flex flex-col gap-2">
                   <Link to="/finance">
                     <CheckCircle2 className="w-6 h-6" />
@@ -162,6 +172,36 @@ const VehicleDetail = () => {
                     <Car className="w-6 h-6" />
                     <span className="text-sm font-semibold">Test Drive</span>
                   </a>
+                </Button>
+                <Button
+                  variant={isSaved(vehicle.id) ? "default" : "outline"}
+                  size="lg"
+                  className="h-auto py-4 flex flex-col gap-2"
+                  onClick={() => {
+                    if (isSaved(vehicle.id)) {
+                      removeFromSaved(vehicle.id);
+                    } else {
+                      addToSaved(vehicle);
+                    }
+                  }}
+                >
+                  <Heart className={cn("w-6 h-6", isSaved(vehicle.id) && "fill-current")} />
+                  <span className="text-sm font-semibold">{isSaved(vehicle.id) ? "Saved" : "Save"}</span>
+                </Button>
+                <Button
+                  variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
+                  size="lg"
+                  className="h-auto py-4 flex flex-col gap-2"
+                  onClick={() => {
+                    if (isInComparison(vehicle.id)) {
+                      removeFromComparison(vehicle.id);
+                    } else {
+                      addToComparison(vehicle);
+                    }
+                  }}
+                >
+                  <GitCompare className="w-6 h-6" />
+                  <span className="text-sm font-semibold">{isInComparison(vehicle.id) ? "In Compare" : "Compare"}</span>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
                   <Link to="/finance">
