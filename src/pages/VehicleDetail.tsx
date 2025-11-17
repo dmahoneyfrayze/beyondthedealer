@@ -93,6 +93,8 @@ const VehicleDetail = () => {
     "vehicleIdentificationNumber": vehicle.vin
   };
 
+  const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -370,8 +372,9 @@ const VehicleDetail = () => {
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Price</p>
                     <p className="text-4xl font-bold text-primary">
-                      ${vehicle.price.toLocaleString()}
+                      ${price.toLocaleString()}
                     </p>
+                    <p className="text-xs text-muted-foreground mt-1">+ taxes & fees</p>
                     <Badge className="mt-2" variant="secondary">
                       {vehicle.status === 'available' ? 'Available' : 'Pending'}
                     </Badge>
@@ -420,7 +423,7 @@ const VehicleDetail = () => {
               </Card>
 
               {/* Payment Calculator */}
-              <PaymentCalculator vehiclePrice={vehicle.price} />
+              <PaymentCalculator vehiclePrice={price} />
             </div>
           </div>
         </div>
