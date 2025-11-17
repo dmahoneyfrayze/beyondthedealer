@@ -66,6 +66,21 @@ export const useVehicles = (options: UseVehiclesOptions = {}) => {
       // Price range filter
       if (options.priceRange && options.priceRange !== 'all') {
         switch (options.priceRange) {
+          case 'under5k':
+            query = query.lt('price', 5000);
+            break;
+          case '5to10k':
+            query = query.gte('price', 5000).lte('price', 10000);
+            break;
+          case '10to15k':
+            query = query.gte('price', 10000).lte('price', 15000);
+            break;
+          case 'under15k':
+            query = query.lt('price', 15000);
+            break;
+          case '15to25k':
+            query = query.gte('price', 15000).lte('price', 25000);
+            break;
           case 'under25k':
             query = query.lt('price', 25000);
             break;
