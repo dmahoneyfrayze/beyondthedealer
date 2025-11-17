@@ -44,26 +44,33 @@ const AdminInventory = () => {
         throw new Error('Unsupported file format. Please upload CSV or JSON.');
       }
 
-      // Normalize data
+      // Normalize data - map CSV headings to database columns
       const normalizedVehicles = (Array.isArray(vehicles) ? vehicles : [vehicles]).map(v => ({
+        dealership: v.dealership || 'Olympic Hyundai Vancouver',
         stock_number: v.stock_number || v.stockNumber || `STK${Date.now()}`,
+        vin: v.vin || `VIN${Date.now()}${Math.random()}`,
         year: parseInt(v.year),
         make: v.make || 'Hyundai',
         model: v.model,
         trim: v.trim || '',
         body_style: v.body_style || v.bodyStyle || 'SUV',
+        drive_train: v.drive_train || v.drivetrain || 'AWD',
+        transmission: v.transmission || 'Automatic',
+        fuel_type: v.fuel_type || v.fuelType || 'Gasoline',
         exterior_color: v.exterior_color || v.exteriorColor || '',
         interior_color: v.interior_color || v.interiorColor || '',
-        price: parseFloat(v.price),
-        mileage: parseInt(v.mileage),
-        vin: v.vin || `VIN${Date.now()}${Math.random()}`,
-        transmission: v.transmission || 'Automatic',
-        drivetrain: v.drivetrain || 'AWD',
-        fuel_type: v.fuel_type || v.fuelType || 'Gasoline',
+        odometer: v.odometer ? parseInt(v.odometer) : null,
+        mileage: v.mileage ? parseInt(v.mileage) : (v.odometer ? parseInt(v.odometer) : null),
+        asking_price: v.asking_price ? parseFloat(v.asking_price) : null,
+        retail_price: v.retail_price ? parseFloat(v.retail_price) : null,
+        internet_price: v.internet_price ? parseFloat(v.internet_price) : null,
+        price: v.internet_price ? parseFloat(v.internet_price) : (v.asking_price ? parseFloat(v.asking_price) : parseFloat(v.price || 0)),
+        sale_class: v.sale_class || null,
+        vdp_url: v.vdp_url || null,
         engine: v.engine || '',
         description: v.description || '',
         features: Array.isArray(v.features) ? v.features : (v.features ? v.features.split('|') : []),
-        images: Array.isArray(v.images) ? v.images : (v.images ? v.images.split('|') : []),
+        images: v['image.image_md'] ? [v['image.image_md']] : (Array.isArray(v.images) ? v.images : (v.images ? v.images.split('|') : [])),
         status: v.status || 'available'
       }));
 
@@ -154,10 +161,10 @@ const AdminInventory = () => {
                       <div className="flex-1">
                         <p className="font-medium mb-1">CSV Format</p>
                         <p className="text-sm text-muted-foreground">
-                          Required columns: stock_number, year, make, model, body_style, price, mileage, vin
+                          Required: vin, stock_number, year, make, model, body_style
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          Optional: trim, exterior_color, interior_color, transmission, drivetrain, fuel_type, engine, description, features, images
+                          Optional: dealership, trim, drive_train, transmission, fuel_type, exterior_color, interior_color, odometer, asking_price, retail_price, internet_price, sale_class, vdp_url, image.image_md
                         </p>
                       </div>
                     </div>
@@ -184,25 +191,26 @@ const AdminInventory = () => {
                 <pre className="bg-muted p-4 rounded-lg overflow-x-auto text-xs">
 {`[
   {
+    "dealership": "Olympic Hyundai Vancouver",
+    "vin": "5NMZUDLA1NH123456",
     "stock_number": "HYU001",
     "year": 2022,
     "make": "Hyundai",
     "model": "Tucson",
     "trim": "Preferred",
     "body_style": "SUV",
+    "drive_train": "AWD",
+    "transmission": "Automatic",
+    "fuel_type": "Gasoline",
     "exterior_color": "Blue",
     "interior_color": "Black",
-    "price": 32995,
-    "mileage": 24500,
-    "vin": "5NMZUDLA1NH123456",
-    "transmission": "Automatic",
-    "drivetrain": "AWD",
-    "fuel_type": "Gasoline",
-    "engine": "2.5L 4-Cylinder",
-    "description": "Clean carfax, one owner",
-    "features": ["Heated Seats", "Backup Camera", "Blind Spot"],
-    "images": ["url1.jpg", "url2.jpg"],
-    "status": "available"
+    "odometer": 24500,
+    "asking_price": 34995,
+    "retail_price": 35995,
+    "internet_price": 32995,
+    "sale_class": "Used",
+    "vdp_url": "https://example.com/vehicle/HYU001",
+    "image.image_md": "https://example.com/image.jpg"
   }
 ]`}
                 </pre>

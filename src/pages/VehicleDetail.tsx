@@ -131,12 +131,12 @@ const VehicleDetail = () => {
                       </div>
                     )}
 
-                    {vehicle.drivetrain && (
+                    {vehicle.drive_train && (
                       <div className="flex items-start gap-3">
                         <Settings className="w-5 h-5 text-primary mt-1" />
                         <div>
                           <p className="font-semibold">Drivetrain</p>
-                          <p className="text-muted-foreground">{vehicle.drivetrain}</p>
+                          <p className="text-muted-foreground">{vehicle.drive_train}</p>
                         </div>
                       </div>
                     )}

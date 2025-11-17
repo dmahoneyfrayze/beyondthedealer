@@ -16,10 +16,12 @@ export type Database = {
     Tables: {
       vehicles: {
         Row: {
+          asking_price: number | null
           body_style: string
           created_at: string
+          dealership: string | null
           description: string | null
-          drivetrain: string | null
+          drive_train: string | null
           engine: string | null
           exterior_color: string | null
           features: string[] | null
@@ -27,23 +29,30 @@ export type Database = {
           id: string
           images: string[] | null
           interior_color: string | null
+          internet_price: number | null
           make: string
-          mileage: number
+          mileage: number | null
           model: string
+          odometer: number | null
           price: number
+          retail_price: number | null
+          sale_class: string | null
           status: string | null
           stock_number: string
           transmission: string | null
           trim: string | null
           updated_at: string
+          vdp_url: string | null
           vin: string
           year: number
         }
         Insert: {
+          asking_price?: number | null
           body_style: string
           created_at?: string
+          dealership?: string | null
           description?: string | null
-          drivetrain?: string | null
+          drive_train?: string | null
           engine?: string | null
           exterior_color?: string | null
           features?: string[] | null
@@ -51,23 +60,30 @@ export type Database = {
           id?: string
           images?: string[] | null
           interior_color?: string | null
+          internet_price?: number | null
           make: string
-          mileage: number
+          mileage?: number | null
           model: string
+          odometer?: number | null
           price: number
+          retail_price?: number | null
+          sale_class?: string | null
           status?: string | null
           stock_number: string
           transmission?: string | null
           trim?: string | null
           updated_at?: string
+          vdp_url?: string | null
           vin: string
           year: number
         }
         Update: {
+          asking_price?: number | null
           body_style?: string
           created_at?: string
+          dealership?: string | null
           description?: string | null
-          drivetrain?: string | null
+          drive_train?: string | null
           engine?: string | null
           exterior_color?: string | null
           features?: string[] | null
@@ -75,15 +91,20 @@ export type Database = {
           id?: string
           images?: string[] | null
           interior_color?: string | null
+          internet_price?: number | null
           make?: string
-          mileage?: number
+          mileage?: number | null
           model?: string
+          odometer?: number | null
           price?: number
+          retail_price?: number | null
+          sale_class?: string | null
           status?: string | null
           stock_number?: string
           transmission?: string | null
           trim?: string | null
           updated_at?: string
+          vdp_url?: string | null
           vin?: string
           year?: number
         }
