@@ -299,6 +299,14 @@ const UsedInventory = () => {
                   })}
                 </div>
               )}
+
+              <div className="mt-8 p-4 bg-muted/50 rounded-lg text-xs text-muted-foreground text-center">
+                <p>
+                  <strong>BC Pricing Disclosure:</strong> All prices exclude PST, GST, air conditioning tax ($100), 
+                  tire stewardship fee, PPSA registration, dealer documentation fee ($599), and licensing/registration costs. 
+                  Payment estimates are for illustration only and subject to credit approval. Actual rates and terms may vary.
+                </p>
+              </div>
             </div>
           </div>
         </div>

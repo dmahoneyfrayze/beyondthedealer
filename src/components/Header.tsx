@@ -28,8 +28,15 @@ const Header = () => {
     { name: "Trucks", href: "/used?body=Truck" },
   ];
 
+  const financeLinks = [
+    { name: "Get Pre-Approved", href: "/finance" },
+    { name: "Second Chance Financing", href: "/second-chance-financing" },
+    { name: "Sign and Drive Program", href: "/sign-and-drive" },
+    { name: "Credit Rebuilding", href: "/credit-rebuilding" },
+    { name: "Leasing Options", href: "/leasing" },
+  ];
+
   const navigation = [
-    { name: "Finance", href: "/finance" },
     { name: "Trade-In", href: "/trade-in" },
     { name: "EV Guide", href: "/ev-hybrid-guide-bc" },
     { name: "Service", href: "/service-specials" },
@@ -55,6 +62,28 @@ const Header = () => {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 bg-background">
                     {inventoryLinks.map((item) => (
+                      <li key={item.name}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={item.href}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="text-sm font-medium leading-none">{item.name}</div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium">
+                  Finance
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 bg-background">
+                    {financeLinks.map((item) => (
                       <li key={item.name}>
                         <NavigationMenuLink asChild>
                           <Link
