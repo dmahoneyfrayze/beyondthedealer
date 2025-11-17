@@ -14,6 +14,9 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PaymentCalculator from "@/components/PaymentCalculator";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
+import { ViewCounter } from "@/components/SocialProof";
+import { LimitedInventoryBadge as LimitedBadge, CountdownTimer as CountdownComponent } from "@/components/UrgencyBadge";
 import { useComparison } from "@/contexts/ComparisonContext";
 import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
 import { cn } from "@/lib/utils";
@@ -117,12 +120,19 @@ const VehicleDetail = () => {
                 Back to Inventory
               </Link>
             </Button>
-            <h1 className="text-4xl md:text-5xl font-bold">
-              {vehicle.year} {vehicle.make} {vehicle.model}
-            </h1>
+            <div className="flex flex-wrap items-center gap-4 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold">
+                {vehicle.year} {vehicle.make} {vehicle.model}
+              </h1>
+              <ViewCounter count={Math.floor(Math.random() * 20) + 5} />
+            </div>
             {vehicle.trim && (
               <p className="text-xl opacity-90 mt-2">{vehicle.trim}</p>
             )}
+            <div className="flex flex-wrap gap-2 mt-4">
+              <LimitedBadge count={Math.floor(Math.random() * 3) + 1} />
+              <CountdownComponent hours={24} />
+            </div>
             {vehicle.description && (
               <p className="text-base opacity-80 mt-3 max-w-3xl">
                 {vehicle.description}
@@ -424,6 +434,14 @@ const VehicleDetail = () => {
 
               {/* Payment Calculator */}
               <PaymentCalculator vehiclePrice={price} />
+
+              {/* Lead Magnet Form */}
+              <LeadMagnetForm
+                title="Get Financing Quote for This Vehicle"
+                description={`Get a personalized financing quote for this ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                buttonText="Get My Quote"
+                source={`vehicle-${vehicle.stock_number}`}
+              />
             </div>
           </div>
         </div>

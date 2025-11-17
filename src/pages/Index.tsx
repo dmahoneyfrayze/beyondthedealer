@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Car, DollarSign, Zap, Wrench, Search, Shield, Clock, MapPin } from "lucide-react";
+import { Car, DollarSign, Zap, Wrench, Search, Shield, Clock, MapPin, FileText, Download, CheckCircle2 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
+import MultiStepForm from "@/components/MultiStepForm";
+import { TestimonialCard, SoldCounter } from "@/components/SocialProof";
 import heroImage from "@/assets/hero-vancouver.jpg";
 
 const Index = () => {
@@ -108,6 +111,100 @@ const Index = () => {
                   </Card>
                 </Link>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Lead Magnet Section */}
+        <section className="py-16 bg-secondary">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <FileText className="w-8 h-8 text-primary" />
+                  <h2 className="text-3xl font-bold">Free BC Auto Buying Guide</h2>
+                </div>
+                <p className="text-lg text-muted-foreground mb-6">
+                  Download our comprehensive guide covering everything you need to know about buying a car in British Columbia, including:
+                </p>
+                <ul className="space-y-2 mb-6">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>BC tax and registration requirements</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>ICBC insurance basics</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Financing vs. leasing comparison</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>EV rebates and incentives</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Student and newcomer programs</span>
+                  </li>
+                </ul>
+                <SoldCounter count={47} className="mb-6" />
+              </div>
+              <div>
+                <LeadMagnetForm
+                  title="Get Your Free Guide"
+                  description="Enter your email and we'll send you the complete BC Auto Buying Guide instantly."
+                  buttonText="Download Free Guide"
+                  source="homepage-guide"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Proof Section */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              <TestimonialCard
+                name="Sarah Chen"
+                location="Vancouver, BC"
+                rating={5}
+                vehicle="2020 Hyundai Tucson"
+                text="The team made the entire process so easy. Got approved quickly and found the perfect SUV for my family. Highly recommend!"
+              />
+              <TestimonialCard
+                name="Michael Rodriguez"
+                location="Burnaby, BC"
+                rating={5}
+                vehicle="2019 Hyundai Elantra"
+                text="As a newcomer to Canada, I was worried about financing. Olympic Hyundai helped me understand everything and got me approved. Amazing service!"
+              />
+              <TestimonialCard
+                name="Jennifer Park"
+                location="Richmond, BC"
+                rating={5}
+                vehicle="2021 Hyundai Kona Electric"
+                text="The EV guide was incredibly helpful. They walked me through all the rebates and incentives. Love my new Kona!"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Quick Pre-Approval Section */}
+        <section className="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-center mb-4">Get Pre-Approved in Minutes</h2>
+              <p className="text-center text-muted-foreground mb-8">
+                Fast, easy, and no impact on your credit score
+              </p>
+              <MultiStepForm
+                title="Quick Pre-Approval"
+                description="3 simple steps to get approved"
+              />
             </div>
           </div>
         </section>

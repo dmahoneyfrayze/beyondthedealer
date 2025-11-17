@@ -28,6 +28,9 @@ import KonaGuide from "./pages/guides/KonaGuide";
 import TucsonGuide from "./pages/guides/TucsonGuide";
 import Ioniq5Guide from "./pages/guides/Ioniq5Guide";
 import NotFound from "./pages/NotFound";
+import ExitIntentPopup from "./components/ExitIntentPopup";
+import StickyCTABar from "./components/StickyCTABar";
+import LiveChatWidget from "./components/LiveChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -65,6 +68,10 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            {/* Global Conversion Components */}
+            <ExitIntentPopup />
+            <StickyCTABar />
+            <LiveChatWidget />
           </BrowserRouter>
         </TooltipProvider>
       </ComparisonProvider>

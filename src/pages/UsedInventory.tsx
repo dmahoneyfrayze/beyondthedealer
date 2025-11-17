@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
 import { useVehicles } from "@/hooks/useVehicles";
 import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import PaymentCalculator from "@/components/PaymentCalculator";
@@ -180,6 +181,14 @@ const UsedInventory = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Lead Magnet */}
+              <LeadMagnetForm
+                title="Get Notified of New Arrivals"
+                description="Be the first to know when vehicles matching your criteria arrive"
+                buttonText="Get Notifications"
+                source="inventory-page"
+              />
             </aside>
 
             {/* Vehicle Grid */}
