@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Menu, ChevronDown } from "lucide-react";
+import { Phone, Menu, ChevronDown, Heart, GitCompare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -10,9 +10,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState } from "react";
+import { useComparison } from "@/contexts/ComparisonContext";
+import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { comparisonVehicles } = useComparison();
+  const { savedVehicles } = useSavedVehicles();
 
   const inventoryLinks = [
     { name: "All Used Inventory", href: "/used" },
@@ -91,6 +95,22 @@ const Header = () => {
           </NavigationMenu>
 
           <div className="hidden lg:flex items-center space-x-4">
+            {savedVehicles.length > 0 && (
+              <Button asChild variant="outline" size="sm">
+                <Link to="/saved-vehicles">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Saved ({savedVehicles.length})
+                </Link>
+              </Button>
+            )}
+            {comparisonVehicles.length > 0 && (
+              <Button asChild variant="outline" size="sm">
+                <Link to="/compare">
+                  <GitCompare className="w-4 h-4 mr-2" />
+                  Compare ({comparisonVehicles.length})
+                </Link>
+              </Button>
+            )}
             <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground hover:text-primary">
               <Phone className="w-4 h-4 mr-2" />
               (604) 555-0100
