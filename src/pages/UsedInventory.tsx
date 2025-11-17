@@ -124,14 +124,14 @@ const UsedInventory = () => {
                       
                       <div className="flex items-baseline gap-2 mb-4">
                         <span className="text-3xl font-bold text-primary">
-                          ${vehicle.price.toLocaleString()}
+                          ${(vehicle.internet_price || vehicle.asking_price || vehicle.price || 0).toLocaleString()}
                         </span>
                       </div>
 
                       <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                         <div className="flex items-center">
                           <Gauge className="w-4 h-4 mr-1" />
-                          {vehicle.mileage.toLocaleString()} km
+                          {(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km
                         </div>
                         <div className="flex items-center">
                           <Calendar className="w-4 h-4 mr-1" />
