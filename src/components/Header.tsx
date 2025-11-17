@@ -1,14 +1,30 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, Menu } from "lucide-react";
+import { Phone, Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
 import { useState } from "react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const inventoryLinks = [
+    { name: "All Used Inventory", href: "/used" },
+    { name: "Under $5,000", href: "/used?price=under5k" },
+    { name: "Under $15,000", href: "/used?price=under15k" },
+    { name: "Slightly Used (Low Miles)", href: "/used?condition=low-miles" },
+    { name: "SUVs", href: "/used?body=SUV" },
+    { name: "Sedans", href: "/used?body=Sedan" },
+    { name: "Trucks", href: "/used?body=Truck" },
+  ];
+
   const navigation = [
-    { name: "Used Inventory", href: "/used" },
-    { name: "New Vehicles", href: "https://www.olympichyundaivancouver.com/", external: true },
     { name: "Finance", href: "/finance" },
     { name: "Trade-In", href: "/trade-in" },
     { name: "EV Guide", href: "/ev-hybrid-guide-bc" },
@@ -26,29 +42,53 @@ const Header = () => {
             <div className="text-sm text-muted-foreground hidden sm:block">Vancouver</div>
           </Link>
 
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navigation.map((item) => (
-              item.external ? (
+          <NavigationMenu className="hidden lg:flex">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium">
+                  Inventory
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 bg-background">
+                    {inventoryLinks.map((item) => (
+                      <li key={item.name}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={item.href}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="text-sm font-medium leading-none">{item.name}</div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
+              {navigation.map((item) => (
+                <NavigationMenuItem key={item.name}>
+                  <Link
+                    to={item.href}
+                    className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                  >
+                    {item.name}
+                  </Link>
+                </NavigationMenuItem>
+              ))}
+
+              <NavigationMenuItem>
                 <a
-                  key={item.name}
-                  href={item.href}
+                  href="https://www.olympichyundaivancouver.com/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                  className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
                 >
-                  {item.name}
+                  New Vehicles
                 </a>
-              ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
-                >
-                  {item.name}
-                </Link>
-              )
-            ))}
-          </nav>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
 
           <div className="hidden lg:flex items-center space-x-4">
             <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground hover:text-primary">
@@ -71,29 +111,40 @@ const Header = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-2">
-              {navigation.map((item) => (
-                item.external ? (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ) : (
+              <div className="px-4 py-2">
+                <p className="text-sm font-semibold text-muted-foreground mb-2">Inventory</p>
+                {inventoryLinks.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
-                )
+                ))}
+              </div>
+              
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
               ))}
+
+              <a
+                href="https://www.olympichyundaivancouver.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                New Vehicles
+              </a>
               <div className="px-4 py-2">
                 <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground">
                   <Phone className="w-4 h-4 mr-2" />

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PaymentCalculator from "@/components/PaymentCalculator";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
