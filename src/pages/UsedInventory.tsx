@@ -127,11 +127,11 @@ const UsedInventory = () => {
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar Filters & CTAs */}
             <aside className="lg:col-span-1">
-              <Card className="sticky top-24">
-                <CardContent className="p-6 space-y-6">
+              <Card className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+                <CardContent className="p-4 space-y-3">
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <h3 className="font-semibold">Filters</h3>
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="font-semibold text-sm">Filters</h3>
                       <Button
                         variant="ghost"
                         size="sm"
@@ -146,16 +146,16 @@ const UsedInventory = () => {
                           setFuelTypeFilter("all");
                           setDrivetrainFilter("all");
                         }}
-                        className="text-xs h-7"
+                        className="text-xs h-6 px-2"
                       >
                         Clear All
                       </Button>
                     </div>
-                    <div className="space-y-4">
+                    <div className="space-y-2.5">
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Price Range</label>
+                        <label className="text-xs font-medium mb-1.5 block">Price Range</label>
                         <Select value={priceRange} onValueChange={setPriceRange}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -173,9 +173,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Body Style</label>
+                        <label className="text-xs font-medium mb-1.5 block">Body Style</label>
                         <Select value={bodyStyle} onValueChange={setBodyStyle}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -191,9 +191,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Condition</label>
+                        <label className="text-xs font-medium mb-1.5 block">Condition</label>
                         <Select value={condition} onValueChange={setCondition}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -204,9 +204,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Make</label>
+                        <label className="text-xs font-medium mb-1.5 block">Make</label>
                         <Select value={make} onValueChange={setMake}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -226,9 +226,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Year</label>
+                        <label className="text-xs font-medium mb-1.5 block">Year</label>
                         <Select value={yearFilter} onValueChange={setYearFilter}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -242,9 +242,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Mileage (km)</label>
+                        <label className="text-xs font-medium mb-1.5 block">Mileage (km)</label>
                         <Select value={mileageFilter} onValueChange={setMileageFilter}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -258,9 +258,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Transmission</label>
+                        <label className="text-xs font-medium mb-1.5 block">Transmission</label>
                         <Select value={transmissionFilter} onValueChange={setTransmissionFilter}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -273,9 +273,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Fuel Type</label>
+                        <label className="text-xs font-medium mb-1.5 block">Fuel Type</label>
                         <Select value={fuelTypeFilter} onValueChange={setFuelTypeFilter}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -289,9 +289,9 @@ const UsedInventory = () => {
                       </div>
 
                       <div>
-                        <label className="text-sm font-medium mb-2 block">Drivetrain</label>
+                        <label className="text-xs font-medium mb-1.5 block">Drivetrain</label>
                         <Select value={drivetrainFilter} onValueChange={setDrivetrainFilter}>
-                          <SelectTrigger>
+                          <SelectTrigger className="h-9 text-sm">
                             <SelectValue />
                           </SelectTrigger>
                           <SelectContent className="bg-background">
@@ -305,24 +305,24 @@ const UsedInventory = () => {
                     </div>
                   </div>
 
-                  <div className="pt-6 border-t space-y-3">
-                    <Button asChild variant="cta" className="w-full">
+                  <div className="pt-3 border-t space-y-2">
+                    <Button asChild variant="cta" className="w-full text-sm h-9">
                       <Link to="/finance">Get Pre-Approved</Link>
                     </Button>
-                    <Button asChild variant="outline" className="w-full">
+                    <Button asChild variant="outline" className="w-full text-sm h-9">
                       <Link to="/trade-in">Value My Trade</Link>
                     </Button>
-                    <Button asChild variant="outline" className="w-full">
+                    <Button asChild variant="outline" className="w-full text-sm h-9">
                       <a href="https://www.olympichyundaivancouver.com/" target="_blank" rel="noopener noreferrer">
                         Shop New Vehicles
                       </a>
                     </Button>
                   </div>
 
-                  <div className="pt-4 border-t">
-                    <p className="text-sm text-muted-foreground mb-2">Need help?</p>
-                    <a href="tel:604-555-0100" className="flex items-center text-sm font-medium text-primary hover:underline">
-                      <Phone className="w-4 h-4 mr-2" />
+                  <div className="pt-3 border-t">
+                    <p className="text-xs text-muted-foreground mb-1.5">Need help?</p>
+                    <a href="tel:604-555-0100" className="flex items-center text-xs font-medium text-primary hover:underline">
+                      <Phone className="w-3 h-3 mr-1.5" />
                       (604) 555-0100
                     </a>
                   </div>
