@@ -27,7 +27,7 @@ export const SoldCounter = ({ count = 47, className }: { count?: number; classNa
         <span className="text-sm font-medium text-green-700 dark:text-green-300">
           {count} vehicles sold this month
         </span>
-      </Card>
+      </CardContent>
     </Card>
   );
 };
