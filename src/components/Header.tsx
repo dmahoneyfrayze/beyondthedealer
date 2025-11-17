@@ -54,11 +54,11 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95">
+    <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95 transition-shadow duration-300 shadow-sm hover:shadow-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="text-2xl font-bold text-primary">
+          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300 group">
+            <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform duration-300">
               Olympic Hyundai
             </div>
             <div className="text-sm text-muted-foreground hidden sm:block">Vancouver</div>

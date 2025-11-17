@@ -7,6 +7,7 @@ import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare } from "lucide-react
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
+import AnimatedSection from "@/components/AnimatedSection";
 import { useVehicles } from "@/hooks/useVehicles";
 import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import PaymentCalculator from "@/components/PaymentCalculator";
@@ -118,8 +119,12 @@ const UsedInventory = () => {
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Used Vehicle Inventory</h1>
-            <p className="text-lg opacity-90">Combined selection from 3 Vancouver Hyundai stores</p>
+            <AnimatedSection direction="fade" delay={100}>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-down">Used Vehicle Inventory</h1>
+            </AnimatedSection>
+            <AnimatedSection direction="fade" delay={300}>
+              <p className="text-lg opacity-90 animate-slide-up">Combined selection from 3 Vancouver Hyundai stores</p>
+            </AnimatedSection>
           </div>
         </div>
 
@@ -359,7 +364,7 @@ const UsedInventory = () => {
                 </Card>
               ) : (
                 <div className="grid md:grid-cols-2 gap-6">
-                  {filteredVehicles.map((vehicle) => {
+                  {filteredVehicles.map((vehicle, index) => {
                     const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
                     // Calculate bi-weekly payment with longer term and low interest
                     const principal = price * 0.9; // 10% down
@@ -369,13 +374,14 @@ const UsedInventory = () => {
                     const monthlyPayment = Math.round(biweeklyPayment * 26 / 12);
                     
                     return (
-                      <Card key={vehicle.id} className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300">
-                        <div className="aspect-video bg-muted relative">
-                          <img 
-                            src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"} 
-                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                            className="w-full h-full object-cover"
-                          />
+                      <AnimatedSection key={vehicle.id} direction="up" delay={index * 50}>
+                        <Card className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300 hover:scale-[1.02]">
+                          <div className="aspect-video bg-muted relative overflow-hidden">
+                            <img 
+                              src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"} 
+                              alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                              className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
+                            />
                           {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
                             <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
                               Low Miles
@@ -414,7 +420,7 @@ const UsedInventory = () => {
                       </div>
 
                         <div className="space-y-2">
-                          <Button asChild variant="cta" className="w-full">
+                          <Button asChild variant="cta" className="w-full hover:scale-105 transition-transform duration-200">
                             <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
                           </Button>
                           <div className="flex gap-2">
@@ -428,6 +434,7 @@ const UsedInventory = () => {
                                   addToSaved(vehicle);
                                 }
                               }}
+                              className="hover:scale-110 transition-transform duration-200"
                             >
                               <Heart className={cn("w-4 h-4", isSaved(vehicle.id) && "fill-current")} />
                             </Button>
@@ -441,16 +448,18 @@ const UsedInventory = () => {
                                   addToComparison(vehicle);
                                 }
                               }}
+                              className="hover:scale-110 transition-transform duration-200"
                             >
                               <GitCompare className="w-4 h-4" />
                             </Button>
-                            <Button asChild variant="outline" className="flex-1">
+                            <Button asChild variant="outline" className="flex-1 hover:scale-105 transition-transform duration-200">
                               <a href="tel:604-555-0100">Call Now</a>
                             </Button>
                           </div>
                         </div>
                       </CardContent>
                     </Card>
+                      </AnimatedSection>
                   );
                   })}
                 </div>

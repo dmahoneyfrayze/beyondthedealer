@@ -15,6 +15,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PaymentCalculator from "@/components/PaymentCalculator";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
+import AnimatedSection from "@/components/AnimatedSection";
 import { ViewCounter } from "@/components/SocialProof";
 import { LimitedInventoryBadge as LimitedBadge, CountdownTimer as CountdownComponent } from "@/components/UrgencyBadge";
 import { useComparison } from "@/contexts/ComparisonContext";
@@ -114,25 +115,31 @@ const VehicleDetail = () => {
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-8">
           <div className="container mx-auto px-4">
-            <Button asChild variant="ghost" className="mb-4 text-primary-foreground hover:bg-primary-foreground/10">
-              <Link to="/used">
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Back to Inventory
-              </Link>
-            </Button>
-            <div className="flex flex-wrap items-center gap-4 mb-4">
-              <h1 className="text-4xl md:text-5xl font-bold">
-                {vehicle.year} {vehicle.make} {vehicle.model}
-              </h1>
-              <ViewCounter count={Math.floor(Math.random() * 20) + 5} />
-            </div>
-            {vehicle.trim && (
-              <p className="text-xl opacity-90 mt-2">{vehicle.trim}</p>
-            )}
-            <div className="flex flex-wrap gap-2 mt-4">
-              <LimitedBadge count={Math.floor(Math.random() * 3) + 1} />
-              <CountdownComponent hours={24} />
-            </div>
+            <AnimatedSection direction="fade" delay={100}>
+              <Button asChild variant="ghost" className="mb-4 text-primary-foreground hover:bg-primary-foreground/10 hover:scale-105 transition-transform duration-200">
+                <Link to="/used">
+                  <ChevronLeft className="w-4 h-4 mr-2" />
+                  Back to Inventory
+                </Link>
+              </Button>
+            </AnimatedSection>
+            <AnimatedSection direction="fade" delay={200}>
+              <div className="flex flex-wrap items-center gap-4 mb-4">
+                <h1 className="text-4xl md:text-5xl font-bold animate-slide-down">
+                  {vehicle.year} {vehicle.make} {vehicle.model}
+                </h1>
+                <ViewCounter count={Math.floor(Math.random() * 20) + 5} />
+              </div>
+            </AnimatedSection>
+            <AnimatedSection direction="fade" delay={300}>
+              {vehicle.trim && (
+                <p className="text-xl opacity-90 mt-2">{vehicle.trim}</p>
+              )}
+              <div className="flex flex-wrap gap-2 mt-4">
+                <LimitedBadge count={Math.floor(Math.random() * 3) + 1} />
+                <CountdownComponent hours={24} />
+              </div>
+            </AnimatedSection>
             {vehicle.description && (
               <p className="text-base opacity-80 mt-3 max-w-3xl">
                 {vehicle.description}
@@ -167,19 +174,19 @@ const VehicleDetail = () => {
 
               {/* High Visibility CTAs */}
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <Button asChild variant="cta" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                <Button asChild variant="cta" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
                   <Link to="/finance">
                     <CheckCircle2 className="w-6 h-6" />
                     <span className="text-sm font-semibold">Get Approved</span>
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
                   <Link to="/trade-in">
                     <DollarSign className="w-6 h-6" />
                     <span className="text-sm font-semibold">Value Trade</span>
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
                   <a href="tel:604-555-0100">
                     <Car className="w-6 h-6" />
                     <span className="text-sm font-semibold">Test Drive</span>
