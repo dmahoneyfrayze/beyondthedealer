@@ -3,7 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { useVehicle } from "@/hooks/useVehicles";
+import { useVehicles } from "@/hooks/useVehicles";
+import { parseVehicleSlug } from "@/lib/vehicleUtils";
 import { 
   Gauge, Calendar, Palette, Settings, Fuel, Cog, 
   Phone, Mail, MapPin, ChevronLeft, Loader2, CheckCircle2 
@@ -12,8 +13,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const VehicleDetail = () => {
-  const { id } = useParams<{ id: string }>();
-  const { data: vehicle, isLoading } = useVehicle(id || '');
+  const { slug } = useParams<{ slug: string }>();
+  const stockNumber = slug ? parseVehicleSlug(slug) : '';
+  const { data: vehicles = [], isLoading } = useVehicles({});
+  const vehicle = vehicles.find(v => v.stock_number === stockNumber);
 
   if (isLoading) {
     return (

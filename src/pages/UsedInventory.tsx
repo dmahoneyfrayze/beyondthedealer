@@ -7,6 +7,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { useVehicles } from "@/hooks/useVehicles";
+import { generateVehicleSlug } from "@/lib/vehicleUtils";
 
 const UsedInventory = () => {
   const [priceRange, setPriceRange] = useState("all");
@@ -140,7 +141,7 @@ const UsedInventory = () => {
 
                         <div className="space-y-2">
                           <Button asChild variant="cta" className="w-full">
-                            <Link to={`/vehicle/${vehicle.id}`}>View Details</Link>
+                            <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
                           </Button>
                           <Button asChild variant="outline" className="w-full">
                             <a href="tel:604-555-0100">Check Availability</a>
