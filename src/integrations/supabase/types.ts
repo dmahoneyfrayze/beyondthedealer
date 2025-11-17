@@ -14,6 +14,62 @@ export type Database = {
   }
   public: {
     Tables: {
+      comparison_lists: {
+        Row: {
+          created_at: string
+          id: string
+          session_id: string | null
+          updated_at: string
+          user_id: string | null
+          vehicle_ids: string[]
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          session_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+          vehicle_ids?: string[]
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          session_id?: string | null
+          updated_at?: string
+          user_id?: string | null
+          vehicle_ids?: string[]
+        }
+        Relationships: []
+      }
+      saved_vehicles: {
+        Row: {
+          created_at: string
+          id: string
+          user_id: string
+          vehicle_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_id: string
+          vehicle_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_id?: string
+          vehicle_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "saved_vehicles_vehicle_id_fkey"
+            columns: ["vehicle_id"]
+            isOneToOne: false
+            referencedRelation: "vehicles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       vehicles: {
         Row: {
           asking_price: number | null
