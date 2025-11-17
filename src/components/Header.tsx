@@ -30,6 +30,12 @@ const Header = () => {
   ];
 
   const researchLinks = [
+    { name: "New vs. Used", href: "/research/new-vs-used" },
+    { name: "Finance vs. Lease", href: "/research/finance-vs-lease" },
+    { name: "BC Luxury Tax Guide", href: "/research/bc-luxury-tax" },
+    { name: "Student Programs", href: "/research/student-programs" },
+    { name: "New to Canada Programs", href: "/research/new-to-canada" },
+    { name: "BC Registration & Insurance", href: "/research/bc-registration-insurance" },
     { name: "EV & Hybrid Guide", href: "/ev-hybrid-guide-bc" },
   ];
 
