@@ -76,6 +76,11 @@ const UsedInventory = () => {
                     <Button asChild variant="outline" className="w-full">
                       <Link to="/trade-in">Value My Trade</Link>
                     </Button>
+                    <Button asChild variant="outline" className="w-full">
+                      <a href="https://www.olympichyundaivancouver.com/" target="_blank" rel="noopener noreferrer">
+                        Shop New Vehicles
+                      </a>
+                    </Button>
                   </div>
 
                   <div className="pt-4 border-t">

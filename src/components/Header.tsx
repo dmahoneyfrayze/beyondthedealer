@@ -8,6 +8,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Used Inventory", href: "/used" },
+    { name: "New Vehicles", href: "https://www.olympichyundaivancouver.com/", external: true },
     { name: "Finance", href: "/finance" },
     { name: "Trade-In", href: "/trade-in" },
     { name: "EV Guide", href: "/ev-hybrid-guide-bc" },
@@ -27,13 +28,25 @@ const Header = () => {
 
           <nav className="hidden lg:flex items-center space-x-1">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
-              >
-                {item.name}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="px-4 py-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </Link>
+              )
             ))}
           </nav>
 
@@ -59,14 +72,27 @@ const Header = () => {
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-2">
               {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                )
               ))}
               <div className="px-4 py-2">
                 <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground">
