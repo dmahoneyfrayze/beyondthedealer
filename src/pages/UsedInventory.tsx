@@ -19,16 +19,39 @@ const UsedInventory = () => {
   const [bodyStyle, setBodyStyle] = useState(searchParams.get("body") || "all");
   const [condition, setCondition] = useState(searchParams.get("condition") || "all");
   const [make, setMake] = useState("all");
+  const [yearFilter, setYearFilter] = useState("all");
+  const [mileageFilter, setMileageFilter] = useState("all");
+  
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
   const { addToComparison, removeFromComparison, isInComparison } = useComparison();
   const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
 
-  // Apply condition filter client-side
+  // Apply filters client-side
   const filteredVehicles = vehicles.filter(vehicle => {
+    // Condition filter
     if (condition === "low-miles") {
       const mileage = vehicle.odometer || vehicle.mileage || 0;
-      return mileage < 30000;
+      if (mileage >= 30000) return false;
     }
+    
+    // Year filter
+    if (yearFilter !== "all") {
+      const currentYear = new Date().getFullYear();
+      if (yearFilter === "2020-newer" && vehicle.year < 2020) return false;
+      if (yearFilter === "2015-2019" && (vehicle.year < 2015 || vehicle.year > 2019)) return false;
+      if (yearFilter === "2010-2014" && (vehicle.year < 2010 || vehicle.year > 2014)) return false;
+      if (yearFilter === "pre-2010" && vehicle.year >= 2010) return false;
+    }
+    
+    // Mileage filter
+    if (mileageFilter !== "all") {
+      const mileage = vehicle.odometer || vehicle.mileage || 0;
+      if (mileageFilter === "under50k" && mileage >= 50000) return false;
+      if (mileageFilter === "50-100k" && (mileage < 50000 || mileage >= 100000)) return false;
+      if (mileageFilter === "100-150k" && (mileage < 100000 || mileage >= 150000)) return false;
+      if (mileageFilter === "over150k" && mileage < 150000) return false;
+    }
+    
     return true;
   });
 
@@ -38,8 +61,10 @@ const UsedInventory = () => {
     if (priceRange !== "all") params.price = priceRange;
     if (bodyStyle !== "all") params.body = bodyStyle;
     if (condition !== "all") params.condition = condition;
+    if (yearFilter !== "all") params.year = yearFilter;
+    if (mileageFilter !== "all") params.mileage = mileageFilter;
     setSearchParams(params);
-  }, [priceRange, bodyStyle, condition, setSearchParams]);
+  }, [priceRange, bodyStyle, condition, yearFilter, mileageFilter, setSearchParams]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -180,7 +205,12 @@ const UsedInventory = () => {
                 <div className="grid md:grid-cols-2 gap-6">
                   {filteredVehicles.map((vehicle) => {
                     const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
-                    const monthlyPayment = Math.round((price - price * 0.1) * 0.02); // Rough estimate
+                    // Calculate bi-weekly payment with longer term and low interest
+                    const principal = price * 0.9; // 10% down
+                    const biweeklyRate = 0.0599 / 26; // 5.99% annual rate / 26 bi-weekly periods
+                    const numPayments = 7 * 26; // 7 years * 26 bi-weekly periods
+                    const biweeklyPayment = Math.round(principal * (biweeklyRate * Math.pow(1 + biweeklyRate, numPayments)) / (Math.pow(1 + biweeklyRate, numPayments) - 1));
+                    const monthlyPayment = Math.round(biweeklyPayment * 26 / 12);
                     
                     return (
                       <Card key={vehicle.id} className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300">
@@ -202,12 +232,17 @@ const UsedInventory = () => {
                         </h3>
                         <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
                       
-                      <div className="flex items-baseline gap-2 mb-4">
+                      <div className="flex items-baseline gap-2 mb-2">
                         <span className="text-3xl font-bold text-primary">
                           ${price.toLocaleString()}
                         </span>
+                      </div>
+                      <div className="flex items-baseline gap-2 mb-4">
+                        <span className="text-lg font-semibold">
+                          ${monthlyPayment}/mo
+                        </span>
                         <span className="text-sm text-muted-foreground">
-                          or ${monthlyPayment}/mo*
+                          or ${biweeklyPayment}/bi-weekly*
                         </span>
                       </div>
 
