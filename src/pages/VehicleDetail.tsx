@@ -364,7 +364,7 @@ const VehicleDetail = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 space-y-6">
               <Card className="sticky top-24">
                 <CardContent className="p-6 space-y-6">
                   <div>
@@ -418,6 +418,9 @@ const VehicleDetail = () => {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Payment Calculator */}
+              <PaymentCalculator vehiclePrice={vehicle.price} />
             </div>
           </div>
         </div>
