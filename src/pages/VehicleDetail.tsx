@@ -102,6 +102,7 @@ const VehicleDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
         <title>{vehicleTitle} - Olympic Hyundai Vancouver | Used Cars</title>
         <meta name="description" content={`${vehicleTitle} for sale in Vancouver. ${vehicle.odometer || vehicle.mileage} km, ${vehicle.transmission}, ${vehicle.fuel_type}. Get pre-approved for financing today.`} />
         <link rel="canonical" href={canonicalUrl} />

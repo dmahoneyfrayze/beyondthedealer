@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,6 +46,11 @@ const App = () => (
     <SavedVehiclesProvider>
       <ComparisonProvider>
         <TooltipProvider>
+          <Helmet>
+            <meta name="robots" content="noindex, nofollow" />
+            <meta name="googlebot" content="noindex, nofollow" />
+            <meta name="bingbot" content="noindex, nofollow" />
+          </Helmet>
           <Toaster />
           <Sonner />
           <BrowserRouter>
