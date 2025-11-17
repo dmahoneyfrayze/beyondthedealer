@@ -69,10 +69,17 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Trust Badges */}
-        <section className="bg-secondary py-6">
+        {/* Trust & Authority Section */}
+        <section className="bg-secondary py-12">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold mb-4">Part of the Olympic Auto Group Family</h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+                With 46 locations across Canada, Olympic Auto Group is one of Canada's largest automotive retailers. 
+                We specialize in automotive sales, powersports, marine, RV, and rental services.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-8 mt-6">
               {trustBadges.map((badge, index) => (
                 <div key={index} className="flex items-center space-x-2 text-sm font-medium">
                   <badge.icon className="w-5 h-5 text-primary" />

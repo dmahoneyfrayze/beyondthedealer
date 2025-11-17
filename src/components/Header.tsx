@@ -26,6 +26,11 @@ const Header = () => {
     { name: "SUVs", href: "/used?body=SUV" },
     { name: "Sedans", href: "/used?body=Sedan" },
     { name: "Trucks", href: "/used?body=Truck" },
+    { name: "New Vehicles", href: "https://www.olympichyundaivancouver.com/", external: true },
+  ];
+
+  const researchLinks = [
+    { name: "EV & Hybrid Guide", href: "/ev-hybrid-guide-bc" },
   ];
 
   const financeLinks = [
@@ -38,7 +43,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Trade-In", href: "/trade-in" },
-    { name: "EV Guide", href: "/ev-hybrid-guide-bc" },
+    { name: "Warranties", href: "/warranties" },
     { name: "Service", href: "/service-specials" },
   ];
 
@@ -64,12 +69,23 @@ const Header = () => {
                     {inventoryLinks.map((item) => (
                       <li key={item.name}>
                         <NavigationMenuLink asChild>
-                          <Link
-                            to={item.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="text-sm font-medium leading-none">{item.name}</div>
-                          </Link>
+                          {item.external ? (
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">{item.name}</div>
+                            </a>
+                          ) : (
+                            <Link
+                              to={item.href}
+                              className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                            >
+                              <div className="text-sm font-medium leading-none">{item.name}</div>
+                            </Link>
+                          )}
                         </NavigationMenuLink>
                       </li>
                     ))}
@@ -99,6 +115,28 @@ const Header = () => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
 
+              <NavigationMenuItem>
+                <NavigationMenuTrigger className="text-sm font-medium">
+                  Research
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[400px] gap-3 p-4 bg-background">
+                    {researchLinks.map((item) => (
+                      <li key={item.name}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={item.href}
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
+                            <div className="text-sm font-medium leading-none">{item.name}</div>
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+
               {navigation.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <Link
@@ -109,17 +147,6 @@ const Header = () => {
                   </Link>
                 </NavigationMenuItem>
               ))}
-
-              <NavigationMenuItem>
-                <a
-                  href="https://www.olympichyundaivancouver.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-                >
-                  New Vehicles
-                </a>
-              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
 
@@ -185,15 +212,33 @@ const Header = () => {
                 </Link>
               ))}
 
-              <a
-                href="https://www.olympichyundaivancouver.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                New Vehicles
-              </a>
+              <div className="px-4 py-2">
+                <p className="text-sm font-semibold text-muted-foreground mb-2">Finance</p>
+                {financeLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+
+              <div className="px-4 py-2">
+                <p className="text-sm font-semibold text-muted-foreground mb-2">Research</p>
+                {researchLinks.map((item) => (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
               <div className="px-4 py-2">
                 <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground">
                   <Phone className="w-4 h-4 mr-2" />
