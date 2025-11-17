@@ -12,16 +12,23 @@ export interface Vehicle {
   exterior_color: string | null;
   interior_color: string | null;
   price: number;
-  mileage: number;
+  mileage: number | null;
+  odometer: number | null;
   vin: string;
   transmission: string | null;
-  drivetrain: string | null;
+  drive_train: string | null;
   fuel_type: string | null;
   engine: string | null;
   description: string | null;
   features: string[] | null;
   images: string[] | null;
   status: string;
+  dealership: string | null;
+  asking_price: number | null;
+  retail_price: number | null;
+  internet_price: number | null;
+  sale_class: string | null;
+  vdp_url: string | null;
   created_at: string;
   updated_at: string;
 }
