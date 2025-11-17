@@ -345,15 +345,18 @@ const VehicleDetail = () => {
                     </div>
                   </div>
 
-                  {vehicle.description && (
-                    <>
-                      <Separator className="my-6" />
-                      <div>
-                        <h3 className="font-semibold mb-2">Description</h3>
-                        <p className="text-muted-foreground">{vehicle.description}</p>
-                      </div>
-                    </>
-                  )}
+                  <Separator className="my-6" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Description</h3>
+                    {vehicle.description ? (
+                      <p className="text-muted-foreground whitespace-pre-line">{vehicle.description}</p>
+                    ) : (
+                      <p className="text-muted-foreground italic">
+                        This {vehicle.year} {vehicle.make} {vehicle.model} is in excellent condition and ready for its next owner. 
+                        Contact us for more details about this vehicle.
+                      </p>
+                    )}
+                  </div>
 
                   {vehicle.features && vehicle.features.length > 0 && (
                     <>
@@ -376,8 +379,9 @@ const VehicleDetail = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6">
-              <Card className="sticky top-24">
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-6">
+              <Card>
                 <CardContent className="p-6 space-y-6">
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Price</p>
@@ -442,6 +446,7 @@ const VehicleDetail = () => {
                 buttonText="Get My Quote"
                 source={`vehicle-${vehicle.stock_number}`}
               />
+              </div>
             </div>
           </div>
         </div>

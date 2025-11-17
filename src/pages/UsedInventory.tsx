@@ -19,9 +19,13 @@ const UsedInventory = () => {
   const [priceRange, setPriceRange] = useState(searchParams.get("price") || "all");
   const [bodyStyle, setBodyStyle] = useState(searchParams.get("body") || "all");
   const [condition, setCondition] = useState(searchParams.get("condition") || "all");
-  const [make, setMake] = useState("all");
-  const [yearFilter, setYearFilter] = useState("all");
-  const [mileageFilter, setMileageFilter] = useState("all");
+  const [make, setMake] = useState(searchParams.get("make") || "all");
+  const [yearFilter, setYearFilter] = useState(searchParams.get("year") || "all");
+  const [mileageFilter, setMileageFilter] = useState(searchParams.get("mileage") || "all");
+  const [transmissionFilter, setTransmissionFilter] = useState(searchParams.get("transmission") || "all");
+  const [fuelTypeFilter, setFuelTypeFilter] = useState(searchParams.get("fuel") || "all");
+  const [drivetrainFilter, setDrivetrainFilter] = useState(searchParams.get("drivetrain") || "all");
+  const [modelFilter, setModelFilter] = useState(searchParams.get("model") || "all");
   
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
   const { addToComparison, removeFromComparison, isInComparison } = useComparison();
@@ -53,6 +57,41 @@ const UsedInventory = () => {
       if (mileageFilter === "over150k" && mileage < 150000) return false;
     }
     
+    // Transmission filter
+    if (transmissionFilter !== "all" && vehicle.transmission) {
+      const trans = vehicle.transmission.toLowerCase();
+      if (transmissionFilter === "automatic" && !trans.includes("automatic") && !trans.includes("auto")) return false;
+      if (transmissionFilter === "manual" && !trans.includes("manual")) return false;
+      if (transmissionFilter === "cvt" && !trans.includes("cvt")) return false;
+    }
+    
+    // Fuel type filter
+    if (fuelTypeFilter !== "all" && vehicle.fuel_type) {
+      const fuel = vehicle.fuel_type.toLowerCase();
+      if (fuelTypeFilter === "gas" && !fuel.includes("gas") && !fuel.includes("gasoline")) return false;
+      if (fuelTypeFilter === "hybrid" && !fuel.includes("hybrid")) return false;
+      if (fuelTypeFilter === "electric" && !fuel.includes("electric") && !fuel.includes("ev")) return false;
+      if (fuelTypeFilter === "diesel" && !fuel.includes("diesel")) return false;
+    }
+    
+    // Drivetrain filter
+    if (drivetrainFilter !== "all" && vehicle.drive_train) {
+      const drive = vehicle.drive_train.toLowerCase();
+      if (drivetrainFilter === "fwd" && !drive.includes("front") && !drive.includes("fwd")) return false;
+      if (drivetrainFilter === "rwd" && !drive.includes("rear") && !drive.includes("rwd")) return false;
+      if (drivetrainFilter === "awd" && !drive.includes("all") && !drive.includes("awd") && !drive.includes("4wd")) return false;
+    }
+    
+    // Make filter (client-side check)
+    if (make !== "all" && vehicle.make) {
+      if (vehicle.make.toLowerCase() !== make.toLowerCase()) return false;
+    }
+    
+    // Model filter
+    if (modelFilter !== "all" && vehicle.model) {
+      if (vehicle.model.toLowerCase() !== modelFilter.toLowerCase()) return false;
+    }
+    
     return true;
   });
 
@@ -62,10 +101,15 @@ const UsedInventory = () => {
     if (priceRange !== "all") params.price = priceRange;
     if (bodyStyle !== "all") params.body = bodyStyle;
     if (condition !== "all") params.condition = condition;
+    if (make !== "all") params.make = make;
+    if (modelFilter !== "all") params.model = modelFilter;
     if (yearFilter !== "all") params.year = yearFilter;
     if (mileageFilter !== "all") params.mileage = mileageFilter;
+    if (transmissionFilter !== "all") params.transmission = transmissionFilter;
+    if (fuelTypeFilter !== "all") params.fuel = fuelTypeFilter;
+    if (drivetrainFilter !== "all") params.drivetrain = drivetrainFilter;
     setSearchParams(params);
-  }, [priceRange, bodyStyle, condition, yearFilter, mileageFilter, setSearchParams]);
+  }, [priceRange, bodyStyle, condition, make, modelFilter, yearFilter, mileageFilter, transmissionFilter, fuelTypeFilter, drivetrainFilter, setSearchParams]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -86,7 +130,27 @@ const UsedInventory = () => {
               <Card className="sticky top-24">
                 <CardContent className="p-6 space-y-6">
                   <div>
-                    <h3 className="font-semibold mb-3">Filters</h3>
+                    <div className="flex items-center justify-between mb-3">
+                      <h3 className="font-semibold">Filters</h3>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setPriceRange("all");
+                          setBodyStyle("all");
+                          setCondition("all");
+                          setMake("all");
+                          setYearFilter("all");
+                          setMileageFilter("all");
+                          setTransmissionFilter("all");
+                          setFuelTypeFilter("all");
+                          setDrivetrainFilter("all");
+                        }}
+                        className="text-xs h-7"
+                      >
+                        Clear All
+                      </Button>
+                    </div>
                     <div className="space-y-4">
                       <div>
                         <label className="text-sm font-medium mb-2 block">Price Range</label>
@@ -152,6 +216,89 @@ const UsedInventory = () => {
                             <SelectItem value="Acura">Acura</SelectItem>
                             <SelectItem value="Jeep">Jeep</SelectItem>
                             <SelectItem value="Dodge">Dodge</SelectItem>
+                            <SelectItem value="Toyota">Toyota</SelectItem>
+                            <SelectItem value="Ford">Ford</SelectItem>
+                            <SelectItem value="Mazda">Mazda</SelectItem>
+                            <SelectItem value="Nissan">Nissan</SelectItem>
+                            <SelectItem value="Subaru">Subaru</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Year</label>
+                        <Select value={yearFilter} onValueChange={setYearFilter}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background">
+                            <SelectItem value="all">All Years</SelectItem>
+                            <SelectItem value="2020-newer">2020 or Newer</SelectItem>
+                            <SelectItem value="2015-2019">2015 - 2019</SelectItem>
+                            <SelectItem value="2010-2014">2010 - 2014</SelectItem>
+                            <SelectItem value="pre-2010">Pre-2010</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Mileage (km)</label>
+                        <Select value={mileageFilter} onValueChange={setMileageFilter}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background">
+                            <SelectItem value="all">All Mileage</SelectItem>
+                            <SelectItem value="under50k">Under 50,000 km</SelectItem>
+                            <SelectItem value="50-100k">50,000 - 100,000 km</SelectItem>
+                            <SelectItem value="100-150k">100,000 - 150,000 km</SelectItem>
+                            <SelectItem value="over150k">Over 150,000 km</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Transmission</label>
+                        <Select value={transmissionFilter} onValueChange={setTransmissionFilter}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background">
+                            <SelectItem value="all">All Transmissions</SelectItem>
+                            <SelectItem value="automatic">Automatic</SelectItem>
+                            <SelectItem value="manual">Manual</SelectItem>
+                            <SelectItem value="cvt">CVT</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Fuel Type</label>
+                        <Select value={fuelTypeFilter} onValueChange={setFuelTypeFilter}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background">
+                            <SelectItem value="all">All Fuel Types</SelectItem>
+                            <SelectItem value="gas">Gasoline</SelectItem>
+                            <SelectItem value="hybrid">Hybrid</SelectItem>
+                            <SelectItem value="electric">Electric</SelectItem>
+                            <SelectItem value="diesel">Diesel</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <div>
+                        <label className="text-sm font-medium mb-2 block">Drivetrain</label>
+                        <Select value={drivetrainFilter} onValueChange={setDrivetrainFilter}>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent className="bg-background">
+                            <SelectItem value="all">All Drivetrains</SelectItem>
+                            <SelectItem value="fwd">Front-Wheel Drive (FWD)</SelectItem>
+                            <SelectItem value="rwd">Rear-Wheel Drive (RWD)</SelectItem>
+                            <SelectItem value="awd">All-Wheel Drive (AWD/4WD)</SelectItem>
                           </SelectContent>
                         </Select>
                       </div>

@@ -1,15 +1,25 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Car, DollarSign, Zap, Wrench, Search, Shield, Clock, MapPin, FileText, Download, CheckCircle2 } from "lucide-react";
+import { Car, DollarSign, Zap, Wrench, Search, Shield, Clock, MapPin, FileText, Download, CheckCircle2, ArrowRight } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 import MultiStepForm from "@/components/MultiStepForm";
 import { TestimonialCard, SoldCounter } from "@/components/SocialProof";
+import { useVehicles } from "@/hooks/useVehicles";
+import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import heroImage from "@/assets/hero-vancouver.jpg";
 
 const Index = () => {
+  const { data: vehicles = [] } = useVehicles({});
+  
+  // Get random featured vehicles (up to 8)
+  const featuredVehicles = vehicles.length > 0 
+    ? [...vehicles].sort(() => Math.random() - 0.5).slice(0, 8)
+    : [];
+
   const features = [
     {
       icon: Car,
@@ -92,6 +102,77 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Featured Vehicles Slider */}
+        {featuredVehicles.length > 0 && (
+          <section className="py-16 bg-background">
+            <div className="container mx-auto px-4">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-2">Featured Vehicles</h2>
+                  <p className="text-muted-foreground">Hand-picked selections from our inventory</p>
+                </div>
+                <Button asChild variant="outline">
+                  <Link to="/used">
+                    View All <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </Button>
+              </div>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-2 md:-ml-4">
+                  {featuredVehicles.map((vehicle) => {
+                    const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
+                    return (
+                      <CarouselItem key={vehicle.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                        <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>
+                          <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+                            <div className="aspect-video bg-muted relative overflow-hidden">
+                              <img
+                                src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
+                                alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                              />
+                              {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
+                                <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-semibold">
+                                  Low Miles
+                                </div>
+                              )}
+                            </div>
+                            <CardContent className="p-4">
+                              <h3 className="font-bold text-lg mb-1 line-clamp-1">
+                                {vehicle.year} {vehicle.make} {vehicle.model}
+                              </h3>
+                              <p className="text-sm text-muted-foreground mb-3 line-clamp-1">
+                                {vehicle.trim || 'Standard'}
+                              </p>
+                              <div className="flex items-baseline gap-2 mb-2">
+                                <span className="text-2xl font-bold text-primary">
+                                  ${price.toLocaleString()}
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                                <span>{vehicle.mileage?.toLocaleString() || vehicle.odometer?.toLocaleString() || 'N/A'} km</span>
+                                {vehicle.transmission && <span>{vehicle.transmission}</span>}
+                              </div>
+                            </CardContent>
+                          </Card>
+                        </Link>
+                      </CarouselItem>
+                    );
+                  })}
+                </CarouselContent>
+                <CarouselPrevious className="hidden md:flex -left-12" />
+                <CarouselNext className="hidden md:flex -right-12" />
+              </Carousel>
+            </div>
+          </section>
+        )}
 
         {/* Features Grid */}
         <section className="py-20 bg-background">
