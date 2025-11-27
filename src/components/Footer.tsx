@@ -1,7 +1,43 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone, ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const Footer = () => {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (section: string) => {
+    setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
+  };
+
+  const makes = [
+    "Hyundai", "Honda", "Toyota", "Ford", "Mazda", "Nissan", "Subaru",
+    "Acura", "Jeep", "Dodge", "Chevrolet", "GMC", "BMW", "Mercedes-Benz",
+    "Audi", "Volkswagen", "Kia", "Mitsubishi", "Volvo", "Lexus"
+  ];
+
+  const popularModels = [
+    { make: "Honda", model: "Civic" },
+    { make: "Toyota", model: "Corolla" },
+    { make: "Hyundai", model: "Elantra" },
+    { make: "Toyota", model: "RAV4" },
+    { make: "Nissan", model: "Rogue" },
+    { make: "Honda", model: "CR-V" },
+    { make: "Tesla", model: "Model 3" },
+    { make: "Mazda", model: "CX-5" },
+    { make: "Kia", model: "Forte" },
+    { make: "Toyota", model: "Camry" },
+    { make: "Mazda", model: "Mazda3" },
+    { make: "Jeep", model: "Wrangler" },
+    { make: "Ford", model: "F-150" },
+    { make: "Ram", model: "1500" },
+  ];
+
+  const locations = [
+    "Winnipeg", "Brandon", "Steinbach", "Portage la Prairie", "Thompson",
+    "Kenora", "Thunder Bay", "Dryden", "Fort Frances", "Sioux Lookout"
+  ];
+
   return (
     <footer className="bg-primary text-white pt-20 pb-10 border-t border-white/5">
       <div className="container mx-auto px-4">
@@ -51,7 +87,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Partners Column - Simplified */}
+          {/* Partners Column */}
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Strategic Partners</h4>
             <div className="space-y-4">
@@ -70,6 +106,78 @@ const Footer = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* SEO Links Section - Collapsible */}
+        <div className="border-t border-white/10 py-12 grid md:grid-cols-3 gap-8">
+          {/* Popular Makes */}
+          <Collapsible open={openSections['makes']} onOpenChange={() => toggleSection('makes')} className="w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="font-bold text-white">Popular Makes</h5>
+              <CollapsibleTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                  <ChevronDown className={`w-4 h-4 transition-transform ${openSections['makes'] ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+            </div>
+            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+              <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
+                {makes.map((make) => (
+                  <li key={make}>
+                    <Link to={`/used?make=${make}`} className="hover:text-accent transition-colors">
+                      Used {make}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleContent>
+          </Collapsible>
+
+          {/* Popular Models */}
+          <Collapsible open={openSections['models']} onOpenChange={() => toggleSection('models')} className="w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="font-bold text-white">Popular Models</h5>
+              <CollapsibleTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                  <ChevronDown className={`w-4 h-4 transition-transform ${openSections['models'] ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+            </div>
+            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+              <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
+                {popularModels.map((item, index) => (
+                  <li key={index}>
+                    <Link to={`/used?make=${item.make}&model=${item.model}`} className="hover:text-accent transition-colors">
+                      Used {item.make} {item.model}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleContent>
+          </Collapsible>
+
+          {/* Locations */}
+          <Collapsible open={openSections['locations']} onOpenChange={() => toggleSection('locations')} className="w-full">
+            <div className="flex items-center justify-between mb-4">
+              <h5 className="font-bold text-white">Serving Locations</h5>
+              <CollapsibleTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                  <ChevronDown className={`w-4 h-4 transition-transform ${openSections['locations'] ? 'rotate-180' : ''}`} />
+                </Button>
+              </CollapsibleTrigger>
+            </div>
+            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+              <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
+                {locations.map((loc) => (
+                  <li key={loc}>
+                    <Link to="/used" className="hover:text-accent transition-colors flex items-center gap-1">
+                      <MapPin className="w-3 h-3" /> {loc}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </CollapsibleContent>
+          </Collapsible>
         </div>
 
         {/* Bottom Bar */}
