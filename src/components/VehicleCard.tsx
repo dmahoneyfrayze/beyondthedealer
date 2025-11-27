@@ -29,18 +29,18 @@ const VehicleCard = ({ vehicle, showUnlockPrice = true }: VehicleCardProps) => {
 
     return (
         <Card className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300 hover:scale-[1.02] h-full flex flex-col">
-            <div className="aspect-video bg-muted relative overflow-hidden">
+            <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`} className="block aspect-video bg-muted relative overflow-hidden group">
                 <img
                     src={vehicle.images?.[0] || "/btd-placeholder.png"}
                     alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                     className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                 />
                 {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
-                    <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                    <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold z-10">
                         Low Miles
                     </div>
                 )}
-            </div>
+            </Link>
             <CardContent className="p-6 flex-grow flex flex-col">
                 <h3 className="text-xl font-bold mb-2 line-clamp-1">
                     {vehicle.year} {vehicle.make} {vehicle.model}
