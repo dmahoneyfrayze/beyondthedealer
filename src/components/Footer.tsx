@@ -1,206 +1,90 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ChevronDown, Car } from "lucide-react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 
 const Footer = () => {
-  const [shopOpen, setShopOpen] = useState(true);
-  const [makeOpen, setMakeOpen] = useState(false);
-  const [modelsOpen, setModelsOpen] = useState(false);
-
-  const makes = [
-    "Hyundai", "Honda", "Toyota", "Ford", "Mazda", "Nissan", "Subaru",
-    "Acura", "Jeep", "Dodge", "Chevrolet", "GMC", "BMW", "Mercedes-Benz",
-    "Audi", "Volkswagen", "Kia", "Mitsubishi", "Volvo", "Lexus"
-  ];
-
-  const popularModels = [
-    { make: "Honda", model: "Civic" },
-    { make: "Toyota", model: "Corolla" },
-    { make: "Hyundai", model: "Elantra" },
-    { make: "Toyota", model: "RAV4" },
-    { make: "Nissan", model: "Rogue" },
-    { make: "Honda", model: "CR-V" },
-    { make: "Tesla", model: "Model 3" },
-    { make: "Mazda", model: "CX-5" },
-    { make: "Kia", model: "Forte" },
-    { make: "Toyota", model: "Camry" },
-    { make: "Mazda", model: "Mazda3" },
-  ];
-
   return (
-    <footer className="bg-black text-white pt-16 pb-8 border-t border-white/10">
+    <footer className="bg-primary text-white pt-20 pb-10 border-t border-white/5">
       <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          {/* Brand Column */}
+          <div className="md:col-span-1">
             <div className="flex items-center space-x-2 mb-6">
-              <div className="bg-white/10 p-1 rounded-sm backdrop-blur-sm">
+              <div className="bg-white/10 p-1.5 rounded-sm backdrop-blur-sm">
                 <img src="/btd-logo.png" alt="BTD Logo" className="w-8 h-8 object-contain" />
               </div>
-              <span className="text-xl font-bold tracking-tight">Beyond the Dealership</span>
+              <span className="text-xl font-bold tracking-tight font-serif">Beyond the Dealership</span>
             </div>
-            <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-              Redefining the pre-owned vehicle experience. Premium inventory, nationwide delivery, and exclusive partnerships.
+            <p className="text-gray-400 text-sm leading-relaxed mb-6">
+              A new standard in automotive retail. Premium inventory, transparent financing, and a seamless digital experience.
             </p>
-            <p className="flex items-center">
-              <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
-              (204) 297-6177
-            </p>
-            <p className="flex items-center">
-              <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
-              Beyondthedealership@icloud.com
-            </p>
+            <div className="space-y-3">
+              <a href="tel:2042976177" className="flex items-center text-sm text-gray-300 hover:text-accent transition-colors">
+                <Phone className="w-4 h-4 mr-3 text-accent" />
+                (204) 297-6177
+              </a>
+              <a href="mailto:Beyondthedealership@icloud.com" className="flex items-center text-sm text-gray-300 hover:text-accent transition-colors">
+                <Mail className="w-4 h-4 mr-3 text-accent" />
+                Beyondthedealership@icloud.com
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div>
-          <Collapsible open={shopOpen} onOpenChange={setShopOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full mb-4 font-semibold hover:opacity-80 transition-opacity">
-              <span>Shop</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${shopOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <ul className="space-y-2 text-sm opacity-90">
-                <li><Link to="/used" className="hover:opacity-100">Used Inventory</Link></li>
-                <li><Link to="/find-my-car" className="hover:opacity-100">Concierge Service</Link></li>
-                <li><Link to="/trade-in" className="hover:opacity-100">Trade-In Value</Link></li>
-                <li><Link to="/used?body=SUV" className="hover:opacity-100">Used SUVs</Link></li>
-                <li><Link to="/used?body=Sedan" className="hover:opacity-100">Used Sedans</Link></li>
-                <li><Link to="/used?body=Truck" className="hover:opacity-100">Used Trucks</Link></li>
-                <li><Link to="/used?price=under15k" className="hover:opacity-100">Under $15,000</Link></li>
-                <li><Link to="/used?price=under5k" className="hover:opacity-100">Under $5,000</Link></li>
-              </ul>
-            </CollapsibleContent>
-          </Collapsible>
-        </div>
-
-        <div>
-          <h4 className="font-semibold mb-4">Financing</h4>
-          <ul className="space-y-2 text-sm opacity-90">
-            <li><Link to="/finance" className="hover:opacity-100">Get Pre-Approved</Link></li>
-            <li><Link to="/leasing" className="hover:opacity-100">Leasing Options</Link></li>
-            <li><Link to="/second-chance-financing" className="hover:opacity-100">Second Chance Financing</Link></li>
-            <li><Link to="/sign-and-drive" className="hover:opacity-100">Sign and Drive</Link></li>
-            <li><Link to="/credit-rebuilding" className="hover:opacity-100">Credit Rebuilding</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <Collapsible open={makeOpen} onOpenChange={setMakeOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full mb-4 font-semibold hover:opacity-80 transition-opacity">
-              <span>Shop by Make</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${makeOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <ul className="space-y-2 text-sm opacity-90 columns-2 gap-x-4">
-                {makes.map((make) => (
-                  <li key={make}>
-                    <Link to={`/used?make=${make}`} className="hover:opacity-100">
-                      Used {make} Vehicles
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CollapsibleContent>
-          </Collapsible>
-        </div>
-
-        <div>
-          <Collapsible open={modelsOpen} onOpenChange={setModelsOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full mb-4 font-semibold hover:opacity-80 transition-opacity">
-              <span>Browse Popular Models</span>
-              <ChevronDown className={`w-4 h-4 transition-transform ${modelsOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <ul className="space-y-2 text-sm opacity-90">
-                {popularModels.map((item, index) => (
-                  <li key={index}>
-                    <Link
-                      to={`/used?make=${item.make}&model=${item.model}`}
-                      className="hover:opacity-100"
-                    >
-                      {item.make} {item.model}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </CollapsibleContent>
-          </Collapsible>
-        </div>
-
-        <div>
-          <h4 className="font-semibold mb-4">Research</h4>
-          <ul className="space-y-2 text-sm opacity-90">
-            <li><Link to="/research/new-vs-used" className="hover:opacity-100">New vs. Used</Link></li>
-            <li><Link to="/research/finance-vs-lease" className="hover:opacity-100">Finance vs. Lease</Link></li>
-            <li><Link to="/ev-hybrid-guide-bc" className="hover:opacity-100">EV & Hybrid Guide</Link></li>
-            <li><Link to="/research/bc-luxury-tax" className="hover:opacity-100">BC Luxury Tax</Link></li>
-            <li><Link to="/research/student-programs" className="hover:opacity-100">Student Programs</Link></li>
-            <li><Link to="/research/new-to-canada" className="hover:opacity-100">New to Canada</Link></li>
-            <li><Link to="/research/bc-registration-insurance" className="hover:opacity-100">BC Registration & Insurance</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-semibold mb-4">Follow Us</h4>
-          <div className="flex space-x-4 mb-4">
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Facebook className="w-5 h-5" />
-            </a>
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Instagram className="w-5 h-5" />
-            </a>
-            <a href="#" className="hover:opacity-80 transition-opacity">
-              <Twitter className="w-5 h-5" />
-            </a>
+          {/* Links Columns */}
+          <div>
+            <h4 className="font-bold text-lg mb-6 text-white">Inventory</h4>
+            <ul className="space-y-4 text-sm text-gray-400">
+              <li><Link to="/used" className="hover:text-accent transition-colors flex items-center gap-2 group">All Vehicles <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" /></Link></li>
+              <li><Link to="/used?body=SUV" className="hover:text-accent transition-colors">SUVs & Crossovers</Link></li>
+              <li><Link to="/used?body=Truck" className="hover:text-accent transition-colors">Trucks</Link></li>
+              <li><Link to="/used?body=Sedan" className="hover:text-accent transition-colors">Sedans</Link></li>
+              <li><Link to="/find-my-car" className="hover:text-accent transition-colors text-accent">Concierge Service</Link></li>
+            </ul>
           </div>
-          <p className="text-xs opacity-75">
-            Hours: Mon-Fri 9am-7pm<br />
-            Sat 9am-6pm, Sun 11am-5pm
-          </p>
-        </div>
 
-        <div>
-          <h3 className="text-lg font-semibold mb-4">Strategic Partners</h3>
-          <div className="space-y-4">
-            <div className="bg-white/5 p-4 rounded-lg border border-white/10">
-              <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Powered By</p>
-              <div className="flex flex-col gap-2">
-                <span className="font-serif text-xl tracking-wide">MASERATI</span>
-                <span className="text-xs text-muted-foreground">OF WINNIPEG</span>
+          <div>
+            <h4 className="font-bold text-lg mb-6 text-white">Financing</h4>
+            <ul className="space-y-4 text-sm text-gray-400">
+              <li><Link to="/finance" className="hover:text-accent transition-colors">Get Pre-Approved</Link></li>
+              <li><Link to="/trade-in" className="hover:text-accent transition-colors">Value Your Trade</Link></li>
+              <li><Link to="/credit-rebuilding" className="hover:text-accent transition-colors">Credit Rebuilding</Link></li>
+              <li><Link to="/finance" className="hover:text-accent transition-colors">Payment Calculator</Link></li>
+            </ul>
+          </div>
+
+          {/* Partners Column - Simplified */}
+          <div>
+            <h4 className="font-bold text-lg mb-6 text-white">Strategic Partners</h4>
+            <div className="space-y-4">
+              <div className="group">
+                <p className="text-xs text-gray-500 uppercase tracking-wider mb-1">Powered By</p>
+                <p className="font-serif text-lg text-gray-300 group-hover:text-white transition-colors">Maserati of Winnipeg</p>
               </div>
-              <div className="my-2 border-t border-white/10"></div>
-              <div className="flex flex-col gap-2">
-                <span className="font-serif text-xl tracking-wide">ALFA ROMEO</span>
-                <span className="text-xs text-muted-foreground">OF WINNIPEG</span>
+              <div className="group">
+                <p className="font-serif text-lg text-gray-300 group-hover:text-white transition-colors">Alfa Romeo of Winnipeg</p>
               </div>
-              <div className="my-2 border-t border-white/10"></div>
-              <div className="flex flex-col gap-2">
-                <span className="font-serif text-lg tracking-wide">KENORA</span>
-                <span className="text-xs text-muted-foreground">CHRYSLER DODGE JEEP RAM</span>
-              </div>
-              <div className="my-2 border-t border-white/10"></div>
-              <div className="flex flex-col gap-2">
-                <span className="font-serif text-lg tracking-wide">KENORA GM</span>
-                <span className="text-xs text-muted-foreground">CHEVROLET BUICK GMC</span>
-              </div>
-              <div className="my-2 border-t border-white/10"></div>
-              <div className="flex flex-col gap-2">
-                <span className="font-serif text-lg tracking-wide">KENORA HONDA</span>
-                <span className="text-xs text-muted-foreground">HONDA</span>
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">Network Partners</p>
+                <p className="text-sm text-gray-400">Kenora Chrysler Dodge Jeep Ram</p>
+                <p className="text-sm text-gray-400 mt-1">Kenora GM</p>
+                <p className="text-sm text-gray-400 mt-1">Kenora Honda</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="border-t border-neutral-800 pt-8 text-xs text-neutral-500 text-center">
-        <p className="mb-4 max-w-4xl mx-auto leading-relaxed">
-          Beyond the Dealership is a stand-alone supplemental experience designed to provide a premium, seamless vehicle acquisition process.
-          We work in partnership with Maserati of Winnipeg and Alfa Romeo of Winnipeg to offer an exclusive selection of high-end pre-owned inventory.
-          Instant approvals available for clients in Manitoba and Ontario.
-        </p>
-        <p>© {new Date().getFullYear()} Beyond the Dealership. All rights reserved.</p>
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+          <p>© {new Date().getFullYear()} Beyond the Dealership. All rights reserved.</p>
+          <div className="flex gap-6">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
+            <div className="flex gap-4 ml-4 border-l border-white/10 pl-4">
+              <a href="#" className="hover:text-accent transition-colors"><Facebook className="w-4 h-4" /></a>
+              <a href="#" className="hover:text-accent transition-colors"><Instagram className="w-4 h-4" /></a>
+              <a href="#" className="hover:text-accent transition-colors"><Twitter className="w-4 h-4" /></a>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

@@ -311,7 +311,7 @@ const Index = () => {
                 <TestimonialCard
                   name="Sarah Mitchell"
                   location="Toronto, ON"
-                  quote="I was hesitant to buy a car online, but the team made it incredibly easy. The video walkthrough was detailed, and the car arrived exactly as described."
+                  text="I was hesitant to buy a car online, but the team made it incredibly easy. The video walkthrough was detailed, and the car arrived exactly as described."
                   rating={5}
                   date="2 weeks ago"
                 />
@@ -320,7 +320,7 @@ const Index = () => {
                 <TestimonialCard
                   name="David Chen"
                   location="Vancouver, BC"
-                  quote="Best financing rates I could find. The approval was instant, and they handled all the paperwork. Truly a 'beyond the dealership' experience."
+                  text="Best financing rates I could find. The approval was instant, and they handled all the paperwork. Truly a 'beyond the dealership' experience."
                   rating={5}
                   date="1 month ago"
                 />
@@ -329,7 +329,7 @@ const Index = () => {
                 <TestimonialCard
                   name="Emily Rodriguez"
                   location="Winnipeg, MB"
-                  quote="They found me the exact model I wanted within a week. The concierge service is a game-changer. Highly recommend!"
+                  text="They found me the exact model I wanted within a week. The concierge service is a game-changer. Highly recommend!"
                   rating={5}
                   date="3 weeks ago"
                 />

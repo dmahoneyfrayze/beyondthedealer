@@ -11,21 +11,18 @@ interface ExitIntentPopupProps {
   description?: string;
 }
 
-const ExitIntentPopup = ({ 
-  offer = "Free BC Auto Buying Guide",
-  title = "Wait! Don't Miss Out",
-  description = "Get our free guide to buying a car in BC, plus exclusive financing tips."
+const ExitIntentPopup = ({
+  offer = "Exclusive Inventory Access",
+  title = "Join the Inner Circle",
+  description = "Get priority access to new arrivals before they hit the public market."
 }: ExitIntentPopupProps) => {
   const [open, setOpen] = useState(false);
   const [hasShown, setHasShown] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if already shown in this session
     const shown = sessionStorage.getItem("exitIntentShown");
     if (shown) {
       setHasShown(true);
@@ -33,7 +30,6 @@ const ExitIntentPopup = ({
     }
 
     const handleMouseLeave = (e: MouseEvent) => {
-      // Trigger when mouse leaves the top of the viewport
       if (e.clientY <= 0 && !hasShown && !open) {
         setOpen(true);
         setHasShown(true);
@@ -50,22 +46,17 @@ const ExitIntentPopup = ({
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      
       toast({
-        title: "Success!",
-        description: "Check your email for your free guide.",
+        title: "Welcome to BTD.",
+        description: "You've been added to our priority list.",
       });
-      
       setOpen(false);
-      setName("");
       setEmail("");
-      setPhone("");
     } catch (error) {
       toast({
         title: "Error",
-        description: "Something went wrong. Please try again.",
+        description: "Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -75,67 +66,39 @@ const ExitIntentPopup = ({
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <div className="flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full">
-            <Gift className="w-8 h-8 text-white" />
+      <DialogContent className="sm:max-w-md bg-card border-border shadow-2xl p-0 overflow-hidden gap-0">
+        <div className="bg-primary p-6 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/hero-cinematic.png')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
+          <div className="relative z-10">
+            <p className="text-accent text-xs font-bold tracking-[0.2em] uppercase mb-2">Beyond the Dealership</p>
+            <h2 className="text-2xl font-bold text-white mb-2 font-serif tracking-wide">{title}</h2>
+            <p className="text-white/80 text-sm max-w-xs mx-auto">{description}</p>
           </div>
-          <DialogTitle className="text-2xl text-center">{title}</DialogTitle>
-          <DialogDescription className="text-center text-base">
-            {description}
-          </DialogDescription>
-        </DialogHeader>
-        
-        <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-4 rounded-lg mb-4">
-          <p className="text-sm font-semibold text-center text-primary">
-            🎁 {offer}
-          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="relative">
-            <User className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Full Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="pl-10"
-            />
-          </div>
-          
-          <div className="relative">
-            <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="email"
-              placeholder="Email Address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="pl-10"
-            />
-          </div>
-          
-          <div className="relative">
-            <Phone className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
-            <Input
-              type="tel"
-              placeholder="Phone Number (Optional)"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="pl-10"
-            />
-          </div>
+        <div className="p-6 bg-background">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="relative">
+              <Mail className="absolute left-3 top-3 w-4 h-4 text-muted-foreground" />
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="pl-10 bg-secondary/50 border-input focus:border-accent transition-colors"
+              />
+            </div>
 
-          <Button type="submit" className="w-full" variant="cta" disabled={isSubmitting}>
-            {isSubmitting ? "Getting Your Guide..." : "Get My Free Guide"}
-          </Button>
-          
-          <p className="text-xs text-center text-muted-foreground">
-            No spam. Unsubscribe anytime.
-          </p>
-        </form>
+            <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300" disabled={isSubmitting}>
+              {isSubmitting ? "Processing..." : "Get Priority Access"}
+            </Button>
+
+            <p className="text-[10px] text-center text-muted-foreground uppercase tracking-wider">
+              No Spam. Unsubscribe Anytime.
+            </p>
+          </form>
+        </div>
       </DialogContent>
     </Dialog>
   );

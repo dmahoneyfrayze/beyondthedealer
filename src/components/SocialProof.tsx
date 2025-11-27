@@ -32,26 +32,31 @@ export const SoldCounter = ({ count = 47, className }: { count?: number; classNa
   );
 };
 
-export const TestimonialCard = ({ 
-  name, 
-  location, 
-  rating = 5, 
+export const TestimonialCard = ({
+  name,
+  location,
+  rating = 5,
   text,
-  vehicle 
-}: { 
-  name: string; 
-  location: string; 
-  rating?: number; 
+  vehicle,
+  date
+}: {
+  name: string;
+  location: string;
+  rating?: number;
   text: string;
   vehicle?: string;
+  date?: string;
 }) => {
   return (
     <Card>
       <CardContent className="p-6">
-        <div className="flex items-center gap-1 mb-3">
-          {Array.from({ length: rating }).map((_, i) => (
-            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-          ))}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1">
+            {Array.from({ length: rating }).map((_, i) => (
+              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+            ))}
+          </div>
+          {date && <span className="text-xs text-muted-foreground">{date}</span>}
         </div>
         <p className="text-sm text-muted-foreground mb-4 italic">"{text}"</p>
         <div>
@@ -66,13 +71,13 @@ export const TestimonialCard = ({
   );
 };
 
-export const TrustBadge = ({ 
-  icon: Icon, 
-  text, 
-  subtext 
-}: { 
-  icon: React.ElementType; 
-  text: string; 
+export const TrustBadge = ({
+  icon: Icon,
+  text,
+  subtext
+}: {
+  icon: React.ElementType;
+  text: string;
   subtext?: string;
 }) => {
   return (
@@ -94,11 +99,11 @@ const SocialProof = ({ type = "viewers", count, text, className }: SocialProofPr
   if (type === "viewers") {
     return <ViewCounter count={count} className={className} />;
   }
-  
+
   if (type === "sold") {
     return <SoldCounter count={count} className={className} />;
   }
-  
+
   return null;
 };
 
