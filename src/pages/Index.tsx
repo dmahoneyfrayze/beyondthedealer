@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import { useVehicles } from "@/hooks/useVehicles";
 import AnimatedSection from "@/components/AnimatedSection";
-import TestimonialCard from "@/components/TestimonialCard";
+import { TestimonialCard } from "@/components/SocialProof";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import StickyMobileCTA from "@/components/StickyMobileCTA";
