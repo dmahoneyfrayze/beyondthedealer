@@ -121,7 +121,7 @@ const Footer = () => {
                 </button>
               </CollapsibleTrigger>
             </div>
-            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+            <CollapsibleContent forceMount className="data-[state=closed]:hidden md:data-[state=closed]:block">
               <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
                 {makes.map((make) => (
                   <li key={make}>
@@ -144,7 +144,7 @@ const Footer = () => {
                 </button>
               </CollapsibleTrigger>
             </div>
-            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+            <CollapsibleContent forceMount className="data-[state=closed]:hidden md:data-[state=closed]:block">
               <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
                 {popularModels.map((item, index) => (
                   <li key={index}>
@@ -167,7 +167,7 @@ const Footer = () => {
                 </button>
               </CollapsibleTrigger>
             </div>
-            <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
+            <CollapsibleContent forceMount className="data-[state=closed]:hidden md:data-[state=closed]:block">
               <ul className="grid grid-cols-2 gap-2 text-xs text-gray-500">
                 {locations.map((loc) => (
                   <li key={loc}>
