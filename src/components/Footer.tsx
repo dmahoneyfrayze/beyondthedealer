@@ -34,8 +34,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
             <div className="flex items-center space-x-2 mb-6">
-              <div className="bg-white text-black p-1.5 rounded-sm">
-                <Car className="w-6 h-6" />
+              <div className="bg-white/10 p-1 rounded-sm backdrop-blur-sm">
+                <img src="/btd-logo.png" alt="BTD Logo" className="w-8 h-8 object-contain" />
               </div>
               <span className="text-xl font-bold tracking-tight">Beyond the Dealership</span>
             </div>
