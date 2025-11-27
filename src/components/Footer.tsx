@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Facebook, Instagram, Twitter, Mail, Phone, ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
+
 const Footer = () => {
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 
@@ -115,9 +116,9 @@ const Footer = () => {
             <div className="flex items-center justify-between mb-4">
               <h5 className="font-bold text-white">Popular Makes</h5>
               <CollapsibleTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                <button className="p-0 h-auto hover:bg-transparent text-gray-400 flex items-center justify-center">
                   <ChevronDown className={`w-4 h-4 transition-transform ${openSections['makes'] ? 'rotate-180' : ''}`} />
-                </Button>
+                </button>
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
@@ -138,9 +139,9 @@ const Footer = () => {
             <div className="flex items-center justify-between mb-4">
               <h5 className="font-bold text-white">Popular Models</h5>
               <CollapsibleTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                <button className="p-0 h-auto hover:bg-transparent text-gray-400 flex items-center justify-center">
                   <ChevronDown className={`w-4 h-4 transition-transform ${openSections['models'] ? 'rotate-180' : ''}`} />
-                </Button>
+                </button>
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
@@ -161,9 +162,9 @@ const Footer = () => {
             <div className="flex items-center justify-between mb-4">
               <h5 className="font-bold text-white">Serving Locations</h5>
               <CollapsibleTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="sm" className="p-0 h-auto hover:bg-transparent text-gray-400">
+                <button className="p-0 h-auto hover:bg-transparent text-gray-400 flex items-center justify-center">
                   <ChevronDown className={`w-4 h-4 transition-transform ${openSections['locations'] ? 'rotate-180' : ''}`} />
-                </Button>
+                </button>
               </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="data-[state=closed]:hidden md:data-[state=closed]:block">
