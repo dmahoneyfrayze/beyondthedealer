@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ChevronDown } from "lucide-react";
+import { Facebook, Instagram, Twitter, Mail, Phone, MapPin, ChevronDown, Car } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 const Footer = () => {
@@ -187,8 +187,7 @@ const Footer = () => {
         </p>
         <p>© {new Date().getFullYear()} Beyond the Dealership. All rights reserved.</p>
       </div>
-    </div>
-    </footer >
+    </footer>
   );
 };
 
