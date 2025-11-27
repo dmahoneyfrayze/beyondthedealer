@@ -15,7 +15,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import { TestimonialCard } from "@/components/SocialProof";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
-import StickyMobileCTA from "@/components/StickyMobileCTA";
+import StickyMobileCTA from "@/components/StickyCTABar";
 
 const Index = () => {
   const { data: vehicles = [], isLoading } = useVehicles({});
