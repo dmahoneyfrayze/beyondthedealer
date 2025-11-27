@@ -29,7 +29,7 @@ const UsedInventory = () => {
   const [drivetrainFilter, setDrivetrainFilter] = useState(searchParams.get("drivetrain") || "all");
   const [modelFilter, setModelFilter] = useState(searchParams.get("model") || "all");
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
-  
+
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
   const { addToComparison, removeFromComparison, isInComparison } = useComparison();
   const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
@@ -41,7 +41,7 @@ const UsedInventory = () => {
       const mileage = vehicle.odometer || vehicle.mileage || 0;
       if (mileage >= 30000) return false;
     }
-    
+
     // Year filter
     if (yearFilter !== "all") {
       const currentYear = new Date().getFullYear();
@@ -50,7 +50,7 @@ const UsedInventory = () => {
       if (yearFilter === "2010-2014" && (vehicle.year < 2010 || vehicle.year > 2014)) return false;
       if (yearFilter === "pre-2010" && vehicle.year >= 2010) return false;
     }
-    
+
     // Mileage filter
     if (mileageFilter !== "all") {
       const mileage = vehicle.odometer || vehicle.mileage || 0;
@@ -59,7 +59,7 @@ const UsedInventory = () => {
       if (mileageFilter === "100-150k" && (mileage < 100000 || mileage >= 150000)) return false;
       if (mileageFilter === "over150k" && mileage < 150000) return false;
     }
-    
+
     // Transmission filter
     if (transmissionFilter !== "all" && vehicle.transmission) {
       const trans = vehicle.transmission.toLowerCase();
@@ -67,7 +67,7 @@ const UsedInventory = () => {
       if (transmissionFilter === "manual" && !trans.includes("manual")) return false;
       if (transmissionFilter === "cvt" && !trans.includes("cvt")) return false;
     }
-    
+
     // Fuel type filter
     if (fuelTypeFilter !== "all" && vehicle.fuel_type) {
       const fuel = vehicle.fuel_type.toLowerCase();
@@ -76,7 +76,7 @@ const UsedInventory = () => {
       if (fuelTypeFilter === "electric" && !fuel.includes("electric") && !fuel.includes("ev")) return false;
       if (fuelTypeFilter === "diesel" && !fuel.includes("diesel")) return false;
     }
-    
+
     // Drivetrain filter
     if (drivetrainFilter !== "all" && vehicle.drive_train) {
       const drive = vehicle.drive_train.toLowerCase();
@@ -84,17 +84,17 @@ const UsedInventory = () => {
       if (drivetrainFilter === "rwd" && !drive.includes("rear") && !drive.includes("rwd")) return false;
       if (drivetrainFilter === "awd" && !drive.includes("all") && !drive.includes("awd") && !drive.includes("4wd")) return false;
     }
-    
+
     // Make filter (client-side check)
     if (make !== "all" && vehicle.make) {
       if (vehicle.make.toLowerCase() !== make.toLowerCase()) return false;
     }
-    
+
     // Model filter
     if (modelFilter !== "all" && vehicle.model) {
       if (vehicle.model.toLowerCase() !== modelFilter.toLowerCase()) return false;
     }
-    
+
     return true;
   });
 
@@ -157,15 +157,23 @@ const UsedInventory = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <Header />
-      
+
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
-          <div className="container mx-auto px-4 text-center">
+        <div className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white py-24 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2583&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
+          <div className="container mx-auto px-4 text-center relative z-10">
             <AnimatedSection direction="fade" delay={100}>
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-slide-down">Used Vehicle Inventory</h1>
+              <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6 animate-slide-down">
+                Beyond the <span className="font-bold">Dealership</span>
+              </h1>
             </AnimatedSection>
             <AnimatedSection direction="fade" delay={300}>
-              <p className="text-lg opacity-90 animate-slide-up">Combined selection from 3 Vancouver Hyundai stores</p>
+              <p className="text-xl md:text-2xl font-light opacity-90 animate-slide-up max-w-3xl mx-auto leading-relaxed">
+                Experience the new standard in premium pre-owned vehicles. <br />
+                <span className="text-base md:text-lg mt-4 block text-neutral-300">
+                  Serving Manitoba & Ontario | Partners with Maserati & Alfa Romeo Winnipeg
+                </span>
+              </p>
             </AnimatedSection>
           </div>
         </div>
@@ -433,105 +441,105 @@ const UsedInventory = () => {
                     const numPayments = 7 * 26; // 7 years * 26 bi-weekly periods
                     const biweeklyPayment = Math.round(principal * (biweeklyRate * Math.pow(1 + biweeklyRate, numPayments)) / (Math.pow(1 + biweeklyRate, numPayments) - 1));
                     const monthlyPayment = Math.round(biweeklyPayment * 26 / 12);
-                    
+
                     return (
                       <AnimatedSection key={vehicle.id} direction="up" delay={index * 50}>
                         <Card className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300 hover:scale-[1.02]">
                           <div className="aspect-video bg-muted relative overflow-hidden">
-                            <img 
-                              src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"} 
+                            <img
+                              src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
                               alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                               className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                             />
-                          {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
-                            <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                              Low Miles
-                            </div>
-                          )}
-                        </div>
-                      <CardContent className="p-6">
-                        <h3 className="text-xl font-bold mb-2">
-                          {vehicle.year} {vehicle.make} {vehicle.model}
-                        </h3>
-                        <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
-                      
-                      <div className="flex items-baseline gap-2 mb-2">
-                        <span className="text-3xl font-bold text-primary">
-                          {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                        </span>
-                      </div>
-                      {price > 0 && (
-                        <div className="flex items-baseline gap-2 mb-4">
-                          <span className="text-lg font-semibold">
-                            ${monthlyPayment}/mo
-                          </span>
-                          <span className="text-sm text-muted-foreground">
-                            or ${biweeklyPayment}/bi-weekly*
-                          </span>
-                        </div>
-                      )}
-
-                      <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-                        <div className="flex items-center">
-                          <Gauge className="w-4 h-4 mr-1" />
-                          {(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km
-                        </div>
-                        <div className="flex items-center">
-                          <Calendar className="w-4 h-4 mr-1" />
-                          {vehicle.year}
-                        </div>
-                      </div>
-
-                        <div className="space-y-2">
-                          <Button asChild variant="cta" className="w-full hover:scale-105 transition-transform duration-200">
-                            <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
-                          </Button>
-                          <div className="flex gap-2">
-                            <Button
-                              variant={isSaved(vehicle.id) ? "default" : "outline"}
-                              size="icon"
-                              onClick={() => {
-                                if (isSaved(vehicle.id)) {
-                                  removeFromSaved(vehicle.id);
-                                } else {
-                                  addToSaved(vehicle);
-                                }
-                              }}
-                              className="hover:scale-110 transition-transform duration-200"
-                            >
-                              <Heart className={cn("w-4 h-4", isSaved(vehicle.id) && "fill-current")} />
-                            </Button>
-                            <Button
-                              variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
-                              size="icon"
-                              onClick={() => {
-                                if (isInComparison(vehicle.id)) {
-                                  removeFromComparison(vehicle.id);
-                                } else {
-                                  addToComparison(vehicle);
-                                }
-                              }}
-                              className="hover:scale-110 transition-transform duration-200"
-                            >
-                              <GitCompare className="w-4 h-4" />
-                            </Button>
-                            <Button asChild variant="outline" className="flex-1 hover:scale-105 transition-transform duration-200">
-                              <a href="tel:604-555-0100">Call Now</a>
-                            </Button>
+                            {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
+                              <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
+                                Low Miles
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      </CardContent>
-                    </Card>
+                          <CardContent className="p-6">
+                            <h3 className="text-xl font-bold mb-2">
+                              {vehicle.year} {vehicle.make} {vehicle.model}
+                            </h3>
+                            <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
+
+                            <div className="flex items-baseline gap-2 mb-2">
+                              <span className="text-3xl font-bold text-primary">
+                                {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
+                              </span>
+                            </div>
+                            {price > 0 && (
+                              <div className="flex items-baseline gap-2 mb-4">
+                                <span className="text-lg font-semibold">
+                                  ${monthlyPayment}/mo
+                                </span>
+                                <span className="text-sm text-muted-foreground">
+                                  or ${biweeklyPayment}/bi-weekly*
+                                </span>
+                              </div>
+                            )}
+
+                            <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                              <div className="flex items-center">
+                                <Gauge className="w-4 h-4 mr-1" />
+                                {(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km
+                              </div>
+                              <div className="flex items-center">
+                                <Calendar className="w-4 h-4 mr-1" />
+                                {vehicle.year}
+                              </div>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Button asChild variant="cta" className="w-full hover:scale-105 transition-transform duration-200">
+                                <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
+                              </Button>
+                              <div className="flex gap-2">
+                                <Button
+                                  variant={isSaved(vehicle.id) ? "default" : "outline"}
+                                  size="icon"
+                                  onClick={() => {
+                                    if (isSaved(vehicle.id)) {
+                                      removeFromSaved(vehicle.id);
+                                    } else {
+                                      addToSaved(vehicle);
+                                    }
+                                  }}
+                                  className="hover:scale-110 transition-transform duration-200"
+                                >
+                                  <Heart className={cn("w-4 h-4", isSaved(vehicle.id) && "fill-current")} />
+                                </Button>
+                                <Button
+                                  variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
+                                  size="icon"
+                                  onClick={() => {
+                                    if (isInComparison(vehicle.id)) {
+                                      removeFromComparison(vehicle.id);
+                                    } else {
+                                      addToComparison(vehicle);
+                                    }
+                                  }}
+                                  className="hover:scale-110 transition-transform duration-200"
+                                >
+                                  <GitCompare className="w-4 h-4" />
+                                </Button>
+                                <Button asChild variant="outline" className="flex-1 hover:scale-105 transition-transform duration-200">
+                                  <a href="tel:604-555-0100">Call Now</a>
+                                </Button>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
                       </AnimatedSection>
-                  );
+                    );
                   })}
                 </div>
               )}
 
               <div className="mt-8 p-4 bg-muted/50 rounded-lg text-xs text-muted-foreground text-center">
                 <p>
-                  <strong>BC Pricing Disclosure:</strong> All prices exclude PST, GST, air conditioning tax ($100), 
-                  tire stewardship fee, PPSA registration, dealer documentation fee ($599), and licensing/registration costs. 
+                  <strong>BC Pricing Disclosure:</strong> All prices exclude PST, GST, air conditioning tax ($100),
+                  tire stewardship fee, PPSA registration, dealer documentation fee ($599), and licensing/registration costs.
                   Payment estimates are for illustration only and subject to credit approval. Actual rates and terms may vary.
                 </p>
               </div>

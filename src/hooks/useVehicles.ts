@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+
 
 export interface Vehicle {
   id: string;
@@ -40,66 +40,63 @@ interface UseVehiclesOptions {
   model?: string;
 }
 
+import { parseCSV } from "@/lib/csvParser";
+
 export const useVehicles = (options: UseVehiclesOptions = {}) => {
   return useQuery({
     queryKey: ['vehicles', options],
     queryFn: async () => {
-      let query = supabase
-        .from('vehicles')
-        .select('*')
-        .eq('status', 'available')
-        .order('created_at', { ascending: false });
+      const response = await fetch('/inventory.csv');
+      const text = await response.text();
+      let data = parseCSV(text);
 
-      // Apply filters
+      // Apply filters client-side
       if (options.bodyStyle && options.bodyStyle !== 'all') {
-        query = query.eq('body_style', options.bodyStyle);
+        data = data.filter(v => v.body_style === options.bodyStyle);
       }
 
       if (options.make && options.make !== 'all') {
-        query = query.eq('make', options.make);
+        data = data.filter(v => v.make === options.make);
       }
 
       if (options.model && options.model !== 'all') {
-        query = query.eq('model', options.model);
+        data = data.filter(v => v.model === options.model);
       }
 
       // Price range filter
       if (options.priceRange && options.priceRange !== 'all') {
         switch (options.priceRange) {
           case 'under5k':
-            query = query.lt('price', 5000);
+            data = data.filter(v => v.price < 5000);
             break;
           case '5to10k':
-            query = query.gte('price', 5000).lte('price', 10000);
+            data = data.filter(v => v.price >= 5000 && v.price <= 10000);
             break;
           case '10to15k':
-            query = query.gte('price', 10000).lte('price', 15000);
+            data = data.filter(v => v.price >= 10000 && v.price <= 15000);
             break;
           case 'under15k':
-            query = query.lt('price', 15000);
+            data = data.filter(v => v.price < 15000);
             break;
           case '15to25k':
-            query = query.gte('price', 15000).lte('price', 25000);
+            data = data.filter(v => v.price >= 15000 && v.price <= 25000);
             break;
           case 'under25k':
-            query = query.lt('price', 25000);
+            data = data.filter(v => v.price < 25000);
             break;
           case '25to35k':
-            query = query.gte('price', 25000).lte('price', 35000);
+            data = data.filter(v => v.price >= 25000 && v.price <= 35000);
             break;
           case '35to45k':
-            query = query.gte('price', 35000).lte('price', 45000);
+            data = data.filter(v => v.price >= 35000 && v.price <= 45000);
             break;
           case 'over45k':
-            query = query.gt('price', 45000);
+            data = data.filter(v => v.price > 45000);
             break;
         }
       }
 
-      const { data, error } = await query;
-
-      if (error) throw error;
-      return data as Vehicle[];
+      return data;
     },
   });
 };
@@ -108,14 +105,13 @@ export const useVehicle = (id: string) => {
   return useQuery({
     queryKey: ['vehicle', id],
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from('vehicles')
-        .select('*')
-        .eq('id', id)
-        .single();
+      const response = await fetch('/inventory.csv');
+      const text = await response.text();
+      const data = parseCSV(text);
+      const vehicle = data.find(v => v.id === id || v.vin === id);
 
-      if (error) throw error;
-      return data as Vehicle;
+      if (!vehicle) throw new Error('Vehicle not found');
+      return vehicle;
     },
     enabled: !!id,
   });

@@ -6,8 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useVehicles } from "@/hooks/useVehicles";
 import { parseVehicleSlug, generateVehicleSlug } from "@/lib/vehicleUtils";
-import { 
-  Gauge, Calendar, Palette, Settings, Fuel, Cog, 
+import {
+  Gauge, Calendar, Palette, Settings, Fuel, Cog,
   Phone, Mail, MapPin, ChevronLeft, Loader2, CheckCircle2, FileText,
   DollarSign, Car, Calculator, Heart, GitCompare
 } from "lucide-react";
@@ -60,9 +60,9 @@ const VehicleDetail = () => {
     );
   }
 
-  const canonicalUrl = `https://olympichyundaivancouver.com/vehicle/${generateVehicleSlug(vehicle)}`;
+  const canonicalUrl = `https://beyondthedealership.com/vehicle/${generateVehicleSlug(vehicle)}`;
   const vehicleTitle = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`;
-  
+
   const structuredData = {
     "@context": "https://schema.org/",
     "@type": "Car",
@@ -90,7 +90,7 @@ const VehicleDetail = () => {
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "AutoDealer",
-        "name": "Olympic Hyundai Vancouver"
+        "name": "Beyond the Dealership"
       }
     },
     "image": vehicle.images?.[0],
@@ -103,16 +103,16 @@ const VehicleDetail = () => {
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />
-        <title>{vehicleTitle} - Olympic Hyundai Vancouver | Used Cars</title>
-        <meta name="description" content={`${vehicleTitle} for sale in Vancouver. ${vehicle.odometer || vehicle.mileage} km, ${vehicle.transmission}, ${vehicle.fuel_type}. Get pre-approved for financing today.`} />
+        <title>{vehicleTitle} - Beyond the Dealership | Premium Used Cars</title>
+        <meta name="description" content={`${vehicleTitle} for sale. ${vehicle.odometer || vehicle.mileage} km, ${vehicle.transmission}, ${vehicle.fuel_type}. Get pre-approved for financing today.`} />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
       </Helmet>
-      
+
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-8">
           <div className="container mx-auto px-4">
@@ -156,7 +156,7 @@ const VehicleDetail = () => {
               {/* Image Gallery */}
               <Card className="overflow-hidden">
                 <div className="aspect-video bg-muted">
-                  <img 
+                  <img
                     src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
                     alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                     className="w-full h-full object-cover"
@@ -188,7 +188,7 @@ const VehicleDetail = () => {
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
-                  <a href="tel:604-555-0100">
+                  <a href="tel:204-297-6177">
                     <Car className="w-6 h-6" />
                     <span className="text-sm font-semibold">Test Drive</span>
                   </a>
@@ -234,7 +234,7 @@ const VehicleDetail = () => {
               {/* Carfax Button */}
               {vehicle.vin && (
                 <Button asChild variant="default" size="lg" className="w-full">
-                  <a 
+                  <a
                     href={`https://www.carfax.ca/vehicle-history-report/${vehicle.vin}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -250,7 +250,7 @@ const VehicleDetail = () => {
               <Card>
                 <CardContent className="p-6">
                   <h2 className="text-2xl font-bold mb-6">Vehicle Details</h2>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="flex items-start gap-3">
                       <Calendar className="w-5 h-5 text-primary mt-1" />
@@ -360,7 +360,7 @@ const VehicleDetail = () => {
                       <p className="text-muted-foreground whitespace-pre-line">{vehicle.description}</p>
                     ) : (
                       <p className="text-muted-foreground italic">
-                        This {vehicle.year} {vehicle.make} {vehicle.model} is in excellent condition and ready for its next owner. 
+                        This {vehicle.year} {vehicle.make} {vehicle.model} is in excellent condition and ready for its next owner.
                         Contact us for more details about this vehicle.
                       </p>
                     )}
@@ -389,71 +389,71 @@ const VehicleDetail = () => {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-              <Card>
-                <CardContent className="p-6 space-y-6">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-2">Price</p>
-                    <p className="text-4xl font-bold text-primary">
-                      {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                    </p>
-                    {price > 0 && <p className="text-xs text-muted-foreground mt-1">+ taxes & fees</p>}
-                    <Badge className="mt-2" variant="secondary">
-                      {vehicle.status === 'available' ? 'Available' : 'Pending'}
-                    </Badge>
-                  </div>
-
-                  <Separator />
-
-                  <div className="space-y-3">
-                    <Button asChild variant="cta" className="w-full" size="lg">
-                      <a href="tel:604-555-0100">
-                        <Phone className="w-4 h-4 mr-2" />
-                        Call Now
-                      </a>
-                    </Button>
-                    
-                    <Button asChild variant="outline" className="w-full">
-                      <Link to="/finance">Get Pre-Approved</Link>
-                    </Button>
-                    
-                    <Button asChild variant="outline" className="w-full">
-                      <Link to="/trade-in">Value My Trade</Link>
-                    </Button>
-                  </div>
-
-                  <Separator />
-
-                  <div className="space-y-3">
-                    <h3 className="font-semibold">Contact Us</h3>
-                    
-                    <a href="tel:604-555-0100" className="flex items-center text-sm hover:text-primary">
-                      <Phone className="w-4 h-4 mr-2" />
-                      (604) 555-0100
-                    </a>
-                    
-                    <a href="mailto:sales@olympichyundai.com" className="flex items-center text-sm hover:text-primary">
-                      <Mail className="w-4 h-4 mr-2" />
-                      sales@olympichyundai.com
-                    </a>
-                    
-                    <div className="flex items-start text-sm">
-                      <MapPin className="w-4 h-4 mr-2 mt-0.5" />
-                      <span>Vancouver, BC</span>
+                <Card>
+                  <CardContent className="p-6 space-y-6">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-2">Price</p>
+                      <p className="text-4xl font-bold text-primary">
+                        {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
+                      </p>
+                      {price > 0 && <p className="text-xs text-muted-foreground mt-1">+ taxes & fees</p>}
+                      <Badge className="mt-2" variant="secondary">
+                        {vehicle.status === 'available' ? 'Available' : 'Pending'}
+                      </Badge>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
 
-              {/* Payment Calculator */}
-              <PaymentCalculator vehiclePrice={price} />
+                    <Separator />
 
-              {/* Lead Magnet Form */}
-              <LeadMagnetForm
-                title="Get Financing Quote for This Vehicle"
-                description={`Get a personalized financing quote for this ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                buttonText="Get My Quote"
-                source={`vehicle-${vehicle.stock_number}`}
-              />
+                    <div className="space-y-3">
+                      <Button asChild variant="cta" className="w-full" size="lg">
+                        <a href="tel:204-297-6177">
+                          <Phone className="w-4 h-4 mr-2" />
+                          Call Now
+                        </a>
+                      </Button>
+
+                      <Button asChild variant="outline" className="w-full">
+                        <Link to="/finance">Get Pre-Approved</Link>
+                      </Button>
+
+                      <Button asChild variant="outline" className="w-full">
+                        <Link to="/trade-in">Value My Trade</Link>
+                      </Button>
+                    </div>
+
+                    <Separator />
+
+                    <div className="space-y-3">
+                      <h3 className="font-semibold">Contact Us</h3>
+
+                      <a href="tel:204-297-6177" className="flex items-center text-sm hover:text-primary">
+                        <Phone className="w-4 h-4 mr-2" />
+                        (204) 297-6177
+                      </a>
+
+                      <a href="mailto:Beyondthedealership@icloud.com" className="flex items-center text-sm hover:text-primary">
+                        <Mail className="w-4 h-4 mr-2" />
+                        Beyondthedealership@icloud.com
+                      </a>
+
+                      <div className="flex items-start text-sm">
+                        <MapPin className="w-4 h-4 mr-2 mt-0.5" />
+                        <span>Winnipeg, MB</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Payment Calculator */}
+                <PaymentCalculator vehiclePrice={price} />
+
+                {/* Lead Magnet Form */}
+                <LeadMagnetForm
+                  title="Get Financing Quote for This Vehicle"
+                  description={`Get a personalized financing quote for this ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                  buttonText="Get My Quote"
+                  source={`vehicle-${vehicle.stock_number}`}
+                />
               </div>
             </div>
           </div>

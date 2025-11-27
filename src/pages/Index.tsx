@@ -16,9 +16,9 @@ import heroImage from "@/assets/hero-vancouver.jpg";
 
 const Index = () => {
   const { data: vehicles = [] } = useVehicles({});
-  
+
   // Get random featured vehicles (up to 8)
-  const featuredVehicles = vehicles.length > 0 
+  const featuredVehicles = vehicles.length > 0
     ? [...vehicles].sort(() => Math.random() - 0.5).slice(0, 8)
     : [];
 
@@ -26,7 +26,7 @@ const Index = () => {
     {
       icon: Car,
       title: "Quality Used Vehicles",
-      description: "Browse inventory from 3 Vancouver Hyundai stores",
+      description: "Browse our premium inventory",
       link: "/used",
     },
     {
@@ -50,9 +50,9 @@ const Index = () => {
   ];
 
   const trustBadges = [
-    { icon: Shield, text: "Local Vancouver Dealer" },
+    { icon: Shield, text: "Premium Inventory" },
     { icon: Clock, text: "Same-Day Approvals" },
-    { icon: MapPin, text: "Serving Greater Vancouver" },
+    { icon: MapPin, text: "Serving Manitoba & Ontario" },
   ];
 
   return (
@@ -61,10 +61,10 @@ const Index = () => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <Header />
-      
+
       <main className="flex-grow">
         {/* Hero Section */}
-        <section 
+        <section
           className="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center"
           style={{ backgroundImage: `url(${heroImage})` }}
         >
@@ -72,7 +72,7 @@ const Index = () => {
           <div className="relative z-10 container mx-auto px-4 text-primary-foreground">
             <AnimatedSection direction="fade" delay={200}>
               <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-slide-down">
-                Your Vancouver Hyundai<br />Resource Hub
+                Your Premium Pre-Owned<br />Vehicle Hub
               </h1>
             </AnimatedSection>
             <AnimatedSection direction="fade" delay={400}>
@@ -98,18 +98,17 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <AnimatedSection direction="fade">
               <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4">Part of the Olympic Auto Group Family</h2>
+                <h2 className="text-3xl font-bold mb-4">Partners with Maserati & Alfa Romeo Winnipeg</h2>
                 <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  With 46 locations across Canada, Olympic Auto Group is one of Canada's largest automotive retailers. 
-                  We specialize in automotive sales, powersports, marine, RV, and rental services.
+                  We work in partnership with Maserati of Winnipeg and Alfa Romeo of Winnipeg to offer an exclusive selection of high-end pre-owned inventory.
                 </p>
               </div>
             </AnimatedSection>
             <AnimatedSection direction="up" delay={200}>
               <div className="flex flex-wrap justify-center gap-8 mt-6">
                 {trustBadges.map((badge, index) => (
-                  <div 
-                    key={index} 
+                  <div
+                    key={index}
                     className="flex items-center space-x-2 text-sm font-medium hover:scale-110 transition-transform duration-300"
                     style={{ animationDelay: `${index * 100}ms` }}
                   >
@@ -229,40 +228,40 @@ const Index = () => {
                 <div>
                   <div className="flex items-center gap-2 mb-4">
                     <FileText className="w-8 h-8 text-primary animate-float" />
-                    <h2 className="text-3xl font-bold">Free BC Auto Buying Guide</h2>
+                    <h2 className="text-3xl font-bold">Free Auto Buying Guide</h2>
                   </div>
-                <p className="text-lg text-muted-foreground mb-6">
-                  Download our comprehensive guide covering everything you need to know about buying a car in British Columbia, including:
-                </p>
-                <ul className="space-y-2 mb-6">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>BC tax and registration requirements</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>ICBC insurance basics</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Financing vs. leasing comparison</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>EV rebates and incentives</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                    <span>Student and newcomer programs</span>
-                  </li>
-                </ul>
-                <SoldCounter count={47} className="mb-6" />
-              </div>
+                  <p className="text-lg text-muted-foreground mb-6">
+                    Download our comprehensive guide covering everything you need to know about buying a car in British Columbia, including:
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Tax and registration requirements</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Insurance basics</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Financing vs. leasing comparison</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>EV rebates and incentives</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                      <span>Student and newcomer programs</span>
+                    </li>
+                  </ul>
+                  <SoldCounter count={47} className="mb-6" />
+                </div>
               </AnimatedSection>
               <AnimatedSection direction="left" delay={200}>
                 <LeadMagnetForm
                   title="Get Your Free Guide"
-                  description="Enter your email and we'll send you the complete BC Auto Buying Guide instantly."
+                  description="Enter your email and we'll send you the complete Auto Buying Guide instantly."
                   buttonText="Download Free Guide"
                   source="homepage-guide"
                 />
@@ -280,30 +279,30 @@ const Index = () => {
             <div className="grid md:grid-cols-3 gap-6">
               <AnimatedSection direction="up" delay={0}>
                 <TestimonialCard
-                name="Sarah Chen"
-                location="Vancouver, BC"
-                rating={5}
-                vehicle="2020 Hyundai Tucson"
-                text="The team made the entire process so easy. Got approved quickly and found the perfect SUV for my family. Highly recommend!"
-              />
+                  name="Sarah Chen"
+                  location="Winnipeg, MB"
+                  rating={5}
+                  vehicle="2020 Hyundai Tucson"
+                  text="The team made the entire process so easy. Got approved quickly and found the perfect SUV for my family. Highly recommend!"
+                />
               </AnimatedSection>
               <AnimatedSection direction="up" delay={200}>
                 <TestimonialCard
-                name="Michael Rodriguez"
-                location="Burnaby, BC"
-                rating={5}
-                vehicle="2019 Hyundai Elantra"
-                text="As a newcomer to Canada, I was worried about financing. Olympic Hyundai helped me understand everything and got me approved. Amazing service!"
-              />
+                  name="Michael Rodriguez"
+                  location="Toronto, ON"
+                  rating={5}
+                  vehicle="2019 Hyundai Elantra"
+                  text="As a newcomer to Canada, I was worried about financing. Beyond the Dealership helped me understand everything and got me approved. Amazing service!"
+                />
               </AnimatedSection>
               <AnimatedSection direction="up" delay={400}>
                 <TestimonialCard
-                name="Jennifer Park"
-                location="Richmond, BC"
-                rating={5}
-                vehicle="2021 Hyundai Kona Electric"
-                text="The EV guide was incredibly helpful. They walked me through all the rebates and incentives. Love my new Kona!"
-              />
+                  name="Jennifer Park"
+                  location="Winnipeg, MB"
+                  rating={5}
+                  vehicle="2021 Hyundai Kona Electric"
+                  text="The EV guide was incredibly helpful. They walked me through all the rebates and incentives. Love my new Kona!"
+                />
               </AnimatedSection>
             </div>
           </div>
@@ -332,7 +331,7 @@ const Index = () => {
               Need Help Finding the Perfect Vehicle?
             </h2>
             <p className="text-lg mb-8 opacity-90">
-              Our concierge service searches across multiple Hyundai stores for you
+              Our concierge service searches across our partner network for you
             </p>
             <Button asChild size="lg" variant="ocean" className="bg-white text-primary hover:bg-white/90">
               <Link to="/find-my-car">

@@ -9,8 +9,8 @@ const Footer = () => {
   const [modelsOpen, setModelsOpen] = useState(false);
 
   const makes = [
-    "Hyundai", "Honda", "Toyota", "Ford", "Mazda", "Nissan", "Subaru", 
-    "Acura", "Jeep", "Dodge", "Chevrolet", "GMC", "BMW", "Mercedes-Benz", 
+    "Hyundai", "Honda", "Toyota", "Ford", "Mazda", "Nissan", "Subaru",
+    "Acura", "Jeep", "Dodge", "Chevrolet", "GMC", "BMW", "Mercedes-Benz",
     "Audi", "Volkswagen", "Kia", "Mitsubishi", "Volvo", "Lexus"
   ];
 
@@ -33,19 +33,19 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           <div>
-            <h3 className="text-lg font-bold mb-4">Olympic Hyundai Vancouver</h3>
+            <h3 className="text-lg font-bold mb-4">Beyond the Dealership</h3>
             <div className="space-y-2 text-sm opacity-90">
               <p className="flex items-start">
                 <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0" />
-                123 Main Street, Vancouver, BC V6B 1A1
+                1424 Regent Ave West, Winnipeg, MB, Canada
               </p>
               <p className="flex items-center">
                 <Phone className="w-4 h-4 mr-2 flex-shrink-0" />
-                (604) 555-0100
+                (204) 297-6177
               </p>
               <p className="flex items-center">
                 <Mail className="w-4 h-4 mr-2 flex-shrink-0" />
-                info@olympichyundai.ca
+                Beyondthedealership@icloud.com
               </p>
             </div>
           </div>
@@ -61,7 +61,6 @@ const Footer = () => {
                   <li><Link to="/used" className="hover:opacity-100">Used Inventory</Link></li>
                   <li><Link to="/find-my-car" className="hover:opacity-100">Find My Car</Link></li>
                   <li><Link to="/trade-in" className="hover:opacity-100">Trade-In Value</Link></li>
-                  <li><a href="https://www.olympichyundaivancouver.com/" target="_blank" rel="noopener noreferrer" className="hover:opacity-100">New Vehicles</a></li>
                   <li><Link to="/used?body=SUV" className="hover:opacity-100">Used SUVs</Link></li>
                   <li><Link to="/used?body=Sedan" className="hover:opacity-100">Used Sedans</Link></li>
                   <li><Link to="/used?body=Truck" className="hover:opacity-100">Used Trucks</Link></li>
@@ -113,8 +112,8 @@ const Footer = () => {
                 <ul className="space-y-2 text-sm opacity-90">
                   {popularModels.map((item, index) => (
                     <li key={index}>
-                      <Link 
-                        to={`/used?make=${item.make}&model=${item.model}`} 
+                      <Link
+                        to={`/used?make=${item.make}&model=${item.model}`}
                         className="hover:opacity-100"
                       >
                         {item.make} {item.model}
@@ -159,12 +158,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 pt-6 text-xs opacity-75 text-center">
-          <p className="mb-2">
-            This site is an independent supplemental experience for Olympic Hyundai Vancouver. 
-            Official Hyundai new inventory, service booking, and OEM incentives remain on the primary Hyundai website.
+        <div className="border-t border-neutral-800 pt-8 text-xs text-neutral-500 text-center">
+          <p className="mb-4 max-w-4xl mx-auto leading-relaxed">
+            Beyond the Dealership is a stand-alone supplemental experience designed to provide a premium, seamless vehicle acquisition process.
+            We work in partnership with Maserati of Winnipeg and Alfa Romeo of Winnipeg to offer an exclusive selection of high-end pre-owned inventory.
+            Instant approvals available for clients in Manitoba and Ontario.
           </p>
-          <p>© {new Date().getFullYear()} Olympic Hyundai Vancouver. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Beyond the Dealership. All rights reserved.</p>
         </div>
       </div>
     </footer>

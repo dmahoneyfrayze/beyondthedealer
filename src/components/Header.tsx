@@ -26,7 +26,6 @@ const Header = () => {
     { name: "SUVs", href: "/used?body=SUV" },
     { name: "Sedans", href: "/used?body=Sedan" },
     { name: "Trucks", href: "/used?body=Truck" },
-    { name: "New Vehicles", href: "https://www.olympichyundaivancouver.com/", external: true },
   ];
 
   const researchLinks = [
@@ -59,9 +58,9 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300 group">
             <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform duration-300">
-              Olympic Hyundai
+              Beyond the Dealership
             </div>
-            <div className="text-sm text-muted-foreground hidden sm:block">Vancouver</div>
+            <div className="text-sm text-muted-foreground hidden sm:block">Nationwide Delivery</div>
           </Link>
 
           <NavigationMenu className="hidden lg:flex">
@@ -173,9 +172,9 @@ const Header = () => {
                 </Link>
               </Button>
             )}
-            <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground hover:text-primary">
+            <a href="tel:204-297-6177" className="flex items-center text-sm text-foreground hover:text-primary">
               <Phone className="w-4 h-4 mr-2" />
-              (604) 555-0100
+              (204) 297-6177
             </a>
             <Button asChild variant="cta" size="sm">
               <Link to="/find-my-car">Find My Car</Link>
@@ -206,7 +205,7 @@ const Header = () => {
                   </Link>
                 ))}
               </div>
-              
+
               {navigation.map((item) => (
                 <Link
                   key={item.name}
@@ -248,7 +247,7 @@ const Header = () => {
               <div className="px-4 py-2">
                 <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground">
                   <Phone className="w-4 h-4 mr-2" />
-                  (604) 555-0100
+                  (204) 297-6177
                 </a>
               </div>
             </nav>

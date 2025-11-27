@@ -11,13 +11,13 @@ const Finance = () => {
   const benefits = [
     { icon: Clock, title: "Fast Approval", description: "Get approved in 60 seconds" },
     { icon: Shield, title: "All Credit Types", description: "We work with all credit situations" },
-    { icon: DollarSign, title: "Competitive Rates", description: "Best rates in Vancouver area" },
+    { icon: DollarSign, title: "Competitive Rates", description: "Best rates in Manitoba & Ontario" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -44,7 +44,7 @@ const Finance = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold mb-6">Finance Options</h2>
-              
+
               <div className="space-y-6">
                 <Card>
                   <CardHeader>
@@ -139,7 +139,7 @@ const Finance = () => {
 
                     <div>
                       <Label htmlFor="phone">Phone Number</Label>
-                      <Input id="phone" type="tel" placeholder="(604) 555-0100" />
+                      <Input id="phone" type="tel" placeholder="(204) 297-6177" />
                     </div>
 
                     <div>

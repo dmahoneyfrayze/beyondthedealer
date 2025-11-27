@@ -7,12 +7,12 @@ const Privacy = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Privacy Policy - Olympic Hyundai Vancouver</title>
-        <meta name="description" content="Olympic Hyundai Vancouver privacy policy. Learn how we protect your personal information and respect your privacy." />
+        <title>Privacy Policy - Beyond the Dealership</title>
+        <meta name="description" content="Beyond the Dealership privacy policy. Learn how we protect your personal information and respect your privacy." />
       </Helmet>
 
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4">
@@ -26,7 +26,7 @@ const Privacy = () => {
             <CardContent className="p-8 prose prose-slate max-w-none">
               <h2>Your Privacy Matters</h2>
               <p>
-                At Olympic Hyundai Vancouver, we are committed to protecting your privacy and ensuring the security 
+                At Beyond the Dealership, we are committed to protecting your privacy and ensuring the security
                 of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data.
               </p>
 
@@ -57,13 +57,13 @@ const Privacy = () => {
                 <li>Financial institutions for credit applications and loan processing</li>
                 <li>Service providers who assist with our business operations</li>
                 <li>Legal authorities when required by law</li>
-                <li>Hyundai Motor America and affiliated dealerships for warranty and service purposes</li>
+                <li>Our partners (Maserati of Winnipeg, Alfa Romeo of Winnipeg) for inventory and service purposes</li>
               </ul>
 
               <h3>Data Security</h3>
               <p>
-                We implement industry-standard security measures to protect your personal information from unauthorized 
-                access, disclosure, alteration, or destruction. However, no method of transmission over the internet 
+                We implement industry-standard security measures to protect your personal information from unauthorized
+                access, disclosure, alteration, or destruction. However, no method of transmission over the internet
                 is 100% secure.
               </p>
 
@@ -78,7 +78,7 @@ const Privacy = () => {
 
               <h3>Cookies and Tracking</h3>
               <p>
-                We use cookies and similar technologies to enhance your browsing experience, analyze website traffic, 
+                We use cookies and similar technologies to enhance your browsing experience, analyze website traffic,
                 and personalize content. You can control cookie preferences through your browser settings.
               </p>
 
@@ -87,15 +87,15 @@ const Privacy = () => {
                 If you have questions about this Privacy Policy or want to exercise your privacy rights, please contact us:
               </p>
               <p>
-                <strong>Olympic Hyundai Vancouver</strong><br />
-                Phone: (604) 555-0100<br />
-                Email: privacy@olympichyundai.com<br />
-                Address: Vancouver, BC
+                <strong>Beyond the Dealership</strong><br />
+                Phone: (204) 297-6177<br />
+                Email: Beyondthedealership@icloud.com<br />
+                Address: 1424 Regent Ave West, Winnipeg, MB, Canada
               </p>
 
               <h3>Changes to This Policy</h3>
               <p>
-                We may update this Privacy Policy from time to time. We will notify you of any material changes by 
+                We may update this Privacy Policy from time to time. We will notify you of any material changes by
                 posting the new policy on this page with an updated "Last Updated" date.
               </p>
             </CardContent>

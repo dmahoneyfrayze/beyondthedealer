@@ -7,12 +7,12 @@ const Terms = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Terms of Service - Olympic Hyundai Vancouver</title>
-        <meta name="description" content="Terms of Service for Olympic Hyundai Vancouver. Review our terms and conditions for using our website and services." />
+        <title>Terms of Service - Beyond the Dealership</title>
+        <meta name="description" content="Terms of Service for Beyond the Dealership. Review our terms and conditions for using our website and services." />
       </Helmet>
 
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4">
@@ -26,7 +26,7 @@ const Terms = () => {
             <CardContent className="p-8 prose prose-slate max-w-none">
               <h2>Agreement to Terms</h2>
               <p>
-                By accessing and using the Olympic Hyundai Vancouver website, you agree to be bound by these Terms of 
+                By accessing and using the Beyond the Dealership website, you agree to be bound by these Terms of
                 Service. If you do not agree with any part of these terms, please do not use our website.
               </p>
 
@@ -42,73 +42,73 @@ const Terms = () => {
 
               <h3>Pricing and Availability</h3>
               <p>
-                All vehicle prices listed on this website are in Canadian dollars and are subject to change without notice. 
-                Prices exclude applicable taxes, licensing fees, registration, documentation fees, and any optional 
+                All vehicle prices listed on this website are in Canadian dollars and are subject to change without notice.
+                Prices exclude applicable taxes, licensing fees, registration, documentation fees, and any optional
                 products or services.
               </p>
               <p>
-                <strong>British Columbia Disclosure:</strong> The prices shown do not include PST, GST, air conditioning tax, 
-                tire stewardship fee, PPSA registration, dealer documentation fee, or any applicable licensing and 
+                <strong>Manitoba & Ontario Disclosure:</strong> The prices shown do not include applicable taxes,
+                tire stewardship fee, PPSA registration, dealer documentation fee, or any applicable licensing and
                 registration costs. Final pricing will be provided during the purchase process.
               </p>
               <p>
-                Vehicle availability is subject to prior sale. We make every effort to ensure accuracy, but errors may occur. 
+                Vehicle availability is subject to prior sale. We make every effort to ensure accuracy, but errors may occur.
                 Please verify all information with a sales representative before making a purchase decision.
               </p>
 
               <h3>Financing Estimates</h3>
               <p>
-                Payment calculations and financing estimates provided on this website are for illustrative purposes only 
-                and do not constitute a financing offer. Actual rates, terms, and payments are subject to credit approval 
+                Payment calculations and financing estimates provided on this website are for illustrative purposes only
+                and do not constitute a financing offer. Actual rates, terms, and payments are subject to credit approval
                 and may vary based on your creditworthiness, down payment, trade-in value, and other factors.
               </p>
               <p>
-                All financing is subject to lender approval. We work with multiple financial institutions to help find 
+                All financing is subject to lender approval. We work with multiple financial institutions to help find
                 financing solutions for all credit situations.
               </p>
 
               <h3>Vehicle Information</h3>
               <p>
-                We strive to provide accurate vehicle information, including descriptions, specifications, features, 
-                mileage, and condition. However, errors may occur. Please inspect any vehicle in person and verify all 
+                We strive to provide accurate vehicle information, including descriptions, specifications, features,
+                mileage, and condition. However, errors may occur. Please inspect any vehicle in person and verify all
                 details before purchase. All used vehicles are sold "as-is" unless otherwise stated in writing.
               </p>
 
               <h3>Trade-In Valuations</h3>
               <p>
-                Trade-in value estimates provided through our online tools are approximate and subject to physical 
-                inspection. Final trade-in values may differ based on actual vehicle condition, market conditions, and 
+                Trade-in value estimates provided through our online tools are approximate and subject to physical
+                inspection. Final trade-in values may differ based on actual vehicle condition, market conditions, and
                 other factors.
               </p>
 
               <h3>Intellectual Property</h3>
               <p>
-                All content on this website, including text, graphics, logos, images, and software, is the property of 
-                Olympic Hyundai Vancouver or its licensors and is protected by copyright and intellectual property laws.
+                All content on this website, including text, graphics, logos, images, and software, is the property of
+                Beyond the Dealership or its licensors and is protected by copyright and intellectual property laws.
               </p>
 
               <h3>Limitation of Liability</h3>
               <p>
-                Olympic Hyundai Vancouver shall not be liable for any indirect, incidental, special, or consequential 
+                Beyond the Dealership shall not be liable for any indirect, incidental, special, or consequential
                 damages arising from your use of this website or any services obtained through it.
               </p>
 
               <h3>Third-Party Links</h3>
               <p>
-                Our website may contain links to third-party websites. We are not responsible for the content, privacy 
+                Our website may contain links to third-party websites. We are not responsible for the content, privacy
                 practices, or terms of service of these external sites.
               </p>
 
               <h3>Modifications</h3>
               <p>
-                We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately 
+                We reserve the right to modify these Terms of Service at any time. Changes will be effective immediately
                 upon posting. Your continued use of the website after changes constitutes acceptance of the modified terms.
               </p>
 
               <h3>Governing Law</h3>
               <p>
-                These Terms of Service are governed by the laws of British Columbia, Canada. Any disputes shall be 
-                resolved in the courts of British Columbia.
+                These Terms of Service are governed by the laws of Manitoba, Canada. Any disputes shall be
+                resolved in the courts of Manitoba.
               </p>
 
               <h3>Contact Information</h3>
@@ -116,10 +116,10 @@ const Terms = () => {
                 For questions about these Terms of Service, please contact:
               </p>
               <p>
-                <strong>Olympic Hyundai Vancouver</strong><br />
-                Phone: (604) 555-0100<br />
-                Email: info@olympichyundai.com<br />
-                Address: Vancouver, BC
+                <strong>Beyond the Dealership</strong><br />
+                Phone: (204) 297-6177<br />
+                Email: Beyondthedealership@icloud.com<br />
+                Address: 1424 Regent Ave West, Winnipeg, MB, Canada
               </p>
             </CardContent>
           </Card>
