@@ -116,7 +116,7 @@ const VehicleDetail = () => {
       <Header />
 
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-8">
+        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground pt-28 pb-8">
           <div className="container mx-auto px-4">
             <AnimatedSection direction="fade" delay={100}>
               <Button asChild variant="ghost" className="mb-4 text-primary-foreground hover:bg-primary-foreground/10 hover:scale-105 transition-transform duration-200">
