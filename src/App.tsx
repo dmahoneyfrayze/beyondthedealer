@@ -32,12 +32,11 @@ import NotFound from "./pages/NotFound";
 import ExitIntentPopup from "./components/ExitIntentPopup";
 import StickyCTABar from "./components/StickyCTABar";
 import ChatWidget from "./components/ChatWidget";
+import ThunderBay from "./pages/research/ThunderBay";
 import NewVsUsed from "./pages/research/NewVsUsed";
 import FinanceVsLease from "./pages/research/FinanceVsLease";
-import BCLuxuryTax from "./pages/research/BCLuxuryTax";
 import StudentPrograms from "./pages/research/StudentPrograms";
 import NewToCanada from "./pages/research/NewToCanada";
-import BCRegistrationInsurance from "./pages/research/BCRegistrationInsurance";
 
 const queryClient = new QueryClient();
 
@@ -70,9 +69,9 @@ const App = () => (
               <Route path="/find-my-car" element={<FindMyCar />} />
               <Route path="/saved-vehicles" element={<SavedVehicles />} />
               <Route path="/compare" element={<CompareVehicles />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/warranties" element={<WarrantiesProtection />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/warranties" element={<WarrantiesProtection />} />
               <Route path="/hyundai-elantra-vancouver-guide" element={<ElantraGuide />} />
               <Route path="/hyundai-kona-vancouver-guide" element={<KonaGuide />} />
               <Route path="/hyundai-tucson-vancouver-guide" element={<TucsonGuide />} />
@@ -80,10 +79,9 @@ const App = () => (
               {/* Research Pages */}
               <Route path="/research/new-vs-used" element={<NewVsUsed />} />
               <Route path="/research/finance-vs-lease" element={<FinanceVsLease />} />
-              <Route path="/research/bc-luxury-tax" element={<BCLuxuryTax />} />
+              <Route path="/research/thunder-bay" element={<ThunderBay />} />
               <Route path="/research/student-programs" element={<StudentPrograms />} />
               <Route path="/research/new-to-canada" element={<NewToCanada />} />
-              <Route path="/research/bc-registration-insurance" element={<BCRegistrationInsurance />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -27,7 +27,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const inventoryLinks = [
+  const inventoryLinks: { name: string; href: string; external?: boolean }[] = [
     { name: "All Used Inventory", href: "/used" },
     { name: "Under $5,000", href: "/used?price=under5k" },
     { name: "Under $15,000", href: "/used?price=under15k" },
@@ -38,13 +38,12 @@ const Header = () => {
   ];
 
   const researchLinks = [
-    { name: "New vs. Used", href: "/research/new-vs-used" },
+    { name: "Why Thunder Bay Chooses BTD", href: "/research/thunder-bay" },
+    { name: "New vs. Used Guide", href: "/research/new-vs-used" },
     { name: "Finance vs. Lease", href: "/research/finance-vs-lease" },
-    { name: "BC Luxury Tax Guide", href: "/research/bc-luxury-tax" },
     { name: "Student Programs", href: "/research/student-programs" },
-    { name: "New to Canada Programs", href: "/research/new-to-canada" },
-    { name: "BC Registration & Insurance", href: "/research/bc-registration-insurance" },
-    { name: "EV & Hybrid Guide", href: "/ev-hybrid-guide-bc" },
+    { name: "New to Canada", href: "/research/new-to-canada" },
+    { name: "EV & Hybrid Guide", href: "/ev-hybrid-guide-bc" }, // Keeping URL for SEO but renaming link if needed
   ];
 
   const financeLinks = [
