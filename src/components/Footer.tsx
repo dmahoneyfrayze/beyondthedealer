@@ -174,6 +174,21 @@ const Footer = () => {
                 <span className="font-serif text-xl tracking-wide">ALFA ROMEO</span>
                 <span className="text-xs text-muted-foreground">OF WINNIPEG</span>
               </div>
+              <div className="my-2 border-t border-white/10"></div>
+              <div className="flex flex-col gap-2">
+                <span className="font-serif text-lg tracking-wide">KENORA</span>
+                <span className="text-xs text-muted-foreground">CHRYSLER DODGE JEEP RAM</span>
+              </div>
+              <div className="my-2 border-t border-white/10"></div>
+              <div className="flex flex-col gap-2">
+                <span className="font-serif text-lg tracking-wide">KENORA GM</span>
+                <span className="text-xs text-muted-foreground">CHEVROLET BUICK GMC</span>
+              </div>
+              <div className="my-2 border-t border-white/10"></div>
+              <div className="flex flex-col gap-2">
+                <span className="font-serif text-lg tracking-wide">KENORA HONDA</span>
+                <span className="text-xs text-muted-foreground">HONDA</span>
+              </div>
             </div>
           </div>
         </div>

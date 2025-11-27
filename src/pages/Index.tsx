@@ -69,15 +69,30 @@ const Index = () => {
             <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground mb-8 uppercase animate-slide-up" style={{ animationDelay: "0.2s" }}>
               In Strategic Partnership With
             </p>
-            <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 opacity-80 hover:opacity-100 transition-opacity duration-500">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 hover:opacity-100 transition-opacity duration-500">
               <div className="text-center group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-serif tracking-widest mb-2 group-hover:text-primary transition-colors">MASERATI</h3>
-                <p className="text-xs tracking-[0.3em] text-muted-foreground">OF WINNIPEG</p>
+                <h3 className="text-2xl md:text-3xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">MASERATI</h3>
+                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">OF WINNIPEG</p>
               </div>
-              <div className="h-12 w-px bg-white/20 hidden md:block"></div>
+              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
               <div className="text-center group cursor-default">
-                <h3 className="text-3xl md:text-4xl font-serif tracking-widest mb-2 group-hover:text-primary transition-colors">ALFA ROMEO</h3>
-                <p className="text-xs tracking-[0.3em] text-muted-foreground">OF WINNIPEG</p>
+                <h3 className="text-2xl md:text-3xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">ALFA ROMEO</h3>
+                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">OF WINNIPEG</p>
+              </div>
+              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
+              <div className="text-center group cursor-default">
+                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA</h3>
+                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">CHRYSLER DODGE JEEP RAM</p>
+              </div>
+              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
+              <div className="text-center group cursor-default">
+                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA GM</h3>
+                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">CHEVROLET BUICK GMC</p>
+              </div>
+              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
+              <div className="text-center group cursor-default">
+                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA HONDA</h3>
+                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">HONDA</p>
               </div>
             </div>
           </div>
