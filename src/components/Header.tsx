@@ -53,13 +53,21 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-background border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-background/95 transition-shadow duration-300 shadow-sm hover:shadow-md">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+          ? "bg-black/95 backdrop-blur-md shadow-md py-3"
+          : "bg-transparent py-5"
+        }`}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link to="/" className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-300 group">
-            <div className="text-2xl font-bold text-primary group-hover:scale-105 transition-transform duration-300">
-              Beyond the Dealership
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center space-x-2 group">
+            <div className="bg-white text-black p-1.5 rounded-sm group-hover:bg-accent transition-colors duration-300">
+              <Car className="w-6 h-6" />
             </div>
+            <span className={`text-xl font-bold tracking-tight transition-colors ${isScrolled ? "text-white" : "text-white"}`}>
+              Beyond the Dealership
+            </span>
             <div className="text-sm text-muted-foreground hidden sm:block">Nationwide Delivery</div>
           </Link>
 
@@ -146,7 +154,8 @@ const Header = () => {
                 <NavigationMenuItem key={item.name}>
                   <Link
                     to={item.href}
-                    className="group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50"
+                    className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors hover:text-accent ${isScrolled ? "text-white/90" : "text-white/90"
+                      }`}
                   >
                     {item.name}
                   </Link>

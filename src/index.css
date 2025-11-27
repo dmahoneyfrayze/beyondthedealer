@@ -8,57 +8,61 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
+    --background: 0 0% 98%;
+    /* Slightly off-white for warmth */
+    --foreground: 240 10% 3.9%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
+    --card-foreground: 240 10% 3.9%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 25% 27%;
+    --popover-foreground: 240 10% 3.9%;
 
-    /* Hyundai-inspired deep blue */
-    --primary: 211 100% 25%;
-    --primary-foreground: 0 0% 100%;
+    /* Luxury Black/Charcoal */
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
 
-    /* Light coastal blue */
-    --secondary: 200 20% 96%;
-    --secondary-foreground: 211 100% 25%;
+    /* Platinum/Silver */
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
 
-    --muted: 210 20% 95%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
 
-    /* Bright ocean blue for CTAs */
-    --accent: 199 89% 48%;
+    /* Luxury Gold Accent */
+    --accent: 43 74% 49%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214 20% 88%;
-    --input: 214 20% 88%;
-    --ring: 211 100% 25%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 43 74% 49%;
+    /* Gold ring focus */
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
     /* Custom tokens for automotive design */
     --ocean-teal: 186 78% 45%;
+    /* Keep for legacy or specific accents if needed */
     --ocean-light: 186 78% 95%;
     --trust-gold: 43 96% 56%;
     --success-green: 142 76% 36%;
-    
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(211 100% 25%) 0%, hsl(199 89% 48%) 100%);
-    --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%) 0%, hsl(210 20% 98%) 100%);
-    --gradient-ocean: linear-gradient(135deg, hsl(199 89% 48%) 0%, hsl(186 78% 45%) 100%);
-    
-    /* Shadows */
-    --shadow-card: 0 2px 8px hsl(211 100% 25% / 0.08);
-    --shadow-hover: 0 8px 24px hsl(211 100% 25% / 0.12);
-    --shadow-cta: 0 4px 14px hsl(199 89% 48% / 0.3);
+
+    /* Luxury Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%) 0%, hsl(0 0% 15%) 100%);
+    --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
+    --gradient-ocean: linear-gradient(135deg, hsl(43 74% 49%) 0%, hsl(25 80% 45%) 100%);
+    /* Gold Gradient */
+
+    /* Shadows - softer, more diffused */
+    --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 20px 40px -4px rgba(0, 0, 0, 0.1);
+    --shadow-cta: 0 10px 30px -10px rgba(43, 30, 0, 0.4);
 
     /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .dark {
@@ -114,6 +118,7 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+
   /* Smooth transitions for interactive elements */
   .animate-on-scroll {
     opacity: 0;

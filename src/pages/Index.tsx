@@ -63,6 +63,26 @@ const Index = () => {
       <Header />
 
       <main className="flex-grow">
+        {/* Partnership Section */}
+        <section className="py-16 bg-black text-white border-y border-white/10 animate-fade-in">
+          <div className="container mx-auto px-4 text-center">
+            <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground mb-8 uppercase animate-slide-up" style={{ animationDelay: "0.2s" }}>
+              In Strategic Partnership With
+            </p>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-12 md:gap-24 opacity-80 hover:opacity-100 transition-opacity duration-500">
+              <div className="text-center group cursor-default">
+                <h3 className="text-3xl md:text-4xl font-serif tracking-widest mb-2 group-hover:text-primary transition-colors">MASERATI</h3>
+                <p className="text-xs tracking-[0.3em] text-muted-foreground">OF WINNIPEG</p>
+              </div>
+              <div className="h-12 w-px bg-white/20 hidden md:block"></div>
+              <div className="text-center group cursor-default">
+                <h3 className="text-3xl md:text-4xl font-serif tracking-widest mb-2 group-hover:text-primary transition-colors">ALFA ROMEO</h3>
+                <p className="text-xs tracking-[0.3em] text-muted-foreground">OF WINNIPEG</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Hero Section */}
         <section
           className="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center"
@@ -86,7 +106,7 @@ const Index = () => {
                   <Link to="/used">Browse Used Inventory</Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-transform duration-300">
-                  <Link to="/find-my-car">Find My Perfect Car</Link>
+                  <Link to="/find-my-car">Concierge Service</Link>
                 </Button>
               </div>
             </AnimatedSection>
@@ -194,26 +214,26 @@ const Index = () => {
           </section>
         )}
 
-        {/* Features Grid */}
+        {/* Features Section */}
         <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
-            <AnimatedSection direction="fade">
-              <h2 className="text-4xl font-bold text-center mb-12">What We Offer</h2>
-            </AnimatedSection>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid md:grid-cols-3 gap-8">
               {features.map((feature, index) => (
-                <AnimatedSection key={index} direction="up" delay={index * 100}>
-                  <Link to={feature.link}>
-                    <Card className="h-full hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300 cursor-pointer group hover:scale-105">
-                      <CardContent className="p-6 text-center">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                          <feature.icon className="w-8 h-8 text-white" />
-                        </div>
-                        <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                        <p className="text-muted-foreground">{feature.description}</p>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                <AnimatedSection key={index} delay={index * 200}>
+                  <Card className="h-full hover:shadow-hover transition-all duration-500 hover:-translate-y-2 border-none shadow-card bg-gradient-to-br from-white to-gray-50">
+                    <CardContent className="p-8 text-center">
+                      <div className="w-16 h-16 mx-auto mb-6 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                        <feature.icon className="w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
+                      <p className="text-muted-foreground mb-6">{feature.description}</p>
+                      <Button asChild variant="link" className="text-primary font-semibold group">
+                        <Link to={feature.link} className="flex items-center">
+                          Learn More <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </AnimatedSection>
               ))}
             </div>
@@ -336,7 +356,7 @@ const Index = () => {
             <Button asChild size="lg" variant="ocean" className="bg-white text-primary hover:bg-white/90">
               <Link to="/find-my-car">
                 <Search className="w-5 h-5 mr-2" />
-                Get Started
+                Start Concierge Request
               </Link>
             </Button>
           </div>

@@ -30,13 +30,13 @@ const FindMyCar = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <Search className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Find My Perfect Car</h1>
-            <p className="text-lg opacity-90">Our concierge service searches for you</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Vehicle Concierge Service</h1>
+            <p className="text-lg opacity-90">Let our specialists source your perfect vehicle</p>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ const FindMyCar = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold mb-6">How It Works</h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start">
                   <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center text-white font-bold mr-4 flex-shrink-0">
@@ -137,7 +137,7 @@ const FindMyCar = () => {
             <div>
               <Card className="sticky top-24">
                 <CardHeader className="bg-gradient-to-br from-primary to-accent text-primary-foreground">
-                  <CardTitle className="text-2xl">Find My Car Request</CardTitle>
+                  <CardTitle className="text-2xl">Concierge Request</CardTitle>
                   <p className="text-sm opacity-90">We'll respond within 24 hours</p>
                 </CardHeader>
                 <CardContent className="p-6">
@@ -189,8 +189,8 @@ const FindMyCar = () => {
 
                     <div>
                       <Label htmlFor="features">Must-Have Features</Label>
-                      <Textarea 
-                        id="features" 
+                      <Textarea
+                        id="features"
                         placeholder="e.g., AWD, sunroof, leather seats, hybrid/EV, safety features..."
                         rows={3}
                       />
@@ -198,8 +198,8 @@ const FindMyCar = () => {
 
                     <div>
                       <Label htmlFor="notes">Additional Notes</Label>
-                      <Textarea 
-                        id="notes" 
+                      <Textarea
+                        id="notes"
                         placeholder="Tell us more about what you're looking for..."
                         rows={3}
                       />
@@ -207,7 +207,7 @@ const FindMyCar = () => {
 
                     <div className="pt-4 border-t">
                       <h4 className="font-semibold mb-3">Contact Information</h4>
-                      
+
                       <div className="space-y-4">
                         <div>
                           <Label htmlFor="name">Full Name</Label>
@@ -242,7 +242,7 @@ const FindMyCar = () => {
 
                     <Button type="submit" variant="cta" className="w-full" size="lg">
                       <Search className="w-4 h-4 mr-2" />
-                      Find My Car
+                      Start Concierge Search
                     </Button>
 
                     <p className="text-xs text-muted-foreground text-center">

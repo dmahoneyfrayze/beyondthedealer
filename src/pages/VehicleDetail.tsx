@@ -18,6 +18,7 @@ import LeadMagnetForm from "@/components/LeadMagnetForm";
 import AnimatedSection from "@/components/AnimatedSection";
 import { ViewCounter } from "@/components/SocialProof";
 import { LimitedInventoryBadge as LimitedBadge, CountdownTimer as CountdownComponent } from "@/components/UrgencyBadge";
+import UnlockPriceDialog from "@/components/UnlockPriceDialog";
 import { useComparison } from "@/contexts/ComparisonContext";
 import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
 import { cn } from "@/lib/utils";
@@ -400,6 +401,9 @@ const VehicleDetail = () => {
                       <Badge className="mt-2" variant="secondary">
                         {vehicle.status === 'available' ? 'Available' : 'Pending'}
                       </Badge>
+                      <div className="mt-4">
+                        <UnlockPriceDialog vehicle={vehicle} />
+                      </div>
                     </div>
 
                     <Separator />

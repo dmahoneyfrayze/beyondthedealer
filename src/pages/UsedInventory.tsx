@@ -14,6 +14,7 @@ import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import PaymentCalculator from "@/components/PaymentCalculator";
 import { useComparison } from "@/contexts/ComparisonContext";
 import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
+import UnlockPriceDialog from "@/components/UnlockPriceDialog";
 import { cn } from "@/lib/utils";
 
 const UsedInventory = () => {
@@ -463,10 +464,21 @@ const UsedInventory = () => {
                             </h3>
                             <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
 
-                            <div className="flex items-baseline gap-2 mb-2">
-                              <span className="text-3xl font-bold text-primary">
-                                {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                              </span>
+                            <div className="flex items-center justify-between mb-4">
+                              <div>
+                                <span className="text-2xl font-bold text-primary">
+                                  {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
+                                </span>
+                                {price > 0 && <span className="text-xs text-muted-foreground ml-1">+ taxes</span>}
+                              </div>
+                              <UnlockPriceDialog
+                                vehicle={vehicle}
+                                trigger={
+                                  <Button variant="outline" size="sm" className="text-destructive border-destructive hover:bg-destructive hover:text-white">
+                                    Unlock Price
+                                  </Button>
+                                }
+                              />
                             </div>
                             {price > 0 && (
                               <div className="flex items-baseline gap-2 mb-4">
