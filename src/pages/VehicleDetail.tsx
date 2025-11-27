@@ -26,9 +26,9 @@ import VehicleCard from "@/components/VehicleCard";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
-  const stockNumber = slug ? parseVehicleSlug(slug).toUpperCase() : '';
+  const vin = slug ? parseVehicleSlug(slug).toUpperCase() : '';
   const { data: vehicles = [], isLoading } = useVehicles({});
-  const vehicle = vehicles.find(v => v.stock_number.toUpperCase() === stockNumber);
+  const vehicle = vehicles.find(v => v.vin.toUpperCase() === vin);
   const { addToComparison, removeFromComparison, isInComparison } = useComparison();
   const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
 

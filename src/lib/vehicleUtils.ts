@@ -6,11 +6,11 @@ export const generateVehicleSlug = (vehicle: Vehicle): string => {
     vehicle.make,
     vehicle.model,
     vehicle.trim,
-    vehicle.exterior_color,
     vehicle.body_style,
-    vehicle.stock_number
+    vehicle.exterior_color,
+    vehicle.vin // VIN at the end for reliable parsing
   ].filter(Boolean);
-  
+
   return parts
     .join('-')
     .toLowerCase()
@@ -20,7 +20,7 @@ export const generateVehicleSlug = (vehicle: Vehicle): string => {
 };
 
 export const parseVehicleSlug = (slug: string): string => {
-  // Extract stock number from the end of the slug
+  // Extract VIN from the end of the slug
   const parts = slug.split('-');
   return parts[parts.length - 1];
 };
