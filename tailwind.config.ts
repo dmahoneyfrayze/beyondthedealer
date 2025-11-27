@@ -53,6 +53,7 @@ export default {
         },
         trust: "hsl(var(--trust-gold))",
         success: "hsl(var(--success-green))",
+        champagne: "hsl(var(--champagne))",
       },
       borderRadius: {
         lg: "var(--radius)",

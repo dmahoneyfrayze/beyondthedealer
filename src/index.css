@@ -8,98 +8,108 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    /* Slightly off-white for warmth */
-    --foreground: 240 10% 3.9%;
+    /* Off-white / Very Light Warm Grey */
+    --background: 0 0% 97%;
+    /* #F7F7F7 */
+    --foreground: 0 0% 7%;
+    /* #111111 Charcoal */
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 7%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+    --popover-foreground: 0 0% 7%;
 
-    /* Luxury Black/Charcoal */
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    /* Deep Navy Primary */
+    --primary: 215 50% 23%;
+    /* #1D3557 */
+    --primary-foreground: 0 0% 100%;
 
-    /* Platinum/Silver */
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    /* Platinum/Silver Secondary */
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    /* Luxury Gold Accent */
-    --accent: 43 74% 49%;
-    --accent-foreground: 0 0% 100%;
+    /* Metallic Gold Accent */
+    --accent: 51 100% 50%;
+    /* #FFD700 */
+    --accent-foreground: 215 50% 23%;
+    /* Navy text on gold */
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 43 74% 49%;
-    /* Gold ring focus */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 51 100% 50%;
+    /* Gold ring */
 
     --radius: 0.5rem;
 
-    /* Custom tokens for automotive design */
-    --ocean-teal: 186 78% 45%;
-    /* Keep for legacy or specific accents if needed */
-    --ocean-light: 186 78% 95%;
-    --trust-gold: 43 96% 56%;
+    /* Custom tokens */
+    --ocean-teal: 215 50% 23%;
+    /* Re-mapped to Navy for consistency */
+    --ocean-light: 210 40% 96.1%;
+    --trust-gold: 51 100% 50%;
     --success-green: 142 76% 36%;
+    --champagne: 37 68% 89%;
+    /* #F7E7CE */
 
     /* Luxury Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 0%) 0%, hsl(0 0% 15%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(215 50% 23%) 0%, hsl(215 60% 15%) 100%);
+    /* Navy Gradient */
     --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
-    --gradient-ocean: linear-gradient(135deg, hsl(43 74% 49%) 0%, hsl(25 80% 45%) 100%);
-    /* Gold Gradient */
+    --gradient-gold: linear-gradient(135deg, hsl(51 100% 50%) 0%, hsl(45 90% 45%) 100%);
 
-    /* Shadows - softer, more diffused */
-    --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 20px 40px -4px rgba(0, 0, 0, 0.1);
-    --shadow-cta: 0 10px 30px -10px rgba(43, 30, 0, 0.4);
+    /* Shadows */
+    --shadow-card: 0 4px 20px -2px rgba(29, 53, 87, 0.08);
+    /* Navy tinted shadow */
+    --shadow-hover: 0 20px 40px -4px rgba(29, 53, 87, 0.12);
+    --shadow-cta: 0 10px 30px -10px rgba(255, 215, 0, 0.4);
+    /* Gold glow */
 
     /* Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   .dark {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
+    --background: 215 50% 10%;
+    /* Dark Navy Background */
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
+    --card: 215 50% 13%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
+    --popover: 215 50% 13%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
+    --primary: 51 100% 50%;
+    /* Gold Primary in Dark Mode */
+    --primary-foreground: 215 50% 23%;
 
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 215 30% 20%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
+    --muted: 215 30% 20%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 215 30% 20%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
+    --border: 215 30% 20%;
+    --input: 215 30% 20%;
+    --ring: 51 100% 50%;
 
-    --radius: 0.5rem;
-
-    --ocean-teal: 199 89% 48%;
-    --ocean-light: 199 89% 96%;
-    --trust-gold: 43 96% 56%;
+    --ocean-teal: 215 50% 23%;
+    --ocean-light: 215 30% 20%;
+    --trust-gold: 51 100% 50%;
     --success-green: 142 76% 36%;
+    --champagne: 37 68% 89%;
   }
 }
 

@@ -1,417 +1,367 @@
-import { Helmet } from "react-helmet-async";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Car, DollarSign, Zap, Wrench, Search, Shield, Clock, MapPin, FileText, Download, CheckCircle2, ArrowRight } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Badge } from "@/components/ui/badge";
+import {
+  ChevronRight, Star, Shield, CheckCircle2, ArrowRight
+} from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
-import MultiStepForm from "@/components/MultiStepForm";
-import { TestimonialCard, SoldCounter } from "@/components/SocialProof";
+import SearchBar from "@/components/SearchBar";
 import { useVehicles } from "@/hooks/useVehicles";
-import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import AnimatedSection from "@/components/AnimatedSection";
-import heroImage from "@/assets/hero-vancouver.jpg";
+import TestimonialCard from "@/components/TestimonialCard";
+import LeadMagnetForm from "@/components/LeadMagnetForm";
+import ExitIntentPopup from "@/components/ExitIntentPopup";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 const Index = () => {
-  const { data: vehicles = [] } = useVehicles({});
+  const { data: vehicles = [], isLoading } = useVehicles({});
+  const featuredVehicles = vehicles.slice(0, 3);
 
-  // Get random featured vehicles (up to 8)
-  const featuredVehicles = vehicles.length > 0
-    ? [...vehicles].sort(() => Math.random() - 0.5).slice(0, 8)
-    : [];
-
-  const features = [
-    {
-      icon: Car,
-      title: "Quality Used Vehicles",
-      description: "Browse our premium inventory",
-      link: "/used",
-    },
-    {
-      icon: DollarSign,
-      title: "Get Pre-Approved",
-      description: "Fast financing approval in 60 seconds",
-      link: "/finance",
-    },
-    {
-      icon: Zap,
-      title: "EV & Hybrid Savings",
-      description: "BC + Federal incentive guides",
-      link: "/ev-hybrid-guide-bc",
-    },
-    {
-      icon: Wrench,
-      title: "Service Specials",
-      description: "Seasonal maintenance packages",
-      link: "/service-specials",
-    },
-  ];
-
-  const trustBadges = [
-    { icon: Shield, text: "Premium Inventory" },
-    { icon: Clock, text: "Same-Day Approvals" },
-    { icon: MapPin, text: "Serving Manitoba & Ontario" },
-  ];
+  // Scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background font-sans selection:bg-accent selection:text-accent-foreground">
       <Helmet>
-        <meta name="robots" content="noindex, nofollow" />
+        <title>Beyond the Dealership | Premium Used Cars & Nationwide Delivery</title>
+        <meta name="description" content="Experience a new standard in used car buying. Premium inventory, nationwide delivery, and hassle-free financing. Beyond the Dealership." />
       </Helmet>
+
       <Header />
 
       <main className="flex-grow">
-        {/* Partnership Section */}
-        <section className="py-16 bg-black text-white border-y border-white/10 animate-fade-in">
-          <div className="container mx-auto px-4 text-center">
-            <p className="text-sm font-medium tracking-[0.2em] text-muted-foreground mb-8 uppercase animate-slide-up" style={{ animationDelay: "0.2s" }}>
-              In Strategic Partnership With
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-80 hover:opacity-100 transition-opacity duration-500">
-              <div className="text-center group cursor-default">
-                <h3 className="text-2xl md:text-3xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">MASERATI</h3>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">OF WINNIPEG</p>
-              </div>
-              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
-              <div className="text-center group cursor-default">
-                <h3 className="text-2xl md:text-3xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">ALFA ROMEO</h3>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">OF WINNIPEG</p>
-              </div>
-              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
-              <div className="text-center group cursor-default">
-                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA</h3>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">CHRYSLER DODGE JEEP RAM</p>
-              </div>
-              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
-              <div className="text-center group cursor-default">
-                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA GM</h3>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">CHEVROLET BUICK GMC</p>
-              </div>
-              <div className="h-8 w-px bg-white/20 hidden md:block"></div>
-              <div className="text-center group cursor-default">
-                <h3 className="text-xl md:text-2xl font-serif tracking-widest mb-1 group-hover:text-primary transition-colors">KENORA HONDA</h3>
-                <p className="text-[10px] tracking-[0.2em] text-muted-foreground">HONDA</p>
-              </div>
-            </div>
+        {/* Cinematic Hero Section */}
+        <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
+          {/* Background Image/Video */}
+          <div className="absolute inset-0 z-0">
+            <img
+              src="/hero-cinematic.png"
+              alt="Premium SUV at Golden Hour"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           </div>
-        </section>
 
-        {/* Hero Section */}
-        <section
-          className="relative h-[600px] flex items-center justify-center text-center bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/60"></div>
-          <div className="relative z-10 container mx-auto px-4 text-primary-foreground">
-            <AnimatedSection direction="fade" delay={200}>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight animate-slide-down">
-                Your Premium Pre-Owned<br />Vehicle Hub
-              </h1>
-            </AnimatedSection>
-            <AnimatedSection direction="fade" delay={400}>
-              <p className="text-xl md:text-2xl mb-8 opacity-95 animate-slide-up">
-                Used inventory, financing, trade-ins & more
-              </p>
-            </AnimatedSection>
-            <AnimatedSection direction="up" delay={600}>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild variant="ocean" size="lg" className="hover:scale-105 transition-transform duration-300">
-                  <Link to="/used">Browse Used Inventory</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="bg-white/10 backdrop-blur-sm border-white text-white hover:bg-white hover:text-primary hover:scale-105 transition-transform duration-300">
-                  <Link to="/find-my-car">Concierge Service</Link>
-                </Button>
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Trust & Authority Section */}
-        <section className="bg-secondary py-12">
-          <div className="container mx-auto px-4">
-            <AnimatedSection direction="fade">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl font-bold mb-4">Partners with Maserati & Alfa Romeo Winnipeg</h2>
-                <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                  We work in partnership with Maserati of Winnipeg and Alfa Romeo of Winnipeg to offer an exclusive selection of high-end pre-owned inventory.
-                </p>
-              </div>
-            </AnimatedSection>
-            <AnimatedSection direction="up" delay={200}>
-              <div className="flex flex-wrap justify-center gap-8 mt-6">
-                {trustBadges.map((badge, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center space-x-2 text-sm font-medium hover:scale-110 transition-transform duration-300"
-                    style={{ animationDelay: `${index * 100}ms` }}
-                  >
-                    <badge.icon className="w-5 h-5 text-primary animate-float" style={{ animationDelay: `${index * 200}ms` }} />
-                    <span>{badge.text}</span>
-                  </div>
-                ))}
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
-
-        {/* Featured Vehicles Slider */}
-        {featuredVehicles.length > 0 && (
-          <section className="py-16 bg-background">
-            <div className="container mx-auto px-4">
-              <AnimatedSection direction="fade">
-                <div className="flex items-center justify-between mb-8">
-                  <div>
-                    <h2 className="text-3xl md:text-4xl font-bold mb-2">Featured Vehicles</h2>
-                    <p className="text-muted-foreground">Hand-picked selections from our inventory</p>
-                  </div>
-                  <Button asChild variant="outline" className="hover:scale-105 transition-transform duration-300">
-                    <Link to="/used">
-                      View All <ArrowRight className="w-4 h-4 ml-2" />
-                    </Link>
-                  </Button>
-                </div>
+          <div className="container mx-auto px-4 relative z-10 pt-20">
+            <div className="max-w-2xl text-white">
+              <AnimatedSection direction="up" delay={100}>
+                <Badge variant="outline" className="mb-6 border-accent text-accent px-4 py-1 text-sm tracking-wider uppercase">
+                  Nationwide Delivery Available
+                </Badge>
               </AnimatedSection>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                }}
-                className="w-full"
-              >
-                <CarouselContent className="-ml-2 md:-ml-4">
-                  {featuredVehicles.map((vehicle) => {
-                    const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
-                    return (
-                      <CarouselItem key={vehicle.id} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
-                        <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>
-                          <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02]">
-                            <div className="aspect-video bg-muted relative overflow-hidden">
-                              <img
-                                src={vehicle.images?.[0] || "/btd-placeholder.png"}
-                                alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                              />
-                              {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
-                                <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded text-xs font-semibold">
-                                  Low Miles
-                                </div>
-                              )}
-                            </div>
-                            <CardContent className="p-4">
-                              <h3 className="font-bold text-lg mb-1 line-clamp-1">
-                                {vehicle.year} {vehicle.make} {vehicle.model}
-                              </h3>
-                              <p className="text-sm text-muted-foreground mb-3 line-clamp-1">
-                                {vehicle.trim || 'Standard'}
-                              </p>
-                              <div className="flex items-baseline gap-2 mb-2">
-                                <span className="text-2xl font-bold text-primary">
-                                  {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                                <span>{vehicle.mileage?.toLocaleString() || vehicle.odometer?.toLocaleString() || 'N/A'} km</span>
-                                {vehicle.transmission && <span>{vehicle.transmission}</span>}
-                              </div>
-                            </CardContent>
-                          </Card>
-                        </Link>
-                      </CarouselItem>
-                    );
-                  })}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex -left-12" />
-                <CarouselNext className="hidden md:flex -right-12" />
-              </Carousel>
-            </div>
-          </section>
-        )}
 
-        {/* Features Section */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8">
-              {features.map((feature, index) => (
-                <AnimatedSection key={index} delay={index * 200}>
-                  <Card className="h-full hover:shadow-hover transition-all duration-500 hover:-translate-y-2 border-none shadow-card bg-gradient-to-br from-white to-gray-50">
-                    <CardContent className="p-8 text-center">
-                      <div className="w-16 h-16 mx-auto mb-6 bg-black text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        <feature.icon className="w-8 h-8" />
-                      </div>
-                      <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                      <p className="text-muted-foreground mb-6">{feature.description}</p>
-                      <Button asChild variant="link" className="text-primary font-semibold group">
-                        <Link to={feature.link} className="flex items-center">
-                          Learn More <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Lead Magnet Section */}
-        <section className="py-16 bg-secondary">
-          <div className="container mx-auto px-4">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <AnimatedSection direction="right" delay={0}>
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <FileText className="w-8 h-8 text-primary animate-float" />
-                    <h2 className="text-3xl font-bold">Free Auto Buying Guide</h2>
-                  </div>
-                  <p className="text-lg text-muted-foreground mb-6">
-                    Download our comprehensive guide covering everything you need to know about buying a car in British Columbia, including:
-                  </p>
-                  <ul className="space-y-2 mb-6">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Tax and registration requirements</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Insurance basics</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Financing vs. leasing comparison</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span>EV rebates and incentives</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                      <span>Student and newcomer programs</span>
-                    </li>
-                  </ul>
-                  <SoldCounter count={47} className="mb-6" />
-                </div>
-              </AnimatedSection>
-              <AnimatedSection direction="left" delay={200}>
-                <LeadMagnetForm
-                  title="Get Your Free Guide"
-                  description="Enter your email and we'll send you the complete Auto Buying Guide instantly."
-                  buttonText="Download Free Guide"
-                  source="homepage-guide"
-                />
-              </AnimatedSection>
-            </div>
-          </div>
-        </section>
-
-        {/* Social Proof Section */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <AnimatedSection direction="fade">
-              <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
-            </AnimatedSection>
-            <div className="grid md:grid-cols-3 gap-6">
-              <AnimatedSection direction="up" delay={0}>
-                <TestimonialCard
-                  name="Sarah Chen"
-                  location="Winnipeg, MB"
-                  rating={5}
-                  vehicle="2020 Hyundai Tucson"
-                  text="The team made the entire process so easy. Got approved quickly and found the perfect SUV for my family. Highly recommend!"
-                />
-              </AnimatedSection>
               <AnimatedSection direction="up" delay={200}>
-                <TestimonialCard
-                  name="Michael Rodriguez"
-                  location="Toronto, ON"
-                  rating={5}
-                  vehicle="2019 Hyundai Elantra"
-                  text="As a newcomer to Canada, I was worried about financing. Beyond the Dealership helped me understand everything and got me approved. Amazing service!"
-                />
+                <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                  Experience the <br />
+                  <span className="text-accent">New Standard</span>
+                </h1>
               </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={300}>
+                <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light leading-relaxed max-w-xl">
+                  Premium vehicles, transparent financing, and a buying experience that goes beyond the dealership.
+                </p>
+              </AnimatedSection>
+
               <AnimatedSection direction="up" delay={400}>
-                <TestimonialCard
-                  name="Jennifer Park"
-                  location="Winnipeg, MB"
-                  rating={5}
-                  vehicle="2021 Hyundai Kona Electric"
-                  text="The EV guide was incredibly helpful. They walked me through all the rebates and incentives. Love my new Kona!"
-                />
-              </AnimatedSection>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Pre-Approval Section */}
-        <section className="py-16 bg-gradient-to-br from-primary/5 to-accent/5">
-          <div className="container mx-auto px-4">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-4">Get Pre-Approved in Minutes</h2>
-              <p className="text-center text-muted-foreground mb-8">
-                Fast, easy, and no impact on your credit score
-              </p>
-              <MultiStepForm
-                title="Quick Pre-Approval"
-                description="3 simple steps to get approved"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 bg-gradient-to-br from-primary to-accent text-primary-foreground">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Need Help Finding the Perfect Vehicle?
-            </h2>
-            <p className="text-lg mb-8 opacity-90">
-              Our concierge service searches across our partner network for you
-            </p>
-            <Button asChild size="lg" variant="ocean" className="bg-white text-primary hover:bg-white/90">
-              <Link to="/find-my-car">
-                <Search className="w-5 h-5 mr-2" />
-                Start Concierge Request
-              </Link>
-            </Button>
-          </div>
-        </section>
-
-        {/* Trade-In & Finance Banner */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card className="bg-gradient-to-br from-secondary to-background border-2 border-primary/20">
-                <CardContent className="p-8">
-                  <DollarSign className="w-12 h-12 text-primary mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Value Your Trade</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Get an instant estimate on your current vehicle
-                  </p>
-                  <Button asChild variant="cta">
-                    <Link to="/trade-in">Get Trade Value</Link>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="bg-accent text-primary hover:bg-accent/90 text-lg px-8 py-6 h-auto font-semibold shadow-[0_0_20px_rgba(255,215,0,0.3)] transition-all hover:scale-105">
+                    <Link to="/used">View Inventory</Link>
                   </Button>
-                </CardContent>
-              </Card>
-
-              <Card className="bg-gradient-to-br from-ocean-light to-background border-2 border-accent/20">
-                <CardContent className="p-8">
-                  <Shield className="w-12 h-12 text-accent mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">Pre-Approval</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Get approved in 60 seconds, all credit types welcome
-                  </p>
-                  <Button asChild variant="cta">
+                  <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 h-auto font-semibold backdrop-blur-sm">
                     <Link to="/finance">Get Pre-Approved</Link>
                   </Button>
-                </CardContent>
-              </Card>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="up" delay={500}>
+                <div className="mt-12 flex items-center gap-8 text-sm font-medium text-gray-300">
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span>No Hidden Fees</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span>30-Day Warranty</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <CheckCircle2 className="w-5 h-5 text-accent" />
+                    <span>Best Price Guarantee</span>
+                  </div>
+                </div>
+              </AnimatedSection>
             </div>
+          </div>
+        </section>
+
+        {/* Search Section - Floating */}
+        <section className="relative z-20 -mt-24 container mx-auto px-4 mb-20">
+          <AnimatedSection direction="up" delay={600}>
+            <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+              <SearchBar />
+            </div>
+          </AnimatedSection>
+        </section>
+
+        {/* Value Proposition / Fintech Style Section */}
+        <section className="py-24 bg-background relative overflow-hidden">
+          <div className="container mx-auto px-4">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <AnimatedSection direction="right">
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-accent/20 rounded-full blur-3xl opacity-50" />
+                  <img
+                    src="/hero-fintech.png"
+                    alt="Easy Financing Process"
+                    className="relative rounded-2xl shadow-2xl border border-white/10"
+                  />
+                  {/* Floating Badge */}
+                  <div className="absolute -bottom-6 -right-6 bg-white dark:bg-card p-4 rounded-xl shadow-xl border border-border flex items-center gap-3 animate-float">
+                    <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-full">
+                      <CheckCircle2 className="w-6 h-6 text-green-600 dark:text-green-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground font-medium">Status</p>
+                      <p className="text-sm font-bold text-foreground">Pre-Approved</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection direction="left">
+                <Badge variant="outline" className="mb-4 border-primary/20 text-primary">Simple & Transparent</Badge>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
+                  Financing designed for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">modern buyers</span>.
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  Forget the paperwork and the waiting. Our digital-first approach gets you approved in minutes, not hours. We work with top lenders to secure the best rates, regardless of your credit history.
+                </p>
+
+                <div className="space-y-6">
+                  {[
+                    { title: "Instant Pre-Approval", desc: "Get your rate without impacting your credit score." },
+                    { title: "Transparent Pricing", desc: "What you see is what you pay. No hidden dealer fees." },
+                    { title: "Nationwide Access", desc: "Shop from home, we deliver directly to your driveway." }
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex gap-4">
+                      <div className="bg-primary/5 p-3 rounded-lg h-fit">
+                        <CheckCircle2 className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
+                        <p className="text-muted-foreground">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <Button asChild className="mt-10 bg-primary text-primary-foreground hover:bg-primary/90" size="lg">
+                  <Link to="/finance">Start Your Application</Link>
+                </Button>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* Featured Inventory - Premium Grid */}
+        <section className="py-24 bg-secondary/30">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-between items-end mb-12">
+              <AnimatedSection>
+                <h2 className="text-4xl font-bold text-primary mb-2">Featured Inventory</h2>
+                <p className="text-muted-foreground text-lg">Hand-picked vehicles, inspected and ready for delivery.</p>
+              </AnimatedSection>
+              <AnimatedSection delay={100}>
+                <Button asChild variant="ghost" className="hidden md:flex group text-primary hover:text-accent hover:bg-transparent">
+                  <Link to="/used" className="flex items-center gap-2">
+                    View All Vehicles <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+              </AnimatedSection>
+            </div>
+
+            {isLoading ? (
+              <div className="grid md:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="h-[400px] bg-muted animate-pulse rounded-xl" />
+                ))}
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-3 gap-8">
+                {featuredVehicles.map((vehicle, idx) => (
+                  <AnimatedSection key={vehicle.id} delay={idx * 100}>
+                    <Link to={`/vehicle/${vehicle.stock_number}`}>
+                      <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-card h-full flex flex-col">
+                        <div className="aspect-[4/3] relative overflow-hidden">
+                          <img
+                            src={vehicle.images?.[0] || "/btd-placeholder.png"}
+                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <p className="text-white font-medium flex items-center gap-2">
+                              View Details <ArrowRight className="w-4 h-4" />
+                            </p>
+                          </div>
+                          <Badge className="absolute top-4 right-4 bg-accent text-primary font-bold border-0">
+                            {vehicle.status === 'available' ? 'Available' : 'Pending'}
+                          </Badge>
+                        </div>
+                        <CardContent className="p-6 flex-grow flex flex-col">
+                          <div className="mb-4">
+                            <p className="text-sm text-muted-foreground mb-1">{vehicle.year} • {vehicle.mileage.toLocaleString()} km</p>
+                            <h3 className="text-xl font-bold text-primary line-clamp-1">{vehicle.make} {vehicle.model}</h3>
+                            <p className="text-sm text-muted-foreground line-clamp-1">{vehicle.trim}</p>
+                          </div>
+                          <div className="mt-auto pt-4 border-t border-border flex items-center justify-between">
+                            <p className="text-2xl font-bold text-primary">
+                              ${(vehicle.internet_price || vehicle.price).toLocaleString()}
+                            </p>
+                            <div className="bg-secondary p-2 rounded-full group-hover:bg-primary group-hover:text-white transition-colors">
+                              <ChevronRight className="w-5 h-5" />
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </AnimatedSection>
+                ))}
+              </div>
+            )}
+
+            <div className="mt-12 text-center md:hidden">
+              <Button asChild variant="outline" className="w-full">
+                <Link to="/used">View All Inventory</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Concierge / Lead Magnet Section */}
+        <section className="py-24 bg-primary text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <img src="/hero-montage.png" alt="Background" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-primary/80" />
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <AnimatedSection>
+                <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                  Can't find the <span className="text-accent">perfect car?</span>
+                </h2>
+                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+                  Join our exclusive "Vehicle Concierge" list. Tell us what you're looking for, and we'll use our nationwide network to find it before it hits the market.
+                </p>
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-white/10 p-3 rounded-full">
+                      <Star className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">First Access</h4>
+                      <p className="text-gray-400">Get notified about new inventory 48 hours before the public.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="bg-white/10 p-3 rounded-full">
+                      <Shield className="w-6 h-6 text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg">Verified Quality</h4>
+                      <p className="text-gray-400">Every vehicle passes our rigorous 150-point inspection.</p>
+                    </div>
+                  </div>
+                </div>
+              </AnimatedSection>
+
+              <AnimatedSection delay={200}>
+                <div className="bg-white text-foreground rounded-2xl p-8 shadow-2xl">
+                  <LeadMagnetForm
+                    title="Start Your Concierge Request"
+                    description="Let us do the hunting for you. No obligation."
+                    buttonText="Find My Car"
+                    source="home_concierge"
+                  />
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials - Clean & Trustworthy */}
+        <section className="py-24 bg-background">
+          <div className="container mx-auto px-4">
+            <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl font-bold text-primary mb-4">Trusted by Drivers Nationwide</h2>
+              <p className="text-xl text-muted-foreground">
+                We've helped hundreds of customers find their dream car. Here's what they have to say.
+              </p>
+            </AnimatedSection>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <AnimatedSection delay={0}>
+                <TestimonialCard
+                  name="Sarah Mitchell"
+                  location="Toronto, ON"
+                  quote="I was hesitant to buy a car online, but the team made it incredibly easy. The video walkthrough was detailed, and the car arrived exactly as described."
+                  rating={5}
+                  date="2 weeks ago"
+                />
+              </AnimatedSection>
+              <AnimatedSection delay={100}>
+                <TestimonialCard
+                  name="David Chen"
+                  location="Vancouver, BC"
+                  quote="Best financing rates I could find. The approval was instant, and they handled all the paperwork. Truly a 'beyond the dealership' experience."
+                  rating={5}
+                  date="1 month ago"
+                />
+              </AnimatedSection>
+              <AnimatedSection delay={200}>
+                <TestimonialCard
+                  name="Emily Rodriguez"
+                  location="Winnipeg, MB"
+                  quote="They found me the exact model I wanted within a week. The concierge service is a game-changer. Highly recommend!"
+                  rating={5}
+                  date="3 weeks ago"
+                />
+              </AnimatedSection>
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="py-24 bg-secondary">
+          <div className="container mx-auto px-4 text-center">
+            <AnimatedSection>
+              <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">Ready to upgrade your drive?</h2>
+              <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+                Get pre-approved in minutes or browse our curated inventory of premium vehicles.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 py-6 h-auto shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
+                  <Link to="/finance">Get Pre-Approved</Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="bg-white border-border text-primary hover:bg-gray-50 text-lg px-10 py-6 h-auto shadow-md hover:shadow-lg transition-all hover:-translate-y-1">
+                  <Link to="/used">Browse Inventory</Link>
+                </Button>
+              </div>
+            </AnimatedSection>
           </div>
         </section>
       </main>
 
       <Footer />
+      <ExitIntentPopup />
+      <StickyMobileCTA />
     </div>
   );
 };
