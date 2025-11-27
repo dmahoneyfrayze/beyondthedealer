@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Menu, ChevronDown, Heart, GitCompare } from "lucide-react";
+import { Phone, Menu, ChevronDown, Heart, GitCompare, Car } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
