@@ -11,15 +11,15 @@ const SignAndDrive = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Sign and Drive Program Vancouver | $0 Down Car Financing BC</title>
-        <meta 
-          name="description" 
-          content="Drive today with our Sign and Drive program. Low or $0 down payment options available for qualified buyers in Vancouver, BC. Get approved fast!" 
+        <title>Sign and Drive Program | $0 Down Car Financing</title>
+        <meta
+          name="description"
+          content="Drive today with our Sign and Drive program. Low or $0 down payment options available for qualified buyers. Get approved fast!"
         />
       </Helmet>
 
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -82,7 +82,7 @@ const SignAndDrive = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">How Sign and Drive Works</h2>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
@@ -90,7 +90,7 @@ const SignAndDrive = () => {
                         Get Pre-Approved Online
                       </h3>
                       <p className="text-muted-foreground ml-10">
-                        Complete our quick online application. You'll receive a pre-approval decision within minutes, 
+                        Complete our quick online application. You'll receive a pre-approval decision within minutes,
                         including your maximum purchasing power and estimated payments.
                       </p>
                     </div>
@@ -101,7 +101,7 @@ const SignAndDrive = () => {
                         Choose Your Vehicle
                       </h3>
                       <p className="text-muted-foreground ml-10">
-                        Browse our inventory online or visit our showroom. Select a vehicle that fits within your 
+                        Browse our inventory online or visit our showroom. Select a vehicle that fits within your
                         approved amount. Our team will help you find the perfect match.
                       </p>
                     </div>
@@ -112,7 +112,7 @@ const SignAndDrive = () => {
                         Minimal Down Payment
                       </h3>
                       <p className="text-muted-foreground ml-10">
-                        With approved credit, your down payment could be as low as $0-$500. We accept cash, debit, 
+                        With approved credit, your down payment could be as low as $0-$500. We accept cash, debit,
                         credit card, and trade-ins to cover your down payment.
                       </p>
                     </div>
@@ -123,7 +123,7 @@ const SignAndDrive = () => {
                         Sign & Drive Home
                       </h3>
                       <p className="text-muted-foreground ml-10">
-                        Complete the paperwork, finalize your financing, and drive home the same day. We'll handle 
+                        Complete the paperwork, finalize your financing, and drive home the same day. We'll handle
                         registration, insurance setup, and all documentation.
                       </p>
                     </div>
@@ -134,7 +134,7 @@ const SignAndDrive = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">What's Included</h2>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
                       "Competitive interest rates",
@@ -158,7 +158,7 @@ const SignAndDrive = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Qualification Requirements</h2>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold mb-2">To qualify for $0 down:</h3>
@@ -166,7 +166,7 @@ const SignAndDrive = () => {
                         <li>• Credit score of 650 or higher</li>
                         <li>• Stable employment (2+ years with current employer preferred)</li>
                         <li>• Debt-to-income ratio under 45%</li>
-                        <li>• Valid BC driver's license</li>
+                        <li>• Valid driver's license</li>
                         <li>• Proof of insurance or ability to obtain</li>
                       </ul>
                     </div>
@@ -203,16 +203,16 @@ const SignAndDrive = () => {
                   <p className="text-sm text-muted-foreground">
                     Get pre-approved in minutes and find out your down payment amount.
                   </p>
-                  
+
                   <Button asChild variant="cta" className="w-full" size="lg">
                     <Link to="/finance">Get Pre-Approved</Link>
                   </Button>
 
                   <Button asChild variant="outline" className="w-full">
-                    <a href="tel:+16048768931">
+                    <Link to="/contact">
                       <Phone className="w-4 h-4 mr-2" />
-                      Call Now
-                    </a>
+                      Contact Us
+                    </Link>
                   </Button>
 
                   <Button asChild variant="outline" className="w-full">
@@ -220,10 +220,9 @@ const SignAndDrive = () => {
                   </Button>
 
                   <div className="pt-4 border-t text-xs text-muted-foreground">
-                    <p className="font-semibold mb-2">BC Pricing Disclosure:</p>
+                    <p className="font-semibold mb-2">Pricing Disclosure:</p>
                     <p>
-                      All prices exclude PST, GST, air conditioning tax, tire stewardship fee, PPSA registration, 
-                      dealer documentation fee, and licensing costs. Final pricing provided during purchase.
+                      All prices exclude applicable taxes, PPSA registration, dealer documentation fee, and licensing costs. Final pricing provided during purchase.
                     </p>
                   </div>
                 </CardContent>

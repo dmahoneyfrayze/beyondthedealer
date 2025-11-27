@@ -6,43 +6,42 @@ import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 
-const BCRegistrationInsurance = () => {
+const RegistrationInsurance = () => {
   const registrationSteps = [
     "Purchase vehicle and obtain bill of sale",
-    "Get vehicle inspection (if required for used vehicles)",
-    "Visit ICBC Autoplan broker with required documents",
-    "Pay registration fees, PST, and GST",
+    "Get vehicle safety inspection (if required)",
+    "Visit your local registry agent or insurance broker",
+    "Pay registration fees and applicable taxes",
     "Receive license plates and registration",
   ];
 
   const requiredDocuments = [
     "Bill of sale (signed by both parties)",
-    "Valid BC driver's license",
+    "Valid driver's license",
     "Vehicle inspection certificate (if required)",
-    "Previous registration (if transferring)",
     "Proof of insurance",
     "Proof of identity",
   ];
 
   const insuranceTypes = [
     {
-      type: "Basic Insurance",
-      description: "Mandatory coverage required by law",
+      type: "Mandatory Coverage",
+      description: "Required by law in all provinces",
       coverage: [
-        "Third-party liability ($200,000 minimum)",
+        "Third-party liability",
         "Accident benefits",
-        "Underinsured motorist protection",
-        "Hit-and-run coverage",
+        "Uninsured automobile coverage",
+        "Direct compensation (in some provinces)",
       ],
     },
     {
-      type: "Optional Insurance",
-      description: "Additional coverage you can purchase",
+      type: "Optional Coverage",
+      description: "Additional protection for peace of mind",
       coverage: [
         "Collision coverage",
         "Comprehensive coverage",
-        "Extended third-party liability",
         "Loss of use",
+        "Depreciation waiver",
       ],
     },
   ];
@@ -50,47 +49,41 @@ const BCRegistrationInsurance = () => {
   const costs = [
     {
       item: "Vehicle Registration",
-      amount: "$18 - $36",
-      frequency: "Annual",
-      description: "Based on vehicle type and weight",
+      amount: "$80 - $120",
+      frequency: "Annual/Bi-Annual",
+      description: "Varies by province and vehicle type",
     },
     {
       item: "License Plates",
-      amount: "$18",
-      frequency: "One-time",
-      description: "Initial plate fee",
-    },
-    {
-      item: "Basic Insurance",
       amount: "Varies",
-      frequency: "Annual",
-      description: "Based on driver, vehicle, and location",
+      frequency: "One-time/Renewal",
+      description: "Plate fee or validation sticker",
     },
     {
-      item: "PST (7%)",
-      amount: "7% of purchase price",
-      frequency: "One-time",
-      description: "Provincial sales tax on vehicle purchase",
+      item: "Insurance",
+      amount: "Varies",
+      frequency: "Annual/Monthly",
+      description: "Based on driving history, location, and vehicle",
     },
     {
-      item: "GST (5%)",
-      amount: "5% of purchase price",
+      item: "Sales Tax",
+      amount: "5% - 15%",
       frequency: "One-time",
-      description: "Federal goods and services tax",
+      description: "GST, PST, or HST depending on province",
     },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <Shield className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">BC Registration & Insurance Guide</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Registration & Insurance Guide</h1>
             <p className="text-lg opacity-90 max-w-3xl mx-auto">
-              Everything you need to know about registering and insuring your vehicle in British Columbia
+              Everything you need to know about registering and insuring your vehicle in Canada
             </p>
           </div>
         </div>
@@ -100,15 +93,14 @@ const BCRegistrationInsurance = () => {
             <div className="lg:col-span-2 space-y-8">
               {/* Overview */}
               <section>
-                <h2 className="text-3xl font-bold mb-6">Understanding ICBC</h2>
+                <h2 className="text-3xl font-bold mb-6">Understanding Auto Insurance</h2>
                 <p className="text-lg text-muted-foreground mb-4">
-                  In British Columbia, all vehicle insurance is provided through ICBC (Insurance Corporation of 
-                  British Columbia). ICBC is a Crown corporation that provides both basic mandatory insurance 
-                  and optional coverage.
+                  In Canada, auto insurance is mandatory. The system varies by province—some have public (government-run)
+                  insurance, while others have private insurance, or a hybrid system.
                 </p>
                 <p className="text-muted-foreground">
-                  When you purchase a vehicle in BC, you must register it with ICBC and obtain insurance before 
-                  you can legally drive it on public roads.
+                  Regardless of where you live, you must have valid insurance and vehicle registration to legally
+                  drive on public roads.
                 </p>
               </section>
 
@@ -117,7 +109,7 @@ const BCRegistrationInsurance = () => {
                 <h2 className="text-3xl font-bold mb-6">Vehicle Registration Process</h2>
                 <Card>
                   <CardContent className="p-6">
-                    <h3 className="font-semibold text-lg mb-4">Step-by-Step Guide</h3>
+                    <h3 className="font-semibold text-lg mb-4">General Steps</h3>
                     <ol className="space-y-3">
                       {registrationSteps.map((step, index) => (
                         <li key={index} className="flex items-start gap-3">
@@ -176,7 +168,7 @@ const BCRegistrationInsurance = () => {
 
               {/* Costs */}
               <section>
-                <h2 className="text-3xl font-bold mb-6">Registration & Insurance Costs</h2>
+                <h2 className="text-3xl font-bold mb-6">Typical Costs</h2>
                 <Card>
                   <CardContent className="p-6">
                     <div className="space-y-4">
@@ -208,10 +200,10 @@ const BCRegistrationInsurance = () => {
                       <div className="flex items-start gap-4">
                         <Info className="w-6 h-6 text-blue-600 flex-shrink-0" />
                         <div>
-                          <h3 className="font-semibold text-lg mb-2">Vehicle Inspection</h3>
+                          <h3 className="font-semibold text-lg mb-2">Safety Inspections</h3>
                           <p className="text-muted-foreground">
-                            Used vehicles over 4 years old or with certain conditions require a safety inspection 
-                            before registration. The inspection must be done at a designated inspection facility.
+                            Most provinces require a safety inspection certificate for used vehicles before they can be
+                            registered, especially if the vehicle is from out of province or over a certain age.
                           </p>
                         </div>
                       </div>
@@ -225,8 +217,8 @@ const BCRegistrationInsurance = () => {
                         <div>
                           <h3 className="font-semibold text-lg mb-2">Driving Without Insurance</h3>
                           <p className="text-muted-foreground">
-                            Driving without valid ICBC insurance is illegal in BC and can result in fines, vehicle 
-                            impoundment, and license suspension. Always ensure your insurance is current before driving.
+                            Driving without valid insurance is a serious offense in Canada. Penalties include heavy fines,
+                            license suspension, and vehicle impoundment.
                           </p>
                         </div>
                       </div>
@@ -235,19 +227,19 @@ const BCRegistrationInsurance = () => {
 
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="font-semibold text-lg mb-3">Discounts Available</h3>
+                      <h3 className="font-semibold text-lg mb-3">Common Discounts</h3>
                       <ul className="space-y-2 text-muted-foreground">
                         <li className="flex items-start gap-2">
                           <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span>Safe driver discount (up to 43% off)</span>
+                          <span>Safe driver / Claims-free discount</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span>Multi-vehicle discount</span>
+                          <span>Multi-vehicle / Multi-policy discount</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                          <span>Low annual mileage discount</span>
+                          <span>Winter tire discount (in some provinces)</span>
                         </li>
                         <li className="flex items-start gap-2">
                           <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
@@ -265,12 +257,12 @@ const BCRegistrationInsurance = () => {
                 <Card>
                   <CardContent className="p-6">
                     <p className="text-muted-foreground mb-4">
-                      Vehicle registration and insurance must be renewed annually. You'll receive a renewal notice 
-                      from ICBC before your current registration expires.
+                      Vehicle registration and insurance must be renewed regularly (usually annually). You'll typically
+                      receive a renewal notice by mail or email.
                     </p>
                     <p className="text-muted-foreground">
-                      You can renew online, by phone, or in person at an ICBC Autoplan broker. Make sure to renew 
-                      before your current registration expires to avoid penalties.
+                      Many provinces now offer online renewal services. Ensure you renew before your expiration date
+                      to avoid fines and coverage gaps.
                     </p>
                   </CardContent>
                 </Card>
@@ -283,26 +275,8 @@ const BCRegistrationInsurance = () => {
                 title="Get Insurance Quote"
                 description="Get an estimate for your insurance costs"
                 buttonText="Get Quote"
-                source="bc-registration-insurance"
+                source="registration-insurance"
               />
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>ICBC Resources</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button asChild variant="outline" className="w-full" size="sm">
-                    <a href="https://www.icbc.com" target="_blank" rel="noopener noreferrer">
-                      Visit ICBC Website
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="w-full" size="sm">
-                    <a href="https://www.icbc.com/insurance/coverage/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
-                      Learn About Coverage
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
 
               <Card>
                 <CardHeader>
@@ -327,5 +301,5 @@ const BCRegistrationInsurance = () => {
   );
 };
 
-export default BCRegistrationInsurance;
+export default RegistrationInsurance;
 

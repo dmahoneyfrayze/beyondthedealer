@@ -9,8 +9,8 @@ import evImage from "@/assets/ev-charging.jpg";
 const EVGuide = () => {
   const incentives = [
     { source: "Federal iZEV Program", amount: "Up to $5,000", eligibility: "For EVs under $55,000 MSRP" },
-    { source: "BC CleanBC Program", amount: "Up to $4,000", eligibility: "BC residents purchasing new EVs" },
-    { source: "Scrap-It Program", amount: "Up to $6,000", eligibility: "When scrapping old vehicle" },
+    { source: "Manitoba EV Rebate", amount: "Up to $4,000", eligibility: "New EVs ($4k) & Used EVs ($2.5k)" },
+    { source: "Fuel Savings", amount: "$2,000+/yr", eligibility: "Estimated annual gas savings" },
   ];
 
   const models = [
@@ -22,18 +22,18 @@ const EVGuide = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
-        <div 
+        <div
           className="relative h-[400px] flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${evImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/80"></div>
           <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
             <Zap className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">EV & Hybrid Guide for BC</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">EV & Hybrid Guide</h1>
             <p className="text-lg opacity-90 max-w-2xl mx-auto">
-              Your complete guide to electric vehicle incentives, savings, and charging in Greater Vancouver
+              Your complete guide to electric vehicle incentives, savings, and charging
             </p>
           </div>
         </div>
@@ -80,7 +80,7 @@ const EVGuide = () => {
                             Save approximately $2,000-$3,000 per year on fuel compared to gas vehicles
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            Based on BC Hydro rates vs. gas prices
+                            Based on local electricity rates vs. gas prices
                           </p>
                         </div>
                       </div>
@@ -109,12 +109,12 @@ const EVGuide = () => {
                       <div className="flex items-start">
                         <DollarSign className="w-8 h-8 text-success mr-4 flex-shrink-0" />
                         <div>
-                          <h3 className="font-semibold text-lg mb-2">BC Hydro Home Charging Rate</h3>
+                          <h3 className="font-semibold text-lg mb-2">Home Charging</h3>
                           <p className="text-muted-foreground mb-2">
                             Charge overnight during off-peak hours for lower rates
                           </p>
                           <p className="text-sm text-muted-foreground">
-                            Approximately $2-3 to fully charge most EVs
+                            Manitoba has some of the lowest electricity rates in North America
                           </p>
                         </div>
                       </div>
@@ -124,7 +124,7 @@ const EVGuide = () => {
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold mb-6">Vancouver Charging Network</h2>
+                <h2 className="text-3xl font-bold mb-6">Charging Network</h2>
                 <Card className="mb-6">
                   <CardContent className="p-6">
                     <div className="flex items-start mb-4">
@@ -132,7 +132,7 @@ const EVGuide = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-2">Public Charging Stations</h3>
                         <p className="text-muted-foreground">
-                          Over 500 public charging stations in Greater Vancouver area
+                          Thousands of public charging stations across Canada
                         </p>
                       </div>
                     </div>
@@ -143,7 +143,7 @@ const EVGuide = () => {
                       </li>
                       <li className="flex items-center">
                         <Battery className="w-4 h-4 text-accent mr-2" />
-                        DC Fast charging on major highways
+                        DC Fast charging on major highways (Trans-Canada)
                       </li>
                       <li className="flex items-center">
                         <Battery className="w-4 h-4 text-accent mr-2" />
@@ -155,13 +155,13 @@ const EVGuide = () => {
 
                 <Card className="bg-secondary">
                   <CardContent className="p-6">
-                    <h3 className="font-semibold mb-3">Popular Charging Networks in BC</h3>
+                    <h3 className="font-semibold mb-3">Popular Charging Networks</h3>
                     <ul className="space-y-2 text-sm">
-                      <li>• FLO - Extensive network across Metro Vancouver</li>
-                      <li>• ChargePoint - Shopping centers and businesses</li>
-                      <li>• Electrify Canada - Highway fast charging</li>
+                      <li>• Ivy Charging Network (Ontario)</li>
+                      <li>• Eco-West (Manitoba)</li>
+                      <li>• Petro-Canada - Coast-to-coast fast charging</li>
                       <li>• Tesla Supercharger - Open to all EVs (adapter required)</li>
-                      <li>• BC Hydro - Government-operated stations</li>
+                      <li>• Flo / ChargePoint - Extensive urban networks</li>
                     </ul>
                   </CardContent>
                 </Card>
@@ -191,8 +191,8 @@ const EVGuide = () => {
                       </div>
                     </div>
                     <Button asChild variant="outline" className="w-full">
-                      <Link to={`/hyundai-${model.name.toLowerCase().replace(' ', '-')}-vancouver-guide`}>
-                        Learn More
+                      <Link to="/used">
+                        View Inventory
                       </Link>
                     </Button>
                   </CardContent>

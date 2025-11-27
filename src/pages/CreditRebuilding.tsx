@@ -11,15 +11,15 @@ const CreditRebuilding = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Auto Credit Rebuilding Program Vancouver BC | Improve Credit Score with Car Loan</title>
-        <meta 
-          name="description" 
-          content="Rebuild your credit score with our car financing program in Vancouver. Learn how making on-time auto payments can improve your credit by 100+ points." 
+        <title>Auto Credit Rebuilding Program | Improve Credit Score with Car Loan</title>
+        <meta
+          name="description"
+          content="Rebuild your credit score with our car financing program. Learn how making on-time auto payments can improve your credit by 100+ points."
         />
       </Helmet>
 
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -64,7 +64,7 @@ const CreditRebuilding = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">How Auto Financing Rebuilds Credit</h2>
-                  
+
                   <div className="space-y-6">
                     <div>
                       <h3 className="font-semibold mb-2 flex items-center gap-2">
@@ -72,8 +72,8 @@ const CreditRebuilding = () => {
                         Payment History (35% of Your Credit Score)
                       </h3>
                       <p className="text-muted-foreground ml-7">
-                        Every on-time payment is reported to all three major credit bureaus (Equifax, TransUnion, Experian). 
-                        This is the single most important factor in your credit score. Consistent car payments demonstrate 
+                        Every on-time payment is reported to all three major credit bureaus (Equifax, TransUnion, Experian).
+                        This is the single most important factor in your credit score. Consistent car payments demonstrate
                         financial responsibility to future lenders.
                       </p>
                     </div>
@@ -84,7 +84,7 @@ const CreditRebuilding = () => {
                         Credit Mix Diversification (10% of Your Credit Score)
                       </h3>
                       <p className="text-muted-foreground ml-7">
-                        An auto loan adds installment credit to your profile, complementing any credit cards (revolving credit) 
+                        An auto loan adds installment credit to your profile, complementing any credit cards (revolving credit)
                         you may have. Having different types of credit shows lenders you can manage various financial obligations.
                       </p>
                     </div>
@@ -95,7 +95,7 @@ const CreditRebuilding = () => {
                         Positive Credit Account Building
                       </h3>
                       <p className="text-muted-foreground ml-7">
-                        A car loan establishes a new positive account on your credit report. As you make payments, this account 
+                        A car loan establishes a new positive account on your credit report. As you make payments, this account
                         ages and strengthens your credit profile, especially important if you have limited credit history.
                       </p>
                     </div>
@@ -106,7 +106,7 @@ const CreditRebuilding = () => {
                         Path to Better Rates
                       </h3>
                       <p className="text-muted-foreground ml-7">
-                        As your credit improves, you can refinance your auto loan at a lower rate after 12-18 months, 
+                        As your credit improves, you can refinance your auto loan at a lower rate after 12-18 months,
                         reducing your monthly payment and saving thousands in interest over the life of the loan.
                       </p>
                     </div>
@@ -117,7 +117,7 @@ const CreditRebuilding = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Your Credit Rebuilding Timeline</h2>
-                  
+
                   <div className="space-y-6">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
@@ -126,7 +126,7 @@ const CreditRebuilding = () => {
                       <div>
                         <h3 className="font-bold mb-1">Months 1-3: Foundation</h3>
                         <p className="text-sm text-muted-foreground">
-                          New account appears on credit report. Focus on making first 3 payments on time. Small improvements 
+                          New account appears on credit report. Focus on making first 3 payments on time. Small improvements
                           (5-15 points) may be visible as payment history begins building.
                         </p>
                       </div>
@@ -139,7 +139,7 @@ const CreditRebuilding = () => {
                       <div>
                         <h3 className="font-bold mb-1">Months 4-6: Progress</h3>
                         <p className="text-sm text-muted-foreground">
-                          Consistent payment history strengthens. Credit score typically increases 20-40 points. 
+                          Consistent payment history strengthens. Credit score typically increases 20-40 points.
                           Your account ages and becomes more valuable to your credit profile.
                         </p>
                       </div>
@@ -152,7 +152,7 @@ const CreditRebuilding = () => {
                       <div>
                         <h3 className="font-bold mb-1">Months 7-12: Transformation</h3>
                         <p className="text-sm text-muted-foreground">
-                          Significant credit score improvement (60-100+ points). You may qualify for refinancing at better 
+                          Significant credit score improvement (60-100+ points). You may qualify for refinancing at better
                           rates. Other lenders start viewing you more favorably for credit cards, mortgages, and loans.
                         </p>
                       </div>
@@ -165,7 +165,7 @@ const CreditRebuilding = () => {
                       <div>
                         <h3 className="font-bold mb-1">12+ Months: Excellence</h3>
                         <p className="text-sm text-muted-foreground">
-                          Established positive payment history. Potential for 100-150+ point improvement. You're positioned 
+                          Established positive payment history. Potential for 100-150+ point improvement. You're positioned
                           for prime lending rates on future financing and have access to better credit products.
                         </p>
                       </div>
@@ -177,7 +177,7 @@ const CreditRebuilding = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Maximize Your Credit Building Success</h2>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
                       {
@@ -225,10 +225,10 @@ const CreditRebuilding = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Refinancing for Better Rates</h2>
-                  
+
                   <div className="space-y-4">
                     <p className="text-muted-foreground">
-                      Once you've made 12-18 months of on-time payments and improved your credit score, you may qualify 
+                      Once you've made 12-18 months of on-time payments and improved your credit score, you may qualify
                       to refinance your auto loan at a significantly lower interest rate.
                     </p>
 
@@ -270,16 +270,16 @@ const CreditRebuilding = () => {
                   <p className="text-sm text-muted-foreground">
                     Get approved for financing and start your journey to better credit.
                   </p>
-                  
+
                   <Button asChild variant="cta" className="w-full" size="lg">
                     <Link to="/finance">Apply Now</Link>
                   </Button>
 
                   <Button asChild variant="outline" className="w-full">
-                    <a href="tel:+16048768931">
+                    <Link to="/contact">
                       <Phone className="w-4 h-4 mr-2" />
-                      Speak to a Specialist
-                    </a>
+                      Contact Us
+                    </Link>
                   </Button>
 
                   <div className="pt-4 border-t">
@@ -302,13 +302,13 @@ const CreditRebuilding = () => {
                       <p className="text-muted-foreground mb-1">
                         "My credit score went from 520 to 680 in just 14 months!"
                       </p>
-                      <p className="text-xs text-muted-foreground">- Sarah M., Vancouver</p>
+                      <p className="text-xs text-muted-foreground">- Sarah M.</p>
                     </div>
                     <div className="border-l-4 border-primary pl-3">
                       <p className="text-muted-foreground mb-1">
                         "I was able to refinance and save $120/month after one year."
                       </p>
-                      <p className="text-xs text-muted-foreground">- David K., Burnaby</p>
+                      <p className="text-xs text-muted-foreground">- David K.</p>
                     </div>
                   </div>
                 </CardContent>

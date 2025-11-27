@@ -12,26 +12,26 @@ const Ioniq5Guide = () => {
     { name: "Ultimate", startingPrice: "$54,999", highlights: "AWD, premium audio, panoramic roof, HUD" },
   ];
 
-  const vancouverBenefits = [
-    { icon: Zap, title: "BC Charging Network", description: "Over 500 charging stations in Greater Vancouver" },
-    { icon: DollarSign, title: "Maximum Incentives", description: "Eligible for up to $11,000 in federal + BC rebates" },
-    { icon: Leaf, title: "Zero Emissions", description: "Perfect for Vancouver's eco-conscious lifestyle" },
+  const localBenefits = [
+    { icon: Zap, title: "Fast Charging", description: "Compatible with 350kW DC fast chargers" },
+    { icon: DollarSign, title: "Government Incentives", description: "Eligible for federal and provincial rebates" },
+    { icon: Leaf, title: "Zero Emissions", description: "Perfect for an eco-conscious lifestyle" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
-        <div 
+        <div
           className="relative h-[400px] flex items-center justify-center bg-cover bg-center"
           style={{ backgroundImage: `url(${evImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/80"></div>
           <div className="relative z-10 container mx-auto px-4 text-center text-primary-foreground">
             <Zap className="w-16 h-16 mx-auto mb-4" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Ioniq 5 Vancouver Guide</h1>
-            <p className="text-lg opacity-90">Your complete guide to the Ioniq 5 in Vancouver</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Ioniq 5 Guide</h1>
+            <p className="text-lg opacity-90">Your complete guide to the Ioniq 5</p>
           </div>
         </div>
 
@@ -41,8 +41,8 @@ const Ioniq5Guide = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
-                  The Hyundai Ioniq 5 is a groundbreaking all-electric SUV that redefines what's possible in the EV space. 
-                  With ultra-fast charging, impressive range, and futuristic design, it's perfect for Vancouver's eco-conscious drivers.
+                  The Hyundai Ioniq 5 is a groundbreaking all-electric SUV that redefines what's possible in the EV space.
+                  With ultra-fast charging, impressive range, and futuristic design, it's perfect for eco-conscious drivers.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
@@ -64,7 +64,7 @@ const Ioniq5Guide = () => {
                 </ul>
               </div>
               <div className="space-y-4">
-                {vancouverBenefits.map((benefit, index) => (
+                {localBenefits.map((benefit, index) => (
                   <Card key={index}>
                     <CardContent className="p-4 flex items-start">
                       <benefit.icon className="w-8 h-8 text-primary mr-4 flex-shrink-0" />
@@ -155,11 +155,11 @@ const Ioniq5Guide = () => {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-6">Vancouver Charging Infrastructure</h2>
+            <h2 className="text-3xl font-bold mb-6">Charging Infrastructure</h2>
             <Card>
-              <CardContent className="p-8">
-                <p className="text-muted-foreground mb-6">
-                  Vancouver has one of the best EV charging networks in Canada, making the Ioniq 5 a practical choice.
+              <CardContent className="p-6">
+                <p className="text-muted-foreground mb-4">
+                  Canada has a growing EV charging network, making the Ioniq 5 a practical choice.
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
@@ -171,7 +171,7 @@ const Ioniq5Guide = () => {
                       </li>
                       <li className="flex items-start">
                         <CheckCircle2 className="w-4 h-4 text-success mr-2 mt-0.5 flex-shrink-0" />
-                        Multiple DC fast chargers in Metro Vancouver
+                        Multiple DC fast chargers nationwide
                       </li>
                       <li className="flex items-start">
                         <CheckCircle2 className="w-4 h-4 text-success mr-2 mt-0.5 flex-shrink-0" />

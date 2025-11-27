@@ -4,19 +4,15 @@ import { useSearchParams, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Gauge, Calendar, Phone, Loader2, Heart, GitCompare, ArrowUpDown } from "lucide-react";
+import { Phone, Loader2, ArrowUpDown } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageHero from "@/components/PageHero";
 import { useVehicles } from "@/hooks/useVehicles";
-import { generateVehicleSlug } from "@/lib/vehicleUtils";
-import PaymentCalculator from "@/components/PaymentCalculator";
-import { useComparison } from "@/contexts/ComparisonContext";
-import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
-import UnlockPriceDialog from "@/components/UnlockPriceDialog";
-import { cn } from "@/lib/utils";
+
+import VehicleCard from "@/components/VehicleCard";
 
 const UsedInventory = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,8 +29,7 @@ const UsedInventory = () => {
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
 
   const { data: vehicles = [], isLoading } = useVehicles({ priceRange, bodyStyle, make });
-  const { addToComparison, removeFromComparison, isInComparison } = useComparison();
-  const { addToSaved, removeFromSaved, isSaved } = useSavedVehicles();
+
 
   // Apply filters client-side
   const filteredVehicles = vehicles.filter(vehicle => {
@@ -433,103 +428,7 @@ const UsedInventory = () => {
 
                     return (
                       <AnimatedSection key={vehicle.id} direction="up" delay={index * 50}>
-                        <Card className="overflow-hidden hover:shadow-[0_8px_24px_hsl(var(--primary)/0.12)] transition-all duration-300 hover:scale-[1.02]">
-                          <div className="aspect-video bg-muted relative overflow-hidden">
-                            <img
-                              src={vehicle.images?.[0] || "/btd-placeholder.png"}
-                              alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                              className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
-                            />
-                            {(vehicle.odometer || vehicle.mileage || 0) < 30000 && (
-                              <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                                Low Miles
-                              </div>
-                            )}
-                          </div>
-                          <CardContent className="p-6">
-                            <h3 className="text-xl font-bold mb-2">
-                              {vehicle.year} {vehicle.make} {vehicle.model}
-                            </h3>
-                            <p className="text-sm text-muted-foreground mb-4">{vehicle.trim || 'Standard'}</p>
-
-                            <div className="flex items-center justify-between mb-4">
-                              <div>
-                                <span className="text-2xl font-bold text-primary">
-                                  {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                                </span>
-                                {price > 0 && <span className="text-xs text-muted-foreground ml-1">+ taxes</span>}
-                              </div>
-                              <UnlockPriceDialog
-                                vehicle={vehicle}
-                                trigger={
-                                  <Button variant="outline" size="sm" className="text-destructive border-destructive hover:bg-destructive hover:text-white">
-                                    Unlock Price
-                                  </Button>
-                                }
-                              />
-                            </div>
-                            {price > 0 && (
-                              <div className="flex items-baseline gap-2 mb-4">
-                                <span className="text-lg font-semibold">
-                                  ${monthlyPayment}/mo
-                                </span>
-                                <span className="text-sm text-muted-foreground">
-                                  or ${biweeklyPayment}/bi-weekly*
-                                </span>
-                              </div>
-                            )}
-
-                            <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
-                              <div className="flex items-center">
-                                <Gauge className="w-4 h-4 mr-1" />
-                                {(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km
-                              </div>
-                              <div className="flex items-center">
-                                <Calendar className="w-4 h-4 mr-1" />
-                                {vehicle.year}
-                              </div>
-                            </div>
-
-                            <div className="space-y-2">
-                              <Button asChild variant="cta" className="w-full hover:scale-105 transition-transform duration-200">
-                                <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>View Details</Link>
-                              </Button>
-                              <div className="flex gap-2">
-                                <Button
-                                  variant={isSaved(vehicle.id) ? "default" : "outline"}
-                                  size="icon"
-                                  onClick={() => {
-                                    if (isSaved(vehicle.id)) {
-                                      removeFromSaved(vehicle.id);
-                                    } else {
-                                      addToSaved(vehicle);
-                                    }
-                                  }}
-                                  className="hover:scale-110 transition-transform duration-200"
-                                >
-                                  <Heart className={cn("w-4 h-4", isSaved(vehicle.id) && "fill-current")} />
-                                </Button>
-                                <Button
-                                  variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
-                                  size="icon"
-                                  onClick={() => {
-                                    if (isInComparison(vehicle.id)) {
-                                      removeFromComparison(vehicle.id);
-                                    } else {
-                                      addToComparison(vehicle);
-                                    }
-                                  }}
-                                  className="hover:scale-110 transition-transform duration-200"
-                                >
-                                  <GitCompare className="w-4 h-4" />
-                                </Button>
-                                <Button asChild variant="outline" className="flex-1 hover:scale-105 transition-transform duration-200">
-                                  <a href="tel:604-555-0100">Call Now</a>
-                                </Button>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
+                        <VehicleCard vehicle={vehicle} />
                       </AnimatedSection>
                     );
                   })}

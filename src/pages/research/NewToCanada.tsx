@@ -17,8 +17,8 @@ const NewToCanada = () => {
   const requirements = [
     "Valid work permit, study permit, or permanent resident card",
     "Proof of income (employment letter, pay stubs, or bank statements)",
-    "Valid driver's license (BC license preferred, international accepted)",
-    "Proof of address in BC",
+    "Valid driver's license (International accepted)",
+    "Proof of address",
     "Bank statements (3-6 months if available)",
     "Co-signer may be recommended for first-time buyers",
   ];
@@ -41,12 +41,12 @@ const NewToCanada = () => {
         "PR card accepted as proof of status",
         "First-time buyer assistance",
         "Settlement organization referrals",
-        "Welcome package with BC driving resources",
+        "Welcome package with driving resources",
       ],
     },
     {
       title: "Work Permit Program",
-      description: "For temporary workers in BC",
+      description: "For temporary workers",
       features: [
         "Work permit accepted",
         "Employment letter verification",
@@ -58,33 +58,33 @@ const NewToCanada = () => {
 
   const bcResources = [
     {
-      title: "ICBC Driver Licensing",
-      description: "Information about getting your BC driver's license",
-      link: "https://www.icbc.com/driver-licensing",
+      title: "MPI Driver Licensing (Manitoba)",
+      description: "Information about getting your Manitoba driver's license",
+      link: "https://www.mpi.mb.ca/Pages/new-to-manitoba.aspx",
     },
     {
-      title: "BC Services Card",
-      description: "Apply for your BC Services Card for identification",
-      link: "https://www2.gov.bc.ca/gov/content/governments/government-id/bc-services-card",
+      title: "ServiceOntario (Ontario)",
+      description: "Driver's license and vehicle registration in Ontario",
+      link: "https://www.ontario.ca/page/exchange-out-province-drivers-licence",
     },
     {
       title: "Settlement Services",
       description: "Find settlement services in your area",
-      link: "https://www.welcomebc.ca/",
+      link: "https://www.canada.ca/en/immigration-refugees-citizenship/services/new-immigrants/new-life-canada.html",
     },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <Globe className="w-16 h-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">New to Canada Programs</h1>
             <p className="text-lg opacity-90 max-w-3xl mx-auto">
-              Welcome to Canada! We're here to help you get on the road in British Columbia
+              Welcome to Canada! We're here to help you get on the road in Manitoba & Ontario
             </p>
           </div>
         </div>
@@ -94,14 +94,14 @@ const NewToCanada = () => {
             <div className="lg:col-span-2 space-y-8">
               {/* Welcome Message */}
               <section>
-                <h2 className="text-3xl font-bold mb-6">Welcome to British Columbia</h2>
+                <h2 className="text-3xl font-bold mb-6">Welcome to Canada</h2>
                 <p className="text-lg text-muted-foreground mb-4">
-                  Moving to a new country is exciting, but it can also be challenging—especially when it comes to 
-                  getting a vehicle. We understand that as a newcomer, you may not have Canadian credit history, 
+                  Moving to a new country is exciting, but it can also be challenging—especially when it comes to
+                  getting a vehicle. We understand that as a newcomer, you may not have Canadian credit history,
                   and that's okay. We have specialized programs designed just for you.
                 </p>
                 <p className="text-muted-foreground">
-                  Our New to Canada program helps newcomers get approved for vehicle financing, even without 
+                  Our New to Canada program helps newcomers get approved for vehicle financing, even without
                   established Canadian credit. We work with work permits, study permits, and permanent resident cards.
                 </p>
               </section>
@@ -170,40 +170,40 @@ const NewToCanada = () => {
                 </Card>
               </section>
 
-              {/* BC-Specific Information */}
+              {/* Local Information */}
               <section>
-                <h2 className="text-3xl font-bold mb-6">Getting Started in BC</h2>
+                <h2 className="text-3xl font-bold mb-6">Getting Started in Manitoba & Ontario</h2>
                 <div className="space-y-4">
                   <Card>
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
                         <MapPin className="w-5 h-5 text-primary" />
-                        BC Driver's License
+                        Driver's Licensing
                       </h3>
                       <p className="text-muted-foreground mb-3">
-                        If you have a valid driver's license from another country, you can drive in BC for up to 
-                        90 days. After that, you'll need to get a BC driver's license. We can help you understand 
-                        the process.
+                        If you have a valid driver's license from another country, you can drive in Manitoba or Ontario for a limited time (typically 3-6 months). After that, you'll need to exchange it for a local license.
                       </p>
                       <p className="text-sm text-muted-foreground">
-                        <strong>Tip:</strong> Some countries have reciprocal agreements that allow you to exchange 
-                        your license directly. Check with ICBC for your specific situation.
+                        <strong>Tip:</strong> Many countries have reciprocal agreements with MPI (Manitoba) and ServiceOntario that allow you to exchange your license directly.
                       </p>
                     </CardContent>
                   </Card>
 
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="font-semibold text-lg mb-3">ICBC Insurance</h3>
+                      <h3 className="font-semibold text-lg mb-3">Vehicle Insurance</h3>
                       <p className="text-muted-foreground mb-3">
-                        In BC, all vehicles must be insured through ICBC (Insurance Corporation of British Columbia). 
+                        <strong>Manitoba:</strong> All vehicles must be insured through Manitoba Public Insurance (MPI).<br />
+                        <strong>Ontario:</strong> You must purchase insurance from a private insurance company.
+                      </p>
+                      <p className="text-muted-foreground">
                         As a newcomer, you'll need:
                       </p>
-                      <ul className="space-y-2 text-muted-foreground ml-4">
-                        <li>• Valid driver's license (BC or international)</li>
+                      <ul className="space-y-2 text-muted-foreground ml-4 mt-2">
+                        <li>• Valid driver's license (Local or international)</li>
                         <li>• Proof of vehicle ownership</li>
-                        <li>• Vehicle inspection (for used vehicles)</li>
-                        <li>• Proof of address in BC</li>
+                        <li>• Vehicle safety inspection (Safety Certificate)</li>
+                        <li>• Proof of address</li>
                       </ul>
                     </CardContent>
                   </Card>
@@ -212,9 +212,7 @@ const NewToCanada = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">Vehicle Registration</h3>
                       <p className="text-muted-foreground">
-                        When you purchase a vehicle in BC, you'll need to register it with ICBC. This includes 
-                        paying PST (7%) and GST (5%) on the purchase price. We can help you understand all the 
-                        costs involved.
+                        When you purchase a vehicle, you'll need to register it. This involves paying applicable taxes (PST/GST/HST) depending on your province. We handle all the paperwork to make this process seamless for you.
                       </p>
                     </CardContent>
                   </Card>

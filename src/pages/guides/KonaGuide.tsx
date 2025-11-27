@@ -12,21 +12,21 @@ const KonaGuide = () => {
     { name: "Ultimate", startingPrice: "$34,499", highlights: "Leather, sunroof, premium audio, digital cluster" },
   ];
 
-  const vancouverBenefits = [
-    { icon: Mountain, title: "Vancouver Terrain", description: "Perfect for city streets and mountain getaways with available AWD" },
-    { icon: DollarSign, title: "Compact Efficiency", description: "Easy parking in downtown Vancouver while maintaining cargo space" },
+  const localBenefits = [
+    { icon: Mountain, title: "All-Terrain Ready", description: "Perfect for city streets and weekend getaways with available AWD" },
+    { icon: DollarSign, title: "Compact Efficiency", description: "Easy parking in the city while maintaining cargo space" },
     { icon: Shield, title: "All-Weather Ready", description: "Available AWD for coastal weather and ski trips" },
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Kona Vancouver Guide</h1>
-            <p className="text-lg opacity-90">Your complete guide to the Kona in Vancouver</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Kona Guide</h1>
+            <p className="text-lg opacity-90">Your complete guide to the Kona</p>
           </div>
         </div>
 
@@ -36,7 +36,7 @@ const KonaGuide = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
-                  The Hyundai Kona is a versatile subcompact SUV that's ideal for Vancouver's urban environment and outdoor lifestyle. 
+                  The Hyundai Kona is a versatile subcompact SUV that's ideal for urban environments and outdoor lifestyles.
                   With available AWD and efficient engines, it's built for both city commutes and weekend adventures.
                 </p>
                 <ul className="space-y-2">
@@ -59,7 +59,7 @@ const KonaGuide = () => {
                 </ul>
               </div>
               <div className="space-y-4">
-                {vancouverBenefits.map((benefit, index) => (
+                {localBenefits.map((benefit, index) => (
                   <Card key={index}>
                     <CardContent className="p-4 flex items-start">
                       <benefit.icon className="w-8 h-8 text-primary mr-4 flex-shrink-0" />
@@ -90,11 +90,11 @@ const KonaGuide = () => {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-6">Vancouver Weather Suitability</h2>
+            <h2 className="text-3xl font-bold mb-6">Weather Suitability</h2>
             <Card>
-              <CardContent className="p-8">
-                <p className="text-muted-foreground mb-6">
-                  The Kona is exceptionally well-suited for Vancouver's coastal climate and outdoor lifestyle.
+              <CardContent className="p-6">
+                <p className="text-muted-foreground mb-4">
+                  The Kona is exceptionally well-suited for Canadian climates and outdoor lifestyles.
                 </p>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>

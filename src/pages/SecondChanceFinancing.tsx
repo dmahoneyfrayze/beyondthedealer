@@ -12,19 +12,19 @@ const SecondChanceFinancing = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Second Chance Auto Financing Vancouver BC | Credit Rebuilding Programs</title>
-        <meta 
-          name="description" 
-          content="Fresh start auto financing in Vancouver. We specialize in helping customers with past credit challenges, bankruptcy, and consumer proposals rebuild credit through car financing." 
+        <title>Second Chance Auto Financing | Credit Rebuilding Programs</title>
+        <meta
+          name="description"
+          content="Fresh start auto financing. We specialize in helping customers with past credit challenges, bankruptcy, and consumer proposals rebuild credit through car financing."
         />
-        <meta 
-          name="keywords" 
-          content="second chance financing vancouver, bankruptcy car loans bc, bad credit auto financing, credit rebuilding vancouver, consumer proposal car loan" 
+        <meta
+          name="keywords"
+          content="second chance financing, bankruptcy car loans, bad credit auto financing, credit rebuilding, consumer proposal car loan"
         />
       </Helmet>
 
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -46,7 +46,7 @@ const SecondChanceFinancing = () => {
                 <Users className="w-12 h-12 text-primary mx-auto mb-4" />
                 <h3 className="font-bold mb-2">Helping Thousands</h3>
                 <p className="text-sm text-muted-foreground">
-                  We've helped thousands of BC residents get approved and back on the road
+                  We've helped thousands of Canadians get approved and back on the road
                 </p>
               </CardContent>
             </Card>
@@ -79,7 +79,7 @@ const SecondChanceFinancing = () => {
                     <Heart className="w-6 h-6 text-primary" />
                     We Welcome All Credit Situations
                   </h2>
-                  
+
                   <div className="grid md:grid-cols-2 gap-4">
                     {[
                       "Bankruptcy (Discharged or Active)",
@@ -108,7 +108,7 @@ const SecondChanceFinancing = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Simple 3-Step Process</h2>
-                  
+
                   <div className="space-y-6">
                     <div className="flex gap-4">
                       <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center font-bold text-primary">
@@ -129,7 +129,7 @@ const SecondChanceFinancing = () => {
                       <div>
                         <h3 className="font-bold mb-2">Expert Review & Approval</h3>
                         <p className="text-muted-foreground">
-                          Our specialists work with multiple lenders to find the best financing solution for your situation. 
+                          Our specialists work with multiple lenders to find the best financing solution for your situation.
                           Most applications are reviewed within 2 hours.
                         </p>
                       </div>
@@ -142,7 +142,7 @@ const SecondChanceFinancing = () => {
                       <div>
                         <h3 className="font-bold mb-2">Choose Your Vehicle & Drive</h3>
                         <p className="text-muted-foreground">
-                          Browse our inventory of quality vehicles, select the one that fits your needs and budget, 
+                          Browse our inventory of quality vehicles, select the one that fits your needs and budget,
                           and drive home today.
                         </p>
                       </div>
@@ -154,13 +154,13 @@ const SecondChanceFinancing = () => {
               {/* Why Choose Us */}
               <Card>
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold mb-6">Why Choose Olympic Hyundai for Your Fresh Start?</h2>
-                  
+                  <h2 className="text-2xl font-bold mb-6">Why Choose Beyond the Dealership for Your Fresh Start?</h2>
+
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold mb-2">🤝 Understanding & Support</h3>
                       <p className="text-muted-foreground">
-                        We understand that credit challenges can happen to anyone. Our team is trained to listen, 
+                        We understand that credit challenges can happen to anyone. Our team is trained to listen,
                         understand your situation, and work with you—not against you.
                       </p>
                     </div>
@@ -168,7 +168,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">🏦 Multiple Lender Relationships</h3>
                       <p className="text-muted-foreground">
-                        We work with over 20 financial institutions, including those that specialize in second chance 
+                        We work with over 20 financial institutions, including those that specialize in second chance
                         lending. This means better approval rates and more competitive terms.
                       </p>
                     </div>
@@ -176,7 +176,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">📈 Credit Rebuilding Program</h3>
                       <p className="text-muted-foreground">
-                        Every successful payment is reported to credit bureaus, helping you rebuild your credit score. 
+                        Every successful payment is reported to credit bureaus, helping you rebuild your credit score.
                         We provide resources and guidance throughout your journey.
                       </p>
                     </div>
@@ -184,7 +184,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">🚗 Quality Vehicle Selection</h3>
                       <p className="text-muted-foreground">
-                        Choose from our extensive inventory of inspected, reliable vehicles. We ensure you get a car 
+                        Choose from our extensive inventory of inspected, reliable vehicles. We ensure you get a car
                         you can count on, not just any car.
                       </p>
                     </div>
@@ -192,7 +192,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">💼 Flexible Documentation</h3>
                       <p className="text-muted-foreground">
-                        We work with various proof of income options including pay stubs, bank statements, tax returns, 
+                        We work with various proof of income options including pay stubs, bank statements, tax returns,
                         and business records for self-employed applicants.
                       </p>
                     </div>
@@ -204,12 +204,12 @@ const SecondChanceFinancing = () => {
               <Card>
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold mb-6">Common Questions</h2>
-                  
+
                   <div className="space-y-4">
                     <div>
                       <h3 className="font-semibold mb-2">Can I get approved with an active bankruptcy?</h3>
                       <p className="text-muted-foreground">
-                        Yes! We work with lenders who approve applications even with active bankruptcies. You may need 
+                        Yes! We work with lenders who approve applications even with active bankruptcies. You may need
                         permission from your trustee, which we can help coordinate.
                       </p>
                     </div>
@@ -217,7 +217,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">How much do I need for a down payment?</h3>
                       <p className="text-muted-foreground">
-                        Down payment requirements vary by situation, but we work to keep them as low as possible. 
+                        Down payment requirements vary by situation, but we work to keep them as low as possible.
                         In many cases, we can work with $500-$1,000 down, and your trade-in can often cover this.
                       </p>
                     </div>
@@ -225,7 +225,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">Will applying hurt my credit score?</h3>
                       <p className="text-muted-foreground">
-                        Our initial application is a soft inquiry and does not affect your credit score. We only submit 
+                        Our initial application is a soft inquiry and does not affect your credit score. We only submit
                         a hard inquiry once we've found the right lender and you're ready to proceed.
                       </p>
                     </div>
@@ -233,7 +233,7 @@ const SecondChanceFinancing = () => {
                     <div>
                       <h3 className="font-semibold mb-2">What interest rate can I expect?</h3>
                       <p className="text-muted-foreground">
-                        Rates vary based on your specific situation, but typically range from 9.99% to 24.99%. As you 
+                        Rates vary based on your specific situation, but typically range from 9.99% to 24.99%. As you
                         rebuild your credit and make on-time payments, you can refinance to a lower rate in the future.
                       </p>
                     </div>
@@ -250,16 +250,16 @@ const SecondChanceFinancing = () => {
                   <p className="text-sm text-muted-foreground">
                     Get a decision in as little as 2 hours. Most of our customers are approved and driving within 24-48 hours.
                   </p>
-                  
+
                   <Button asChild variant="cta" className="w-full" size="lg">
                     <Link to="/finance">Apply Now - Free</Link>
                   </Button>
 
                   <Button asChild variant="outline" className="w-full">
-                    <a href="tel:+16048768931">
+                    <Link to="/contact">
                       <Phone className="w-4 h-4 mr-2" />
-                      Call (604) 876-8931
-                    </a>
+                      Contact Us
+                    </Link>
                   </Button>
 
                   <div className="pt-4 border-t text-xs text-muted-foreground">

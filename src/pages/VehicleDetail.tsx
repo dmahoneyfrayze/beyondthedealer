@@ -22,6 +22,7 @@ import UnlockPriceDialog from "@/components/UnlockPriceDialog";
 import { useComparison } from "@/contexts/ComparisonContext";
 import { useSavedVehicles } from "@/contexts/SavedVehiclesContext";
 import { cn } from "@/lib/utils";
+import VehicleCard from "@/components/VehicleCard";
 
 const VehicleDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -265,7 +266,7 @@ const VehicleDetail = () => {
                       <Gauge className="w-5 h-5 text-primary mt-1" />
                       <div>
                         <p className="font-semibold">Mileage</p>
-                        <p className="text-muted-foreground">{vehicle.mileage.toLocaleString()} km</p>
+                        <p className="text-muted-foreground">{vehicle.mileage?.toLocaleString() || 0} km</p>
                       </div>
                     </div>
 
@@ -459,6 +460,22 @@ const VehicleDetail = () => {
                   source={`vehicle-${vehicle.stock_number}`}
                 />
               </div>
+            </div>
+          </div>
+
+          {/* People Also Viewed Section */}
+          <div className="mt-16">
+            <h2 className="text-3xl font-bold mb-8">People Also Viewed</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {vehicles
+                .filter(v =>
+                  v.id !== vehicle.id &&
+                  (v.body_style === vehicle.body_style || (v.price >= price * 0.8 && v.price <= price * 1.2))
+                )
+                .slice(0, 4)
+                .map(similarVehicle => (
+                  <VehicleCard key={similarVehicle.id} vehicle={similarVehicle} />
+                ))}
             </div>
           </div>
         </div>

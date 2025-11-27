@@ -12,8 +12,8 @@ const ElantraGuide = () => {
     { name: "Ultimate", startingPrice: "$28,999", highlights: "Leather, Bose audio, sunroof, digital cluster" },
   ];
 
-  const vancouverBenefits = [
-    { icon: Snowflake, title: "Winter-Ready", description: "Available heated seats and steering wheel for cold Vancouver mornings" },
+  const localBenefits = [
+    { icon: Snowflake, title: "Winter-Ready", description: "Available heated seats and steering wheel for cold mornings" },
     { icon: DollarSign, title: "Fuel Efficient", description: "Excellent MPG for city commuting and weekend trips" },
     { icon: Shield, title: "Safety First", description: "SmartSense safety suite standard on all trims" },
   ];
@@ -21,12 +21,12 @@ const ElantraGuide = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Elantra Vancouver Guide</h1>
-            <p className="text-lg opacity-90">Your complete guide to the Elantra in Vancouver</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Elantra Guide</h1>
+            <p className="text-lg opacity-90">Your complete guide to the Elantra</p>
           </div>
         </div>
 
@@ -36,8 +36,8 @@ const ElantraGuide = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
-                  The Hyundai Elantra is a sophisticated compact sedan that combines style, efficiency, and technology. 
-                  Perfect for Vancouver drivers seeking a reliable daily commuter with premium features.
+                  The Hyundai Elantra is a sophisticated compact sedan that combines style, efficiency, and technology.
+                  Perfect for drivers seeking a reliable daily commuter with premium features.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
@@ -59,7 +59,7 @@ const ElantraGuide = () => {
                 </ul>
               </div>
               <div className="space-y-4">
-                {vancouverBenefits.map((benefit, index) => (
+                {localBenefits.map((benefit, index) => (
                   <Card key={index}>
                     <CardContent className="p-4 flex items-start">
                       <benefit.icon className="w-8 h-8 text-primary mr-4 flex-shrink-0" />
@@ -100,7 +100,7 @@ const ElantraGuide = () => {
                       Estimated combined fuel economy: 7.0L/100km
                     </p>
                     <p className="text-sm text-muted-foreground">
-                      Based on 20,000 km/year and Vancouver gas prices, expect approximately $1,800-2,200/year in fuel costs
+                      Based on 20,000 km/year and average gas prices, expect approximately $1,800-2,200/year in fuel costs
                     </p>
                   </div>
                   <div>

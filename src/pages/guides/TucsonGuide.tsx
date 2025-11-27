@@ -12,8 +12,8 @@ const TucsonGuide = () => {
     { name: "Ultimate", startingPrice: "$43,999", highlights: "Premium audio, 10.25-inch screen, HUD, advanced safety" },
   ];
 
-  const vancouverBenefits = [
-    { icon: Users, title: "Family-Friendly", description: "Spacious interior perfect for Vancouver families and weekend trips" },
+  const localBenefits = [
+    { icon: Users, title: "Family-Friendly", description: "Spacious interior perfect for families and weekend trips" },
     { icon: Mountain, title: "Adventure Ready", description: "Standard AWD and 2,000 lb towing capacity for boats and trailers" },
     { icon: Shield, title: "Premium Safety", description: "Comprehensive SmartSense suite with Highway Driving Assist" },
   ];
@@ -21,12 +21,12 @@ const TucsonGuide = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Tucson Vancouver Guide</h1>
-            <p className="text-lg opacity-90">Your complete guide to the Tucson in Vancouver</p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Hyundai Tucson Guide</h1>
+            <p className="text-lg opacity-90">Your complete guide to the Tucson</p>
           </div>
         </div>
 
@@ -36,8 +36,8 @@ const TucsonGuide = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-muted-foreground mb-4">
-                  The Hyundai Tucson is a sophisticated compact SUV that perfectly balances style, technology, and practicality. 
-                  Ideal for Vancouver families and active lifestyles, it offers standard AWD and premium features.
+                  The Hyundai Tucson is a sophisticated compact SUV that perfectly balances style, technology, and practicality.
+                  Ideal for families and active lifestyles, it offers standard AWD and premium features.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-start">
@@ -59,7 +59,7 @@ const TucsonGuide = () => {
                 </ul>
               </div>
               <div className="space-y-4">
-                {vancouverBenefits.map((benefit, index) => (
+                {localBenefits.map((benefit, index) => (
                   <Card key={index}>
                     <CardContent className="p-4 flex items-start">
                       <benefit.icon className="w-8 h-8 text-primary mr-4 flex-shrink-0" />
@@ -90,7 +90,7 @@ const TucsonGuide = () => {
           </section>
 
           <section className="mb-16">
-            <h2 className="text-3xl font-bold mb-6">Why Tucson for Vancouver?</h2>
+            <h2 className="text-3xl font-bold mb-6">Why Tucson?</h2>
             <Card>
               <CardContent className="p-8">
                 <div className="grid md:grid-cols-2 gap-8">

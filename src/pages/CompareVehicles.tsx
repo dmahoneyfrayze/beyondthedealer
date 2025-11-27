@@ -33,7 +33,7 @@ const CompareVehicles = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-12">
           <div className="container mx-auto px-4">
@@ -50,107 +50,107 @@ const CompareVehicles = () => {
         </div>
 
         <div className="container mx-auto px-4 py-12">
-          <div className="overflow-x-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 min-w-max">
-              {comparisonVehicles.map((vehicle) => {
-                const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
-                
-                return (
-                  <Card key={vehicle.id} className="min-w-[280px]">
-                    <div className="relative">
-                      <div className="aspect-video bg-muted">
-                        <img 
-                          src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"} 
-                          alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <Button
-                        variant="destructive"
-                        size="icon"
-                        className="absolute top-2 right-2"
-                        onClick={() => removeFromComparison(vehicle.id)}
-                      >
-                        <X className="w-4 h-4" />
-                      </Button>
-                    </div>
-                    
-                    <CardContent className="p-6 space-y-4">
-                      <div>
-                        <h3 className="text-xl font-bold">{vehicle.year} {vehicle.make} {vehicle.model}</h3>
-                        <p className="text-sm text-muted-foreground">{vehicle.trim || 'Standard'}</p>
-                      </div>
-
-                      <div className="text-3xl font-bold text-primary">
-                        {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
-                      </div>
-
-                      <div className="space-y-3 text-sm">
-                        <div className="flex items-start gap-2">
-                          <Gauge className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Mileage</p>
-                            <p className="text-muted-foreground">{(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2">
-                          <Settings className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Drivetrain</p>
-                            <p className="text-muted-foreground">{vehicle.drive_train || 'N/A'}</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2">
-                          <Fuel className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Fuel Type</p>
-                            <p className="text-muted-foreground">{vehicle.fuel_type || 'N/A'}</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2">
-                          <Calendar className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Transmission</p>
-                            <p className="text-muted-foreground">{vehicle.transmission || 'N/A'}</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2">
-                          <div className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Body Style</p>
-                            <p className="text-muted-foreground">{vehicle.body_style}</p>
-                          </div>
-                        </div>
-
-                        <div className="flex items-start gap-2">
-                          <div className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                          <div>
-                            <p className="font-medium">Exterior Color</p>
-                            <p className="text-muted-foreground">{vehicle.exterior_color || 'N/A'}</p>
-                          </div>
-                        </div>
-                      </div>
-
-                      <Button asChild variant="cta" className="w-full">
-                        <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>
-                          View Details
-                        </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+          {/* Mobile: Horizontal Scroll, Desktop: Grid */}
+          <div className="md:hidden overflow-x-auto pb-6 -mx-4 px-4 scrollbar-hide">
+            <div className="flex gap-4 w-max">
+              {comparisonVehicles.map((vehicle) => (
+                <div key={vehicle.id} className="w-[85vw] max-w-[300px]">
+                  <VehicleCard vehicle={vehicle} removeFromComparison={removeFromComparison} />
+                </div>
+              ))}
             </div>
+          </div>
+
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {comparisonVehicles.map((vehicle) => (
+              <VehicleCard key={vehicle.id} vehicle={vehicle} removeFromComparison={removeFromComparison} />
+            ))}
           </div>
         </div>
       </main>
 
       <Footer />
     </div>
+  );
+};
+
+const VehicleCard = ({ vehicle, removeFromComparison }: { vehicle: any, removeFromComparison: (id: string) => void }) => {
+  const price = vehicle.internet_price || vehicle.asking_price || vehicle.price || 0;
+
+  return (
+    <Card className="h-full flex flex-col">
+      <div className="relative">
+        <div className="aspect-video bg-muted relative overflow-hidden rounded-t-lg">
+          <img
+            src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
+            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+            className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
+          />
+        </div>
+        <Button
+          variant="destructive"
+          size="icon"
+          className="absolute top-2 right-2 h-8 w-8 rounded-full shadow-md"
+          onClick={(e) => {
+            e.preventDefault();
+            removeFromComparison(vehicle.id);
+          }}
+        >
+          <X className="w-4 h-4" />
+        </Button>
+      </div>
+
+      <CardContent className="p-5 flex-grow flex flex-col space-y-4">
+        <div>
+          <h3 className="text-xl font-bold line-clamp-1">{vehicle.year} {vehicle.make} {vehicle.model}</h3>
+          <p className="text-sm text-muted-foreground">{vehicle.trim || 'Standard'}</p>
+        </div>
+
+        <div className="text-2xl font-bold text-primary">
+          {price > 0 ? `$${price.toLocaleString()}` : "Contact for Price"}
+        </div>
+
+        <div className="space-y-3 text-sm flex-grow">
+          <div className="flex items-center justify-between border-b pb-2">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Gauge className="w-4 h-4" />
+              <span>Mileage</span>
+            </div>
+            <span className="font-medium">{(vehicle.odometer || vehicle.mileage || 0).toLocaleString()} km</span>
+          </div>
+
+          <div className="flex items-center justify-between border-b pb-2">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Settings className="w-4 h-4" />
+              <span>Drivetrain</span>
+            </div>
+            <span className="font-medium">{vehicle.drive_train || 'N/A'}</span>
+          </div>
+
+          <div className="flex items-center justify-between border-b pb-2">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Fuel className="w-4 h-4" />
+              <span>Fuel</span>
+            </div>
+            <span className="font-medium">{vehicle.fuel_type || 'N/A'}</span>
+          </div>
+
+          <div className="flex items-center justify-between border-b pb-2">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Calendar className="w-4 h-4" />
+              <span>Trans</span>
+            </div>
+            <span className="font-medium">{vehicle.transmission || 'N/A'}</span>
+          </div>
+        </div>
+
+        <Button asChild variant="cta" className="w-full mt-auto">
+          <Link to={`/vehicle/${generateVehicleSlug(vehicle)}`}>
+            View Details
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 

@@ -18,7 +18,7 @@ const StudentPrograms = () => {
     "Valid student ID from accredited institution",
     "Proof of enrollment (current or upcoming semester)",
     "Proof of income (part-time work, scholarships, grants)",
-    "Valid BC driver's license",
+    "Valid driver's license",
     "Co-signer may be required for first-time buyers",
   ];
 
@@ -45,7 +45,7 @@ const StudentPrograms = () => {
     },
     {
       title: "International Student Program",
-      description: "Designed for international students studying in BC",
+      description: "Designed for international students",
       features: [
         "No Canadian credit history required",
         "International co-signer options",
@@ -58,14 +58,14 @@ const StudentPrograms = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
             <GraduationCap className="w-16 h-16 mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Student Programs</h1>
             <p className="text-lg opacity-90 max-w-3xl mx-auto">
-              Special financing and programs designed for students and recent graduates in British Columbia
+              Special financing and programs designed for students and recent graduates
             </p>
           </div>
         </div>
@@ -77,11 +77,11 @@ const StudentPrograms = () => {
               <section>
                 <h2 className="text-3xl font-bold mb-6">We Support Students</h2>
                 <p className="text-lg text-muted-foreground mb-4">
-                  We understand that being a student comes with unique financial challenges. That's why we offer 
+                  We understand that being a student comes with unique financial challenges. That's why we offer
                   specialized programs designed to help students and recent graduates get behind the wheel of a reliable vehicle.
                 </p>
                 <p className="text-muted-foreground">
-                  Whether you're a full-time student, recent graduate, or international student, we have options 
+                  Whether you're a full-time student, recent graduate, or international student, we have options
                   to help you finance your first vehicle or upgrade to something more reliable.
                 </p>
               </section>
@@ -150,20 +150,20 @@ const StudentPrograms = () => {
                 </Card>
               </section>
 
-              {/* BC-Specific Information */}
+              {/* Local Considerations */}
               <section>
-                <h2 className="text-3xl font-bold mb-6">BC Student Considerations</h2>
+                <h2 className="text-3xl font-bold mb-6">Student Considerations</h2>
                 <div className="space-y-4">
                   <Card>
                     <CardContent className="p-6">
-                      <h3 className="font-semibold text-lg mb-3">ICBC Insurance</h3>
+                      <h3 className="font-semibold text-lg mb-3">Insurance Discounts</h3>
                       <p className="text-muted-foreground mb-3">
-                        As a student, you may qualify for ICBC's student discount. Be sure to ask about:
+                        As a student, you may qualify for insurance discounts.
                       </p>
                       <ul className="space-y-2 text-muted-foreground ml-4">
-                        <li>• Good student discount (maintain B average)</li>
-                        <li>• Driver training discount</li>
-                        <li>• Low annual mileage discount</li>
+                        <li>• <strong>Manitoba (MPI):</strong> Driver Safety Rating (DSR) discounts apply.</li>
+                        <li>• <strong>Ontario:</strong> Many insurers offer "Good Student" discounts for maintaining a high GPA.</li>
+                        <li>• Driver training discounts available in both provinces.</li>
                       </ul>
                     </CardContent>
                   </Card>
@@ -172,7 +172,7 @@ const StudentPrograms = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">Tax Benefits</h3>
                       <p className="text-muted-foreground">
-                        If you use your vehicle for work or business purposes, you may be able to deduct 
+                        If you use your vehicle for work or business purposes, you may be able to deduct
                         certain expenses. Consult with a tax professional for advice specific to your situation.
                       </p>
                     </CardContent>
