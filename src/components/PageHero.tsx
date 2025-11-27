@@ -17,7 +17,7 @@ const PageHero = ({
     children
 }: PageHeroProps) => {
     return (
-        <div className={cn("relative py-24 md:py-32 bg-black text-white overflow-hidden", className)}>
+        <div className={cn("relative pt-32 pb-24 md:pt-40 md:pb-32 bg-black text-white overflow-hidden", className)}>
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
                 <img

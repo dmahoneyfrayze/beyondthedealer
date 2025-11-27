@@ -2,15 +2,23 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+
 import { Badge } from "@/components/ui/badge";
 import {
-  ChevronRight, Star, Shield, CheckCircle2, ArrowRight
+  Star, Shield, CheckCircle2, ArrowRight
 } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SearchBar from "@/components/SearchBar";
 import { useVehicles } from "@/hooks/useVehicles";
+import VehicleCard from "@/components/VehicleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TestimonialCard } from "@/components/SocialProof";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
@@ -19,7 +27,7 @@ import StickyMobileCTA from "@/components/StickyCTABar";
 
 const Index = () => {
   const { data: vehicles = [], isLoading } = useVehicles({});
-  const featuredVehicles = vehicles.slice(0, 3);
+  const featuredVehicles = vehicles.slice(0, 8);
 
   // Scroll to top on mount
   useEffect(() => {
@@ -194,45 +202,26 @@ const Index = () => {
                 ))}
               </div>
             ) : (
-              <div className="grid md:grid-cols-3 gap-8">
-                {featuredVehicles.map((vehicle, idx) => (
-                  <AnimatedSection key={vehicle.id} delay={idx * 100}>
-                    <Link to={`/vehicle/${vehicle.stock_number}`}>
-                      <Card className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-500 bg-white dark:bg-card h-full flex flex-col">
-                        <div className="aspect-[4/3] relative overflow-hidden">
-                          <img
-                            src={vehicle.images?.[0] || "/btd-placeholder.png"}
-                            alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                            <p className="text-white font-medium flex items-center gap-2">
-                              View Details <ArrowRight className="w-4 h-4" />
-                            </p>
-                          </div>
-                          <Badge className="absolute top-4 right-4 bg-accent text-primary font-bold border-0">
-                            {vehicle.status === 'available' ? 'Available' : 'Pending'}
-                          </Badge>
+              <div className="relative px-12">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                  }}
+                  className="w-full"
+                >
+                  <CarouselContent className="-ml-4">
+                    {featuredVehicles.map((vehicle, idx) => (
+                      <CarouselItem key={vehicle.id} className="pl-4 md:basis-1/2 lg:basis-1/3 h-full">
+                        <div className="h-full p-1">
+                          <VehicleCard vehicle={vehicle} />
                         </div>
-                        <CardContent className="p-6 flex-grow flex flex-col">
-                          <div className="mb-4">
-                            <p className="text-sm text-muted-foreground mb-1">{vehicle.year} • {vehicle.mileage.toLocaleString()} km</p>
-                            <h3 className="text-xl font-bold text-primary line-clamp-1">{vehicle.make} {vehicle.model}</h3>
-                            <p className="text-sm text-muted-foreground line-clamp-1">{vehicle.trim}</p>
-                          </div>
-                          <div className="mt-auto pt-4 border-t border-border flex items-center justify-between">
-                            <p className="text-2xl font-bold text-primary">
-                              ${(vehicle.internet_price || vehicle.price).toLocaleString()}
-                            </p>
-                            <div className="bg-secondary p-2 rounded-full group-hover:bg-primary group-hover:text-white transition-colors">
-                              <ChevronRight className="w-5 h-5" />
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  </AnimatedSection>
-                ))}
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="left-0 bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white" />
+                  <CarouselNext className="right-0 bg-background/80 backdrop-blur-sm border-primary/20 hover:bg-primary hover:text-white" />
+                </Carousel>
               </div>
             )}
 

@@ -35,7 +35,7 @@ const CompareVehicles = () => {
       <Header />
 
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-12">
+        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground pt-32 pb-12">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center">
               <div>
