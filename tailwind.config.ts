@@ -47,13 +47,6 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        ocean: {
-          DEFAULT: "hsl(var(--ocean-teal))",
-          light: "hsl(var(--ocean-light))",
-        },
-        trust: "hsl(var(--trust-gold))",
-        success: "hsl(var(--success-green))",
-        champagne: "hsl(var(--champagne))",
       },
       borderRadius: {
         lg: "var(--radius)",

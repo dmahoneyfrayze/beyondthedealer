@@ -38,6 +38,8 @@ import FinanceVsLease from "./pages/research/FinanceVsLease";
 import StudentPrograms from "./pages/research/StudentPrograms";
 import NewToCanada from "./pages/research/NewToCanada";
 
+import ScrollToTop from "./components/ScrollToTop";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -53,6 +55,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/used" element={<UsedInventory />} />

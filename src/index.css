@@ -33,35 +33,28 @@ All colors MUST be HSL.
     --muted-foreground: 215.4 16.3% 46.9%;
 
     /* Metallic Gold Accent */
-    --accent: 51 100% 50%;
-    /* #FFD700 */
-    --accent-foreground: 215 50% 23%;
-    /* Navy text on gold */
+    --accent: 40 48% 56%;
+    /* #C5A059 */
+    --accent-foreground: 0 0% 100%;
+    /* White text on gold */
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 51 100% 50%;
+    --ring: 40 48% 56%;
     /* Gold ring */
 
     --radius: 0.5rem;
 
-    /* Custom tokens */
-    --ocean-teal: 215 50% 23%;
-    /* Re-mapped to Navy for consistency */
-    --ocean-light: 210 40% 96.1%;
-    --trust-gold: 51 100% 50%;
-    --success-green: 142 76% 36%;
-    --champagne: 37 68% 89%;
-    /* #F7E7CE */
+
 
     /* Luxury Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(215 50% 23%) 0%, hsl(215 60% 15%) 100%);
     /* Navy Gradient */
     --gradient-card: linear-gradient(to bottom, hsl(0 0% 100%) 0%, hsl(0 0% 98%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(51 100% 50%) 0%, hsl(45 90% 45%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(40 48% 56%) 0%, hsl(45 90% 45%) 100%);
 
     /* Shadows */
     --shadow-card: 0 4px 20px -2px rgba(29, 53, 87, 0.08);
@@ -85,7 +78,7 @@ All colors MUST be HSL.
     --popover: 215 50% 13%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 51 100% 50%;
+    --primary: 40 48% 56%;
     /* Gold Primary in Dark Mode */
     --primary-foreground: 215 50% 23%;
 
@@ -103,13 +96,9 @@ All colors MUST be HSL.
 
     --border: 215 30% 20%;
     --input: 215 30% 20%;
-    --ring: 51 100% 50%;
+    --ring: 40 48% 56%;
 
-    --ocean-teal: 215 50% 23%;
-    --ocean-light: 215 30% 20%;
-    --trust-gold: 51 100% 50%;
-    --success-green: 142 76% 36%;
-    --champagne: 37 68% 89%;
+
   }
 }
 
