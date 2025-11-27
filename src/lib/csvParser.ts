@@ -66,13 +66,25 @@ export const parseCSV = (csvText: string): Vehicle[] => {
         vehicle.status = 'available';
         vehicle.vdp_url = getValue('vdp_url');
 
+        // Sale Class
+        vehicle.sale_class = getValue('sale_class');
+
         // Images - CSV has 'image.image_md' which seems to be a single URL or list
         // Based on CSV sample, it might be empty or contain a URL
         const imageField = getValue('image.image_md');
-        vehicle.images = imageField ? [imageField] : [];
+        if (imageField) {
+            // Handle potential multiple images separated by comma or pipe if that occurs, 
+            // but based on header it looks like a single field. 
+            // Some CSVs might use a different separator for lists.
+            // For now, assume it's a single URL or comma-separated.
+            vehicle.images = imageField.split(',').map(url => url.trim()).filter(url => url.length > 0);
+        } else {
+            vehicle.images = [];
+        }
 
-        // Add to list if it has basic info
-        if (vehicle.make && vehicle.model) {
+        // Add to list if it has basic info and is USED
+        // User requested: "do not show any new vehicles either used only"
+        if (vehicle.make && vehicle.model && vehicle.sale_class === 'Used') {
             vehicles.push(vehicle as Vehicle);
         }
     }

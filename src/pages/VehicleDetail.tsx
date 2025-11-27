@@ -158,7 +158,7 @@ const VehicleDetail = () => {
               <Card className="overflow-hidden">
                 <div className="aspect-video bg-muted">
                   <img
-                    src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
+                    src={vehicle.images?.[0] || "/btd-placeholder.png"}
                     alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                     className="w-full h-full object-cover"
                   />

@@ -189,7 +189,7 @@ const Index = () => {
                           <Card className="h-full hover:shadow-lg transition-all duration-300 cursor-pointer hover:scale-[1.02]">
                             <div className="aspect-video bg-muted relative overflow-hidden">
                               <img
-                                src={vehicle.images?.[0] || "https://images.unsplash.com/photo-1619767886558-efdc259cde1a"}
+                                src={vehicle.images?.[0] || "/btd-placeholder.png"}
                                 alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
                                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
                               />
