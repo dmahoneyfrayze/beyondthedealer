@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LeadMagnetForm from "@/components/LeadMagnetForm";
 import AnimatedSection from "@/components/AnimatedSection";
+import PageHero from "@/components/PageHero";
 import { useVehicles } from "@/hooks/useVehicles";
 import { generateVehicleSlug } from "@/lib/vehicleUtils";
 import PaymentCalculator from "@/components/PaymentCalculator";
@@ -160,24 +161,11 @@ const UsedInventory = () => {
       <Header />
 
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white py-24 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2583&auto=format&fit=crop')] bg-cover bg-center opacity-20"></div>
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <AnimatedSection direction="fade" delay={100}>
-              <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6 animate-slide-down">
-                Beyond the <span className="font-bold">Dealership</span>
-              </h1>
-            </AnimatedSection>
-            <AnimatedSection direction="fade" delay={300}>
-              <p className="text-xl md:text-2xl font-light opacity-90 animate-slide-up max-w-3xl mx-auto leading-relaxed">
-                Experience the new standard in premium pre-owned vehicles. <br />
-                <span className="text-base md:text-lg mt-4 block text-neutral-300">
-                  Serving Manitoba & Ontario | Partners with Maserati & Alfa Romeo Winnipeg
-                </span>
-              </p>
-            </AnimatedSection>
-          </div>
-        </div>
+        <PageHero
+          title="Beyond the Dealership"
+          subtitle="Experience the new standard in premium pre-owned vehicles. Serving Manitoba & Ontario."
+          backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2583&auto=format&fit=crop"
+        />
 
         <div className="container mx-auto px-4 py-12">
           <div className="grid lg:grid-cols-4 gap-8">

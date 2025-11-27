@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import TradeInWizard from "@/components/TradeInWizard";
 
 const TradeIn = () => {
@@ -17,12 +18,11 @@ const TradeIn = () => {
       <Header />
 
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Value Your Trade-In</h1>
-            <p className="text-lg opacity-90">Get an instant estimate on your current vehicle</p>
-          </div>
-        </div>
+        <PageHero
+          title="Value Your Trade-In"
+          subtitle="Get an instant estimate on your current vehicle. Competitive offers, simple process."
+          backgroundImage="https://images.unsplash.com/photo-1560252829-804f1aedf1be?q=80&w=2670&auto=format&fit=crop"
+        />
 
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto mb-12">
