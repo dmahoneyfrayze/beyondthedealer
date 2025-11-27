@@ -1,11 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, CheckCircle2, Calendar } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TradeInWizard from "@/components/TradeInWizard";
 
 const TradeIn = () => {
   const steps = [
@@ -17,7 +15,7 @@ const TradeIn = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -44,7 +42,7 @@ const TradeIn = () => {
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
               <h2 className="text-3xl font-bold mb-6">Why Trade With Us?</h2>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <CheckCircle2 className="w-6 h-6 text-success mr-3 mt-1 flex-shrink-0" />
@@ -105,98 +103,9 @@ const TradeIn = () => {
             </div>
 
             <div>
-              <Card className="sticky top-24">
-                <CardHeader className="bg-gradient-to-br from-primary to-accent text-primary-foreground">
-                  <CardTitle className="text-2xl">Get Your Trade Value</CardTitle>
-                  <p className="text-sm opacity-90">Fill out the form for an instant estimate</p>
-                </CardHeader>
-                <CardContent className="p-6">
-                  <form className="space-y-4">
-                    <div>
-                      <Label htmlFor="year">Year</Label>
-                      <Select>
-                        <SelectTrigger id="year">
-                          <SelectValue placeholder="Select year" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {Array.from({ length: 15 }, (_, i) => 2024 - i).map((year) => (
-                            <SelectItem key={year} value={year.toString()}>{year}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="make">Make</Label>
-                      <Input id="make" placeholder="e.g., Hyundai, Toyota, Honda" />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="model">Model</Label>
-                      <Input id="model" placeholder="e.g., Elantra, Tucson, Kona" />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="trim">Trim</Label>
-                      <Input id="trim" placeholder="e.g., Preferred, Ultimate" />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="mileage">Mileage (km)</Label>
-                      <Input id="mileage" type="number" placeholder="50000" />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="condition">Condition</Label>
-                      <Select>
-                        <SelectTrigger id="condition">
-                          <SelectValue placeholder="Select condition" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="excellent">Excellent</SelectItem>
-                          <SelectItem value="good">Good</SelectItem>
-                          <SelectItem value="fair">Fair</SelectItem>
-                          <SelectItem value="poor">Poor</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="pt-4 border-t">
-                      <h4 className="font-semibold mb-3">Contact Information</h4>
-                      
-                      <div className="space-y-4">
-                        <div>
-                          <Label htmlFor="name">Full Name</Label>
-                          <Input id="name" placeholder="John Doe" />
-                        </div>
-
-                        <div>
-                          <Label htmlFor="email">Email</Label>
-                          <Input id="email" type="email" placeholder="john@example.com" />
-                        </div>
-
-                        <div>
-                          <Label htmlFor="phone">Phone Number</Label>
-                          <Input id="phone" type="tel" placeholder="(604) 555-0100" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <Button type="submit" variant="cta" className="w-full" size="lg">
-                      Get Instant Value
-                    </Button>
-
-                    <Button type="button" variant="outline" className="w-full">
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Schedule In-Person Appraisal
-                    </Button>
-
-                    <p className="text-xs text-muted-foreground text-center">
-                      Estimates are subject to vehicle inspection. Final offer may vary.
-                    </p>
-                  </form>
-                </CardContent>
-              </Card>
+              <div className="sticky top-24">
+                <TradeInWizard />
+              </div>
             </div>
           </div>
         </div>

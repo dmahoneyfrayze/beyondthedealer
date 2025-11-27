@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { X, CheckCircle2, Phone } from "lucide-react";
+import { X, CheckCircle2, Phone, MessageSquare } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface StickyCTABarProps {
@@ -66,30 +66,46 @@ const StickyCTABar = ({
       )}
     >
       <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between gap-4">
+        {/* Mobile View: Call & Text Buttons */}
+        <div className="md:hidden grid grid-cols-2 gap-3">
+          <Button asChild variant="default" className="w-full shadow-md bg-primary text-primary-foreground hover:bg-primary/90">
+            <a href="tel:2042976177">
+              <Phone className="w-4 h-4 mr-2" />
+              Call Now
+            </a>
+          </Button>
+          <Button asChild variant="outline" className="w-full shadow-md bg-white text-black border-white hover:bg-gray-100">
+            <a href="sms:2042976177">
+              <MessageSquare className="w-4 h-4 mr-2" />
+              Text Us
+            </a>
+          </Button>
+        </div>
+
+        {/* Desktop View: Pre-Approval Bar */}
+        <div className="hidden md:flex items-center justify-between gap-4">
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-            <p className="text-sm font-medium truncate hidden sm:block">{message}</p>
-            <p className="text-sm font-medium sm:hidden">Get Pre-Approved</p>
+            <p className="text-sm font-medium truncate">{message}</p>
           </div>
-          
+
           <div className="flex items-center gap-2 flex-shrink-0">
             <Button
               asChild
               size="sm"
-              className="bg-white text-primary hover:bg-white/90 font-semibold"
+              className="bg-white text-black hover:bg-white/90 font-semibold"
             >
               <Link to={ctaLink}>{ctaText}</Link>
             </Button>
-            
+
             <a
-              href="tel:604-555-0100"
+              href="tel:2042976177"
               className="p-2 rounded-md hover:bg-white/20 transition-colors"
               aria-label="Call us"
             >
               <Phone className="w-4 h-4" />
             </a>
-            
+
             <button
               onClick={handleDismiss}
               className="p-2 rounded-md hover:bg-white/20 transition-colors"
