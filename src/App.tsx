@@ -38,6 +38,8 @@ import FinanceVsLease from "./pages/research/FinanceVsLease";
 import StudentPrograms from "./pages/research/StudentPrograms";
 import NewToCanada from "./pages/research/NewToCanada";
 import Contact from "./pages/Contact";
+import ResearchHub from "./pages/ResearchHub";
+import Consignment from "./pages/Consignment";
 
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -77,6 +79,8 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/warranties" element={<WarrantiesProtection />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/research" element={<ResearchHub />} />
+              <Route path="/consignment" element={<Consignment />} />
               <Route path="/hyundai-elantra-vancouver-guide" element={<ElantraGuide />} />
               <Route path="/hyundai-kona-vancouver-guide" element={<KonaGuide />} />
               <Route path="/hyundai-tucson-vancouver-guide" element={<TucsonGuide />} />

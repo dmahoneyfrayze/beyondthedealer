@@ -37,25 +37,11 @@ const Header = () => {
     { name: "Trucks", href: "/used?body=Truck" },
   ];
 
-  const researchLinks = [
-    { name: "Why Thunder Bay Chooses BTD", href: "/research/thunder-bay" },
-    { name: "New vs. Used Guide", href: "/research/new-vs-used" },
-    { name: "Finance vs. Lease", href: "/research/finance-vs-lease" },
-    { name: "Student Programs", href: "/research/student-programs" },
-    { name: "New to Canada", href: "/research/new-to-canada" },
-    { name: "EV & Hybrid Guide", href: "/ev-hybrid-guide-bc" }, // Keeping URL for SEO but renaming link if needed
-  ];
-
-  const financeLinks = [
-    { name: "Get Pre-Approved", href: "/finance" },
-    { name: "Second Chance Financing", href: "/second-chance-financing" },
-    { name: "Sign and Drive Program", href: "/sign-and-drive" },
-    { name: "Credit Rebuilding", href: "/credit-rebuilding" },
-    { name: "Leasing Options", href: "/leasing" },
-  ];
-
   const navigation = [
+    { name: "Finance", href: "/finance" },
+    { name: "Research", href: "/research" },
     { name: "Trade-In", href: "/trade-in" },
+    { name: "Consignment", href: "/consignment" },
     { name: "Warranties", href: "/warranties" },
     { name: "Service", href: "/service-specials" },
   ];
@@ -107,50 +93,6 @@ const Header = () => {
                               <div className="text-sm font-medium leading-none">{item.name}</div>
                             </Link>
                           )}
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium">
-                  Finance
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 bg-background">
-                    {financeLinks.map((item) => (
-                      <li key={item.name}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={item.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="text-sm font-medium leading-none">{item.name}</div>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-sm font-medium">
-                  Research
-                </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 bg-background">
-                    {researchLinks.map((item) => (
-                      <li key={item.name}>
-                        <NavigationMenuLink asChild>
-                          <Link
-                            to={item.href}
-                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                          >
-                            <div className="text-sm font-medium leading-none">{item.name}</div>
-                          </Link>
                         </NavigationMenuLink>
                       </li>
                     ))}
@@ -234,33 +176,6 @@ const Header = () => {
                 </Link>
               ))}
 
-              <div className="px-4 py-2">
-                <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Finance</p>
-                {financeLinks.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="block px-4 py-3 text-base text-white hover:bg-white/10 rounded-md transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-
-              <div className="px-4 py-2">
-                <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Research</p>
-                {researchLinks.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className="block px-4 py-3 text-base text-white hover:bg-white/10 rounded-md transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
               <div className="px-4 py-4 mt-4 border-t border-white/10">
                 <a href="tel:204-297-6177" className="flex items-center text-lg font-semibold text-accent justify-center">
                   <Phone className="w-5 h-5 mr-2" />
