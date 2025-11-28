@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Phone, Loader2, ArrowUpDown } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
 import AnimatedSection from "@/components/AnimatedSection";
 import PageHero from "@/components/PageHero";
 import { useVehicles } from "@/hooks/useVehicles";
@@ -369,12 +368,7 @@ const UsedInventory = () => {
               </Card>
 
               {/* Lead Magnet */}
-              <LeadMagnetForm
-                title="Get Notified of New Arrivals"
-                description="Be the first to know when vehicles matching your criteria arrive"
-                buttonText="Get Notifications"
-                source="inventory-page"
-              />
+              {/* Lead Magnet Removed */}
             </aside>
 
             {/* Vehicle Grid */}
