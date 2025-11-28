@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Twitter, Mail, Phone, ArrowRight, ChevronDown, MapPin } from "lucide-react";
+import { Mail, Phone, ArrowRight, ChevronDown, MapPin } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 
@@ -187,11 +187,7 @@ const Footer = () => {
           <div className="flex gap-6">
             <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <div className="flex gap-4 ml-4 border-l border-white/10 pl-4">
-              <a href="#" className="hover:text-accent transition-colors"><Facebook className="w-4 h-4" /></a>
-              <a href="#" className="hover:text-accent transition-colors"><Instagram className="w-4 h-4" /></a>
-              <a href="#" className="hover:text-accent transition-colors"><Twitter className="w-4 h-4" /></a>
-            </div>
+
           </div>
         </div>
       </div>

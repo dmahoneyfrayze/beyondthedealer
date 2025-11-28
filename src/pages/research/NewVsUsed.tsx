@@ -4,7 +4,7 @@ import { CheckCircle2, X, DollarSign, TrendingUp, Shield, Clock } from "lucide-r
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const NewVsUsed = () => {
   const newCarPros = [
@@ -47,7 +47,7 @@ const NewVsUsed = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -65,13 +65,13 @@ const NewVsUsed = () => {
               <section>
                 <h2 className="text-3xl font-bold mb-6">The Big Question</h2>
                 <p className="text-lg text-muted-foreground mb-4">
-                  Deciding between a new or used vehicle is one of the most important choices you'll make. 
-                  Both options have significant advantages, and the right choice depends on your priorities, 
+                  Deciding between a new or used vehicle is one of the most important choices you'll make.
+                  Both options have significant advantages, and the right choice depends on your priorities,
                   budget, and lifestyle.
                 </p>
                 <p className="text-muted-foreground">
-                  In BC, both new and used vehicles offer unique benefits. New vehicles come with full warranties 
-                  and the latest features, while used vehicles provide better value and immediate availability. 
+                  In BC, both new and used vehicles offer unique benefits. New vehicles come with full warranties
+                  and the latest features, while used vehicles provide better value and immediate availability.
                   Let's break down the key differences.
                 </p>
               </section>
@@ -173,7 +173,7 @@ const NewVsUsed = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">ICBC Insurance</h3>
                       <p className="text-muted-foreground mb-3">
-                        Insurance costs are generally similar for new and used vehicles of the same make/model. 
+                        Insurance costs are generally similar for new and used vehicles of the same make/model.
                         However, newer vehicles may have better safety features that could reduce premiums.
                       </p>
                       <p className="text-sm text-muted-foreground">
@@ -186,7 +186,7 @@ const NewVsUsed = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">EV Incentives</h3>
                       <p className="text-muted-foreground mb-3">
-                        BC offers significant incentives for new electric vehicles (up to $9,000 combined federal and provincial). 
+                        BC offers significant incentives for new electric vehicles (up to $9,000 combined federal and provincial).
                         Used EVs may not qualify for all incentives, but can still be a great value.
                       </p>
                       <Button asChild variant="outline" className="mt-2">
@@ -262,12 +262,17 @@ const NewVsUsed = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Get Personalized Advice"
-                description="Tell us your situation and we'll help you decide between new or used"
-                buttonText="Get Free Consultation"
-                source="new-vs-used"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Find Your Vehicle</CardTitle>
+                  <p className="text-sm text-muted-foreground">Browse our inventory of quality used vehicles</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/used">Browse Inventory</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

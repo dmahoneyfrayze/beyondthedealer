@@ -4,7 +4,7 @@ import { AlertTriangle, DollarSign, Calculator, Info } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const LuxuryTax = () => {
   return (
@@ -209,12 +209,17 @@ const LuxuryTax = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Calculate Your Total Cost"
-                description="Get a detailed breakdown including luxury tax for your vehicle"
-                buttonText="Get Calculation"
-                source="luxury-tax"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Avoid Luxury Tax</CardTitle>
+                  <p className="text-sm text-muted-foreground">Find vehicles under the luxury tax threshold</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/used">Browse Inventory</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

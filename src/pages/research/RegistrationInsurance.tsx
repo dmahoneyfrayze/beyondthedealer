@@ -4,7 +4,7 @@ import { FileText, Shield, DollarSign, CheckCircle2, AlertCircle, Info } from "l
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const RegistrationInsurance = () => {
   const registrationSteps = [
@@ -271,12 +271,17 @@ const RegistrationInsurance = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Get Insurance Quote"
-                description="Get an estimate for your insurance costs"
-                buttonText="Get Quote"
-                source="registration-insurance"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Get Help with Registration</CardTitle>
+                  <p className="text-sm text-muted-foreground">We handle all the paperwork for you</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/contact">Contact Us</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

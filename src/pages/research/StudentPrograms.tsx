@@ -4,7 +4,7 @@ import { GraduationCap, DollarSign, CheckCircle2, Users, Shield, Clock } from "l
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const StudentPrograms = () => {
   const benefits = [
@@ -214,12 +214,17 @@ const StudentPrograms = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Apply for Student Financing"
-                description="Get pre-approved for our student programs"
-                buttonText="Apply Now"
-                source="student-programs"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Student Financing</CardTitle>
+                  <p className="text-sm text-muted-foreground">Get approved with our student program</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/finance">Apply Now</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

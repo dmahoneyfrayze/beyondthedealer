@@ -4,7 +4,7 @@ import { CheckCircle2, X, DollarSign, TrendingUp, RefreshCw, Calculator } from "
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const FinanceVsLease = () => {
   const financePros = [
@@ -52,7 +52,7 @@ const FinanceVsLease = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-grow bg-background">
         <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground py-16">
           <div className="container mx-auto px-4 text-center">
@@ -76,7 +76,7 @@ const FinanceVsLease = () => {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground">
-                        When you finance, you're taking out a loan to purchase the vehicle. You make monthly payments 
+                        When you finance, you're taking out a loan to purchase the vehicle. You make monthly payments
                         until the loan is paid off, then you own the vehicle outright. Think of it like a mortgage for a car.
                       </p>
                     </CardContent>
@@ -88,8 +88,8 @@ const FinanceVsLease = () => {
                     </CardHeader>
                     <CardContent>
                       <p className="text-muted-foreground">
-                        When you lease, you're essentially renting the vehicle for a set period (typically 2-4 years). 
-                        You pay for the vehicle's depreciation during that time, plus interest. At the end, you return 
+                        When you lease, you're essentially renting the vehicle for a set period (typically 2-4 years).
+                        You pay for the vehicle's depreciation during that time, plus interest. At the end, you return
                         the vehicle or buy it out.
                       </p>
                     </CardContent>
@@ -194,7 +194,7 @@ const FinanceVsLease = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">ICBC Insurance</h3>
                       <p className="text-muted-foreground mb-3">
-                        Insurance costs are similar for both financing and leasing. However, leased vehicles 
+                        Insurance costs are similar for both financing and leasing. However, leased vehicles
                         typically require full coverage, which may be slightly more expensive.
                       </p>
                     </CardContent>
@@ -204,11 +204,11 @@ const FinanceVsLease = () => {
                     <CardContent className="p-6">
                       <h3 className="font-semibold text-lg mb-3">Early Termination</h3>
                       <p className="text-muted-foreground mb-3">
-                        <strong>Financing:</strong> You can sell or trade the vehicle at any time, using the 
+                        <strong>Financing:</strong> You can sell or trade the vehicle at any time, using the
                         proceeds to pay off the loan.
                       </p>
                       <p className="text-muted-foreground">
-                        <strong>Leasing:</strong> Early termination can be expensive. You may owe remaining 
+                        <strong>Leasing:</strong> Early termination can be expensive. You may owe remaining
                         payments plus penalties. Consider lease transfer options.
                       </p>
                     </CardContent>
@@ -281,12 +281,17 @@ const FinanceVsLease = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Get a Custom Quote"
-                description="Compare financing vs. leasing options for your situation"
-                buttonText="Get My Quote"
-                source="finance-vs-lease"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Get Pre-Approved</CardTitle>
+                  <p className="text-sm text-muted-foreground">Find out your financing options today</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/finance">Apply Now</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>

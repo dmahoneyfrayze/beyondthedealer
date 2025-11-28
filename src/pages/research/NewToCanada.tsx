@@ -4,7 +4,7 @@ import { Globe, CheckCircle2, FileText, Shield, Users, MapPin } from "lucide-rea
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Link } from "react-router-dom";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const NewToCanada = () => {
   const benefits = [
@@ -273,12 +273,17 @@ const NewToCanada = () => {
 
             {/* Sidebar */}
             <aside className="space-y-6">
-              <LeadMagnetForm
-                title="Apply for Newcomer Financing"
-                description="Get pre-approved with our New to Canada program"
-                buttonText="Apply Now"
-                source="new-to-canada"
-              />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Apply for Newcomer Financing</CardTitle>
+                  <p className="text-sm text-muted-foreground">Get pre-approved with our New to Canada program</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/finance">Apply Now</Link>
+                  </Button>
+                </CardContent>
+              </Card>
 
               <Card>
                 <CardHeader>
