@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -21,7 +22,7 @@ import { useVehicles } from "@/hooks/useVehicles";
 import VehicleCard from "@/components/VehicleCard";
 import AnimatedSection from "@/components/AnimatedSection";
 import { TestimonialCard } from "@/components/SocialProof";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import StickyMobileCTA from "@/components/StickyCTABar";
 
@@ -273,12 +274,17 @@ const Index = () => {
 
               <AnimatedSection delay={200}>
                 <div className="bg-white text-foreground rounded-2xl p-8 shadow-2xl">
-                  <LeadMagnetForm
-                    title="Start Your Concierge Request"
-                    description="Let us do the hunting for you. No obligation."
-                    buttonText="Find My Car"
-                    source="home_concierge"
-                  />
+                  <Card className="bg-primary/5 border-primary/20 h-full">
+                    <CardHeader>
+                      <CardTitle>Vehicle Concierge</CardTitle>
+                      <p className="text-sm text-muted-foreground">Can't find what you're looking for? Let us find it for you.</p>
+                    </CardHeader>
+                    <CardContent>
+                      <Button asChild className="w-full">
+                        <Link to="/find-my-car">Start Search</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
                 </div>
               </AnimatedSection>
             </div>

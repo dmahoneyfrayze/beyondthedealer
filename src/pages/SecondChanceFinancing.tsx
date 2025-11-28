@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle2, Heart, Shield, TrendingUp, Users, Phone } from "lucide-react";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 
 const SecondChanceFinancing = () => {
   return (
@@ -271,7 +271,17 @@ const SecondChanceFinancing = () => {
                 </CardContent>
               </Card>
 
-              <LeadMagnetForm />
+              <Card className="bg-primary/5 border-primary/20">
+                <CardHeader>
+                  <CardTitle>Get Pre-Approved</CardTitle>
+                  <p className="text-sm text-muted-foreground">Start your credit rebuilding journey today</p>
+                </CardHeader>
+                <CardContent>
+                  <Button asChild className="w-full">
+                    <Link to="/finance">Apply Now</Link>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { useVehicles } from "@/hooks/useVehicles";
@@ -14,7 +14,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PaymentCalculator from "@/components/PaymentCalculator";
-import LeadMagnetForm from "@/components/LeadMagnetForm";
+
 import AnimatedSection from "@/components/AnimatedSection";
 import { ViewCounter } from "@/components/SocialProof";
 import { LimitedInventoryBadge as LimitedBadge, CountdownTimer as CountdownComponent } from "@/components/UrgencyBadge";
@@ -459,12 +459,17 @@ const VehicleDetail = () => {
                 <PaymentCalculator vehiclePrice={price} />
 
                 {/* Lead Magnet Form */}
-                <LeadMagnetForm
-                  title="Get Financing Quote for This Vehicle"
-                  description={`Get a personalized financing quote for this ${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-                  buttonText="Get My Quote"
-                  source={`vehicle-${vehicle.stock_number}`}
-                />
+                <Card className="bg-primary/5 border-primary/20">
+                  <CardHeader>
+                    <CardTitle>Interested in this vehicle?</CardTitle>
+                    <p className="text-sm text-muted-foreground">Get more information or schedule a test drive.</p>
+                  </CardHeader>
+                  <CardContent>
+                    <Button asChild className="w-full">
+                      <Link to="/contact">Contact Us</Link>
+                    </Button>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
