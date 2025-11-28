@@ -62,7 +62,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || mobileMenuOpen
         ? "bg-black/95 backdrop-blur-md shadow-md py-3"
         : "bg-transparent py-5"
         }`}
@@ -202,20 +202,20 @@ const Header = () => {
             className="lg:hidden p-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
-            <Menu className="w-6 h-6 text-foreground" />
+            <Menu className={`w-6 h-6 ${isScrolled || mobileMenuOpen ? "text-white" : "text-foreground"}`} />
           </button>
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-border">
+          <div className="lg:hidden py-4 border-t border-white/10 bg-black/95 backdrop-blur-md h-screen overflow-y-auto pb-20">
             <nav className="flex flex-col space-y-2">
               <div className="px-4 py-2">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Inventory</p>
+                <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Inventory</p>
                 {inventoryLinks.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
+                    className="block px-4 py-3 text-base text-white hover:bg-white/10 rounded-md transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -227,7 +227,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="px-4 py-2 text-sm font-medium text-foreground hover:bg-secondary rounded-md"
+                  className="px-4 py-3 text-base font-medium text-white hover:bg-white/10 rounded-md transition-colors mx-4"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -235,12 +235,12 @@ const Header = () => {
               ))}
 
               <div className="px-4 py-2">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Finance</p>
+                <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Finance</p>
                 {financeLinks.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
+                    className="block px-4 py-3 text-base text-white hover:bg-white/10 rounded-md transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -249,21 +249,21 @@ const Header = () => {
               </div>
 
               <div className="px-4 py-2">
-                <p className="text-sm font-semibold text-muted-foreground mb-2">Research</p>
+                <p className="text-sm font-semibold text-gray-400 mb-2 uppercase tracking-wider">Research</p>
                 {researchLinks.map((item) => (
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="block px-4 py-2 text-sm text-foreground hover:bg-secondary rounded-md"
+                    className="block px-4 py-3 text-base text-white hover:bg-white/10 rounded-md transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
-              <div className="px-4 py-2">
-                <a href="tel:604-555-0100" className="flex items-center text-sm text-foreground">
-                  <Phone className="w-4 h-4 mr-2" />
+              <div className="px-4 py-4 mt-4 border-t border-white/10">
+                <a href="tel:204-297-6177" className="flex items-center text-lg font-semibold text-accent justify-center">
+                  <Phone className="w-5 h-5 mr-2" />
                   (204) 297-6177
                 </a>
               </div>
