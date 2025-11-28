@@ -25,8 +25,9 @@ const PageHero = ({
                     alt="Background"
                     className="w-full h-full object-cover opacity-40"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+                <div className="absolute inset-0 bg-black/50" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10 text-center">
