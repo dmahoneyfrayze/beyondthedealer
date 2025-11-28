@@ -116,7 +116,7 @@ const VehicleDetail = () => {
       <Header />
 
       <main className="flex-grow bg-background">
-        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground pt-28 pb-8">
+        <div className="bg-gradient-to-br from-primary to-accent text-primary-foreground pt-32 pb-12">
           <div className="container mx-auto px-4">
             <AnimatedSection direction="fade" delay={100}>
               <Button asChild variant="ghost" className="mb-4 text-primary-foreground hover:bg-primary-foreground/10 hover:scale-105 transition-transform duration-200">
@@ -176,29 +176,32 @@ const VehicleDetail = () => {
               </Card>
 
               {/* High Visibility CTAs */}
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <Button asChild variant="cta" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <Button asChild variant="cta" size="lg" className="h-auto py-6 flex flex-col gap-2 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                   <Link to="/finance">
                     <CheckCircle2 className="w-6 h-6" />
-                    <span className="text-sm font-semibold">Get Approved</span>
+                    <span className="text-sm font-bold">Get Approved</span>
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
+                <Button asChild variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white text-primary border-primary/20">
                   <Link to="/trade-in">
                     <DollarSign className="w-6 h-6" />
-                    <span className="text-sm font-semibold">Value Trade</span>
+                    <span className="text-sm font-bold">Value Trade</span>
                   </Link>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2 hover:scale-105 transition-transform duration-200">
+                <Button asChild variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white text-primary border-primary/20">
                   <a href="tel:204-297-6177">
                     <Car className="w-6 h-6" />
-                    <span className="text-sm font-semibold">Test Drive</span>
+                    <span className="text-sm font-bold">Test Drive</span>
                   </a>
                 </Button>
                 <Button
                   variant={isSaved(vehicle.id) ? "default" : "outline"}
                   size="lg"
-                  className="h-auto py-4 flex flex-col gap-2"
+                  className={cn(
+                    "h-auto py-6 flex flex-col gap-2 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300",
+                    !isSaved(vehicle.id) && "bg-white text-primary border-primary/20"
+                  )}
                   onClick={() => {
                     if (isSaved(vehicle.id)) {
                       removeFromSaved(vehicle.id);
@@ -208,12 +211,15 @@ const VehicleDetail = () => {
                   }}
                 >
                   <Heart className={cn("w-6 h-6", isSaved(vehicle.id) && "fill-current")} />
-                  <span className="text-sm font-semibold">{isSaved(vehicle.id) ? "Saved" : "Save"}</span>
+                  <span className="text-sm font-bold">{isSaved(vehicle.id) ? "Saved" : "Save"}</span>
                 </Button>
                 <Button
                   variant={isInComparison(vehicle.id) ? "secondary" : "outline"}
                   size="lg"
-                  className="h-auto py-4 flex flex-col gap-2"
+                  className={cn(
+                    "h-auto py-6 flex flex-col gap-2 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300",
+                    !isInComparison(vehicle.id) && "bg-white text-primary border-primary/20"
+                  )}
                   onClick={() => {
                     if (isInComparison(vehicle.id)) {
                       removeFromComparison(vehicle.id);
@@ -223,12 +229,12 @@ const VehicleDetail = () => {
                   }}
                 >
                   <GitCompare className="w-6 h-6" />
-                  <span className="text-sm font-semibold">{isInComparison(vehicle.id) ? "In Compare" : "Compare"}</span>
+                  <span className="text-sm font-bold">{isInComparison(vehicle.id) ? "In Compare" : "Compare"}</span>
                 </Button>
-                <Button asChild variant="outline" size="lg" className="h-auto py-4 flex flex-col gap-2">
+                <Button asChild variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 bg-white text-primary border-primary/20">
                   <Link to="/finance">
                     <Calculator className="w-6 h-6" />
-                    <span className="text-sm font-semibold">Build Payment</span>
+                    <span className="text-sm font-bold">Build Payment</span>
                   </Link>
                 </Button>
               </div>
@@ -391,7 +397,7 @@ const VehicleDetail = () => {
             {/* Sidebar */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 space-y-6">
-                <Card>
+                <Card className="shadow-card border-primary/10">
                   <CardContent className="p-6 space-y-6">
                     <div>
                       <p className="text-sm text-muted-foreground mb-2">Price</p>

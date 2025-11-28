@@ -23,7 +23,7 @@ const Finance = () => {
         <PageHero
           title="Get Pre-Approved Today"
           subtitle="Fast, easy financing for all credit types. Best rates in Manitoba & Ontario."
-          backgroundImage="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=2670&auto=format&fit=crop"
+          backgroundImage="/hero-cinematic.png"
         />
 
         <div className="container mx-auto px-4 py-12">
@@ -46,65 +46,74 @@ const Finance = () => {
               <h2 className="text-3xl font-bold mb-6">Finance Options</h2>
 
               <div className="space-y-6">
-                <Card>
+                <Card className="shadow-card hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
-                    <CardTitle>Traditional Financing</CardTitle>
+                    <CardTitle className="flex items-center gap-2">
+                      <DollarSign className="w-6 h-6 text-accent" />
+                      Traditional Financing
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Terms from 24 to 84 months</span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Competitive interest rates</span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Build or rebuild your credit</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="shadow-card hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
-                    <CardTitle>Leasing Options</CardTitle>
+                    <CardTitle className="flex items-center gap-2">
+                      <Clock className="w-6 h-6 text-accent" />
+                      Leasing Options
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Lower monthly payments</span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Drive a newer vehicle more often</span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Flexible end-of-lease options</span>
                       </li>
                     </ul>
                   </CardContent>
                 </Card>
 
-                <Card>
+                <Card className="shadow-card hover:shadow-lg transition-shadow duration-300">
                   <CardHeader>
-                    <CardTitle>Credit Rebuilding</CardTitle>
+                    <CardTitle className="flex items-center gap-2">
+                      <Shield className="w-6 h-6 text-accent" />
+                      Credit Rebuilding
+                    </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground mb-3">
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
                       Past credit challenges? We specialize in helping customers rebuild their credit through our trusted lending partners.
                     </p>
-                    <ul className="space-y-2">
+                    <ul className="space-y-3">
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Second chance financing available</span>
                       </li>
                       <li className="flex items-start">
-                        <CheckCircle2 className="w-5 h-5 text-success mr-2 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-accent mr-2 mt-0.5 flex-shrink-0" />
                         <span>Report to credit bureaus</span>
                       </li>
                     </ul>

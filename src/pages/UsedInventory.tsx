@@ -157,16 +157,16 @@ const UsedInventory = () => {
 
       <main className="flex-grow bg-background">
         <PageHero
-          title="Beyond the Dealership"
-          subtitle="Experience the new standard in premium pre-owned vehicles. Serving Manitoba & Ontario."
-          backgroundImage="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2583&auto=format&fit=crop"
+          title="Premium Inventory"
+          subtitle="Browse our curated selection of high-quality pre-owned vehicles."
+          backgroundImage="/hero-cinematic.png"
         />
 
         <div className="container mx-auto px-4 py-12">
           <div className="grid lg:grid-cols-4 gap-8">
             {/* Sidebar Filters & CTAs */}
             <aside className="lg:col-span-1">
-              <Card className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
+              <Card className="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto shadow-card">
                 <CardContent className="p-4 space-y-3">
                   <div>
                     <div className="flex items-center justify-between mb-2">
@@ -437,9 +437,9 @@ const UsedInventory = () => {
 
               <div className="mt-8 p-4 bg-muted/50 rounded-lg text-xs text-muted-foreground text-center">
                 <p>
-                  <strong>BC Pricing Disclosure:</strong> All prices exclude PST, GST, air conditioning tax ($100),
-                  tire stewardship fee, PPSA registration, dealer documentation fee ($599), and licensing/registration costs.
-                  Payment estimates are for illustration only and subject to credit approval. Actual rates and terms may vary.
+                  <strong>Pricing Disclosure:</strong> All prices exclude applicable taxes and licensing fees.
+                  Dealer documentation fee may apply. Payment estimates are for illustration only and subject to credit approval.
+                  Actual rates and terms may vary based on creditworthiness.
                 </p>
               </div>
             </div>
