@@ -62,7 +62,7 @@ const VehicleDetail = () => {
     );
   }
 
-  const canonicalUrl = `https://beyondthedealership.com/vehicle/${generateVehicleSlug(vehicle)}`;
+  const canonicalUrl = `https://beyondthedealership.ca/vehicle/${generateVehicleSlug(vehicle)}`;
   const vehicleTitle = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? ` ${vehicle.trim}` : ''}`;
 
   const structuredData = {

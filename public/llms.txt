@@ -1,0 +1,17 @@
+# Beyond the Dealership
+
+> Nationwide Delivery, Zero Hidden Fees
+
+Beyond the Dealership offers a premium car buying experience with nationwide delivery across Canada, focusing on transparency and customer satisfaction.
+
+## Navigation
+
+- [Home](https://beyondthedealership.ca/)
+- [Used Inventory](https://beyondthedealership.ca/used)
+- [How It Works](https://beyondthedealership.ca/#how-it-works)
+- [Sell/Trade](https://beyondthedealership.ca/trade-in)
+- [Financing](https://beyondthedealership.ca/finance)
+
+## Sitemap
+
+- [Sitemap XML](https://beyondthedealership.ca/sitemap.xml)

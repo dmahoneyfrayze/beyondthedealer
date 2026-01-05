@@ -12,7 +12,7 @@ const Contact = () => {
             <Helmet>
                 <title>Contact Us | Beyond the Dealership</title>
                 <meta name="description" content="Contact Beyond the Dealership. We serve Manitoba and Ontario with premium used vehicles and nationwide delivery." />
-                <link rel="canonical" href="https://beyondthedealership.com/contact" />
+                <link rel="canonical" href="https://beyondthedealership.ca/contact" />
             </Helmet>
 
             <Header />
